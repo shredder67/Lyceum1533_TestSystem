@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/shredder67/Lyceum1533_TestSystem#readme",
   "dependencies": {
-    "koa": "^2.5.1",
+    "express": "^4.16.3",
     "mysql": "^2.15.0"
   }
 }
