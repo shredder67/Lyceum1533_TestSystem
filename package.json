@@ -1,0 +1,23 @@
+{
+  "name": "lyceum1533_testsystem",
+  "version": "1.0.0",
+  "description": "the diploma school project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shredder67/Lyceum1533_TestSystem.git"
+  },
+  "author": "shredder67",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shredder67/Lyceum1533_TestSystem/issues"
+  },
+  "homepage": "https://github.com/shredder67/Lyceum1533_TestSystem#readme",
+  "dependencies": {
+    "koa": "^2.5.1",
+    "mysql": "^2.15.0"
+  }
+}
