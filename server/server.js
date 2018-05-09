@@ -20,5 +20,5 @@ var server = new http.Server(function(req, res){
   }
 });
  //создание сервера с протоколом http
-
+ 
 server.listen(3000, '127.0.0.1');
