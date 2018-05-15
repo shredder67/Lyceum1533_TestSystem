@@ -2,7 +2,7 @@
   "name": "lyceum1533_testsystem",
   "version": "1.0.0",
   "description": "the diploma school project",
-  "main": "server.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -17,7 +17,10 @@
   },
   "homepage": "https://github.com/shredder67/Lyceum1533_TestSystem#readme",
   "dependencies": {
+    "body-parser": "^1.18.3",
+    "eslint-plugin-node": "^6.0.1",
     "express": "^4.16.3",
-    "mysql": "^2.15.0"
+    "mysql": "^2.15.0",
+    "pug": "^2.0.3"
   }
 }
