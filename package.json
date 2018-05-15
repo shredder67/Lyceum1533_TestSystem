@@ -4,7 +4,7 @@
   "description": "the diploma school project",
   "main": "app.js",
   "scripts": {
-    "start": "cross-env PORT = 3000 node app.js",
+    "start": "node app.js cross-env PORT = 3000",
     "dev": "supervisor app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
