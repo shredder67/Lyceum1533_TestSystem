@@ -8,29 +8,23 @@
 
 const express = require('express');
 const bodyParser = require('body-parser');
-const config = require('./config');
 
-//const tableOfTest;//чтение тестов из бд
 var app = express();
 app.use(bodyParser.urlencoded({extended: true}));
 
-//get - запрос на получение данных, post - объект, содержащий данные, созданные пользователем
-//set - установка переменных окружения 
-
 app.set('view engine', 'ejs');
 
-app.get('/',(req,res)=>{//вывод таблицы тестов из базы
+//Middleware
+app.get('/',(req,res)=>{
     res.render('index');
 });
-app.get('/create',(req,res)=>{//рендер редактор тестирования
+app.get('/create',(req,res)=>{
     res.render('create');
 })
 
-app.post('/create', (req,res)=>{ //добавление теста в базу
+app.post('/create', (req,res)=>{ 
     console.log(req.body);
     res.end();
 })
 
-app.listen(config.PORT, ()=>{
-    console.log("we are listening port:" + config.PORT);
-});
+module.exports = app;
