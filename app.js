@@ -10,7 +10,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const config = require('./config');
 
-
+//const tableOfTest;//чтение тестов из бд
 var app = express();
 app.use(bodyParser.urlencoded({extended: true}));
 
@@ -19,15 +19,16 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 app.set('view engine', 'ejs');
 
-app.get('/',(req,res)=>{
+app.get('/',(req,res)=>{//вывод таблицы тестов из базы
     res.render('index');
 });
-app.get('/create',(req,res)=>{
+app.get('/create',(req,res)=>{//рендер редактор тестирования
     res.render('create');
 })
 
-app.post('/create', (req,res)=>{
+app.post('/create', (req,res)=>{ //добавление теста в базу
     console.log(req.body);
+    res.end();
 })
 
 app.listen(config.PORT, ()=>{

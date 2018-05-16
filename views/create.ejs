@@ -3,9 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
+    <link rel="stylesheet" href="../public/stylesheets/style_create.css">
+    <script>
+        function onFinishButtonClick(){
+            document.location.href = '/';
+        }
+    </script>
 </head>
 <body>
-    <input type="text" name="text">
-    <button type="submit" >Submit</button>
+    <form method="post">
+        <input type="text" name="text">
+        <input type="button" value="Submit" onclick = "onFinishButtonClick()" >
+    </form>
 </body>
 </html>
