@@ -9,6 +9,8 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 
+const Post = require('./models/test'); 
+
 var app = express();
 app.use(bodyParser.urlencoded({extended: true}));
 
@@ -23,7 +25,18 @@ app.get('/create',(req,res)=>{
 })
 
 app.post('/create', (req,res)=>{ 
-    console.log(req.body);
+    
+    Post.create({
+        name: req.body.name,
+        author: req.body.author,
+        subject: req.body.subject,
+        theme: req.body.theme,
+        rate:req.body.rate,
+        date:Date.now()
+        //questions:req.body.questions
+    })
+        .then(post => console.log(post._id))
+        .catch(err => console.log(err));
     res.end();
 })
 

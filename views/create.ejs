@@ -1,19 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8"></meta>
+
     <title>Document</title>
-    <link rel="stylesheet" href="../public/stylesheets/style_create.css">
+
+    <link
+        rel="stylesheet"
+        href="../public/stylesheets/style_create.css"
+    ></link>
+
     <script>
         function onFinishButtonClick(){
-            document.location.href = '/';
+            document.URL = '/';
         }
     </script>
 </head>
+
 <body>
-    <form method="post">
-        <input type="text" name="text">
-        <input type="button" value="Submit" onclick = "onFinishButtonClick()" >
+    <form action="/">
+        <form method="post">
+            Название:
+
+            <input
+                type="text"
+                name="name"
+            ></input>
+
+            <br>
+            Автор:
+
+            <input
+                type="text"
+                name="author"
+            ></input>
+
+            <br>
+            Предмет:
+
+            <input
+                type="text"
+                name="subject"
+            ></input>
+
+            <br>
+            Тема:
+
+            <input
+                type="text"
+                name="theme"
+            ></input>
+
+            <br>
+            Класс:
+
+            <input
+                type="text"
+                name="rate"
+            ></input>
+
+            <br>
+
+            <button
+                type="submit"
+                onclick="onFinishButtonClick()"
+            >Сохранить и добавить</button>
+        </form>
     </form>
 </body>
 </html>
