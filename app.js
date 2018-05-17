@@ -18,7 +18,9 @@ app.set('view engine', 'ejs');
 
 //Middleware
 app.get('/',(req,res)=>{
-    res.render('index');
+    Post.find({}).then(tests => {
+        res.render('index',{tests:tests});
+    })  
 });
 app.get('/create',(req,res)=>{
     res.render('create');
@@ -35,9 +37,9 @@ app.post('/create', (req,res)=>{
         date:Date.now()
         //questions:req.body.questions
     })
-        .then(post => console.log(post._id))
+        .then(post => console.log(post.id))
         .catch(err => console.log(err));
-    res.end();
+    res.redirect("/");
 })
 
 module.exports = app;

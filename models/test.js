@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-var post_schema = new Schema({
+var post_schema = new Schema({//макет теста
     name:{
         type: String,
         required: true
@@ -28,4 +28,7 @@ var post_schema = new Schema({
     questions:[Object]//список вопросов
 })
 
+post_schema.set('toJSON',{//преобразование в json объект
+    virtuals: true
+})
 module.exports = mongoose.model('test', post_schema);
