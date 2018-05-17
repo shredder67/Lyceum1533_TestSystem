@@ -8,27 +8,34 @@
 
 const express = require('express');
 const bodyParser = require('body-parser');
+const path = require('path');
 
 const Post = require('./models/test'); 
 
-var app = express();
-app.use(bodyParser.urlencoded({extended: true}));
+const app = express();
+
 
 app.set('view engine', 'ejs');
-
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(express.static(path.join(__dirname, 'public')));//экспресс будет брать статику из этой дирректории
+app.use(
+    '/javascripts',
+    express.static(path.join(__dirname, 'node_modules', 'jquery', 'dist' 
+))
+);
 //Middleware
 app.get('/',(req,res)=>{
-    Post.find({}).then(tests => {
-        res.render('index',{tests:tests});
+    Post.find({}).then(tests => {//вывод всех тестов, какие есть
+        res.render('index.ejs',{tests:tests});
     })  
 });
 app.get('/create',(req,res)=>{
-    res.render('create');
+    res.render('create.ejs');
 })
 
 app.post('/create', (req,res)=>{ 
     
-    Post.create({
+    Post.create({//добавление в коллекцию tests нового документа
         name: req.body.name,
         author: req.body.author,
         subject: req.body.subject,

@@ -9,8 +9,8 @@ database()
             console.log("we are listening port:" + config.PORT);
         });
     })
-    .catch(()=>{//ловим reject и обрабатываем(нет)
-        console.log("couldn't coonect to db");
+    .catch(err=>{//ловим reject и обрабатываем(нет)
+        console.log("couldn't coonect to db\n" + err);
         process.exit(1);//вырубаем сервер если не получается подключится
     })
 

@@ -1,30 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8"></meta>
-
-    <link
-        rel="stylesheet"
-        href="../public/stylesheets/style_base.css"
-    ></link>
-
-    <title>Тесирующая система</title>
-</head>
-
-<body>
+<%-include layout/header.ejs %>
+    <h1>Список тестов</h1>
     <ul>
         <% tests.forEach(function(test){ %>
             <li>
                <b>Имя:</b> <%= test.name %> <b>Автор:</b> <%= test.author %> <b>Предмет:</b> <%= test.subject %> <b>Тема:</b> <%= test.theme %> <b> Класс:</b> <%= test.rate %> <b>Дата:</b> <%= test.date %>         
             </li>
+            <br>
          <% }); %>
     </ul>
-    
     <form
         action="/create"
         method="get"
     >
-        <button type="submit">Создать</button>
+    <br>
+        <button id="create_test_button" type="submit">Создать</button>
     </form>
-</body>
-</html>
+<%- include layout/footer.ejs %>

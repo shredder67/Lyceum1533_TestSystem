@@ -1,24 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8"></meta>
-
-    <title>Document</title>
-
-    <link
-        rel="stylesheet"
-        href="../public/stylesheets/style_create.css"
-    ></link>
-
-    <script>
-        function onFinishButtonClick(){
-            document.URL = '/';
-        }
-    </script>
-</head>
-
-<body>
-    <form method="post">
+<%- include layout/header.ejs %>
+    <form id="post_form" method="post">
         Название:
 
         <input
@@ -26,6 +7,7 @@
             name="name"
         ></input>
 
+        <br>
         <br>
         Автор:
 
@@ -35,6 +17,7 @@
         ></input>
 
         <br>
+        <br>
         Предмет:
 
         <input
@@ -42,6 +25,7 @@
             name="subject"
         ></input>
 
+        <br>
         <br>
         Тема:
 
@@ -51,6 +35,7 @@
         ></input>
 
         <br>
+        <br>
         Класс:
 
         <input
@@ -59,11 +44,10 @@
         ></input>
 
         <br>
-
-        <button
+        <br>
+        <button id = "button_creating_test" onclick="addQuestionButtonClick()">Добавить вопрос</button>
+        <button id = "button_creating_test"
             type="submit"
-            onclick="onFinishButtonClick()"
-        >Сохранить и добавить</button>
+        >Сохранить тест</button>
     </form>
-</body>
-</html>
+    <%- include layout/footer.ejs %>

@@ -1,0 +1,11 @@
+body{
+    background-color: coral;
+}
+#create_test_button{
+    width: 120px;
+    height: 50px;
+}
+#button_creating_test{
+    width: 95px;
+    height: 40px;
+}
