@@ -23,12 +23,17 @@ var post_schema = new Schema({//макет теста
         required: true
     },
     date:{
-        type: Date
+        type: Number
     },
-    questions:[Object]//список вопросов
+    questions:[{
+        question_type: String,
+        situation: String,
+        options:[String],
+        //добавить хранение изображения 
+    }]//список вопросов
 })
 
 post_schema.set('toJSON',{//преобразование в json объект
     virtuals: true
 })
-module.exports = mongoose.model('test', post_schema);
+module.exports = mongoose.model('tests', post_schema);

@@ -7,8 +7,8 @@
                <b>Автор:</b> <%= test.author %> <br>
                <b>Предмет:</b> <%= test.subject %> <br>
                <b>Тема:</b> <%= test.theme %> <br>
-               <b> Класс:</b> <%= test.rate %> <br>
-               <b>Дата:</b> <%= test.date %>         
+               <b>Класс:</b> <%= test.rate %> <br>
+               <b>Дата:</b> <%= new Date(test.date).getDate() +'.0'+ +(new Date(test.date).getMonth() + 1) +'.'+ new Date(test.date).getFullYear() %>         
             </li>
             <br>
          <% }); %>
