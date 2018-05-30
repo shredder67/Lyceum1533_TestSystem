@@ -29,7 +29,9 @@ var post_schema = new Schema({//макет теста
         question_type: String,
         situation: String,
         options:[String],
-        //добавить хранение изображения 
+        img:{
+            data:Buffer,
+        }//добавить хранение изображения 
     }]//список вопросов
 })
 
