@@ -1,5 +1,5 @@
 body{
-    background-color: coral;
+    background-color: #fbdfd4;
 }
 #create_test_button{
     width: 120px;
@@ -9,3 +9,18 @@ body{
     width: 200px;
     height: 40px;
 }
+#logo{
+    color: #f57f75;
+    font-size:1.25rem;
+    text-align: left;
+}
+a{
+    text-decoration: none;
+    color: #000000 !important;
+    font-size: 1.25rem;
+}
+h1{
+    font-size: 2rem;
+    text-align: right;
+}
+
