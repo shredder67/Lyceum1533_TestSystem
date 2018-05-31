@@ -1,35 +1,32 @@
-function addQuestionButtonClick(){
+
+function addQuestionButtonClick()
+{
+    switch(document.getElementById("selected_question").value)
+    {
+    case 'Вопрос':
+    document.getElementById("default").innerHTML='';
+    break;
+    case 'Вопрос с выбором':
+            document.getElementById("choice").innerHTML='';
     
-    document.getElementById("shit").innerHTML='<p><select id="selected_question" onchange="change_type();"><option value="ничего"></option><option value="Вопрос с выбором">Вопрос с выбором</option><option value="Вопрос">Вопрос</option></select></p>';
-    document.getElementById("shit").appendChild(elem);
+    break;
+    }
 }
+
+
 function change_type()
 {
 switch(document.getElementById("selected_question").value)
 {
 case 'Вопрос':
-document.getElementById("for_questions").innerHTML='<input type="text">';
+document.getElementById("default").innerHTML='<p>Введите условие</p> <input type="text" name="situation" id="condition"> <p>Введите ответ</p> <input type="text" name="right_option" id="answer">';
 break;
 case 'Вопрос с выбором':
-document.getElementById("for_questions").innerHTML='<input type="text" id="ques_count" onblur="create_questions();">';
+        document.getElementById("choice").innerHTML='<p>Введите условие</p> <input type="text" name="situation" id="condition"> <p>Введите верный вариант</p><input type="text" id="f" name="right_option"> <p>Введите второй вариант</p><input type="text" id="s" name="all_options[]"><p>Введите третий вариант</p> <input type="text" id="t"name="all_options[]">';
 
-//document.getElementById("for_questions").innerHTML='<input name="test1" type="radio" value="nedzen"> Сука <input name="test2" type="radio" value="nedzen"> Убью <input name="test3" type="radio" value="nedzen"> Себя';
+
 break;
 }
-}
-function create_questions()
-{
-var arr = [];
-for(var i=0;i<document.getElementById("ques_count").value;i++)
-{
-    document.getElementById("for_questions").innerHTML='<input type="text", onblur"">';
-    arr[i]= document.getElementById("for_questions").value;
-}
-
-}
-function add_question()
-{
-
 }
 
    

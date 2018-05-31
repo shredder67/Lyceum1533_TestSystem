@@ -45,16 +45,21 @@
 
         <br>
         <br>
-
-         <div id="shit">
-         </div>
-         <div id="for_questions">
+        <div class = "[questions]"> 
+         <label for="selected_question">Выбрать тип вопроса</label><br><select id="selected_question" onchange="change_type();"><option value="ничего"></option><option value="Вопрос с выбором">Вопрос с выбором</option><option value="Вопрос">Вопрос</option></select>
+            <div class = "questions[default]" id="default"> 
             </div>
+
+            <div class = "questions[choice]" id="choice">   
+            </div>
+
+            </div>
+         
+         <div id="for_questions">
+            </div>  
+    
+            <input type="button" id = "button_add_quest" value="Сохранить вопрос"onclick="addQuestionButtonClick();">
        
-       <button id = "button_add_quest"
-       type="button"
-       onclick="addQuestionButtonClick();"
-       > Добавить вопрос</button>
      
        <br>
        <br>

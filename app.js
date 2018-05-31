@@ -18,11 +18,6 @@ const app = express();
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(path.join(__dirname, 'public')));//экспресс будет брать статику из этой дирректории
-app.use(
-    '/javascripts',
-    express.static(path.join(__dirname, 'node_modules', 'jquery', 'dist' 
-))
-);
 //Middleware
 app.get('/',(req,res)=>{
     Post.find({}).then(tests => {//вывод всех тестов, какие есть
@@ -50,3 +45,4 @@ app.post('/create', (req,res)=>{
 })
 
 module.exports = app;
+//sitka banner
