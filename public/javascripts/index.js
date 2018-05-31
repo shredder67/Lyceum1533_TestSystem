@@ -3,7 +3,10 @@ function addQuestionButtonClick(){
     var elem = document.createElement("div");
     elem.id = "question" + index;
     //выбор типа вопроса 
-    elem.innerHTML = `<h6>Выберите тип вопроса</h6><select name = 'questions[][quesiton_type]' onchange = 'changeQuestionType("${elem.id}", this.options[this.selectedIndex].value)'><option value=''></option><option value = 'free_input'>Свободный ответ</option><option value = 'multiple_choice'>Выбор из списка</option> </select> <div id = "q_b"></div>`
+    elem.innerHTML = `<h6>Выберите тип вопроса</h6>`+
+    `<select name = 'questions[][quesiton_type]' onchange = 'changeQuestionType("${elem.id}", this.options[this.selectedIndex].value)'>`+
+    `<option value=''></option><option value = 'free_input'>Свободный ответ</option>`+
+    `<option value = 'multiple_choice'>Выбор из списка</option> </select> <div id = "q_b"></div>`
     document.getElementById("question_list").appendChild(elem)    
     index++;
 }
