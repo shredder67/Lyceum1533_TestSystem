@@ -1,19 +1,56 @@
 <%-include layout/header.ejs %>
-    <h1>Список тестов</h1>
-    <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Search</button>
+
+
+
+
+<form class="form-center">
+        <div class="container">
+            <div class="row">
+   <div class="col-lg-2"> 
+       <h1>Поиск:</h1> 
+    </div>
+    
+            <div class="col-lg-6"> 
+                <input class="form-control ml-sm-2" type="search" placeholder="Search" aria-label="Search">
+            </div>
+            <div class="col-lg-4">
+                <div class="row">
+            <div class="dropdown ml-sm-2">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Фильтры
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <a class="dropdown-item" href="#">Автор</a>
+                  <a class="dropdown-item" href="#">Предмет</a>
+                  <a class="dropdown-item" href="#">Класс</a>
+                </div>
+              </div>
+              <button class="btn btn-outline-danger ml-sm-2" type="submit">Искать</button>
+            </div>
+        </div>
+
+            
+
+        
+    </div>
+        </div>
           </form>
-    <ul>
+<br>
+<br>
+
+    <ul class="list-group list-group-flush">
         <% tests.forEach(function(test){ %>
-            <li>
-               <b>Имя:</b> <%= test.name %> <br>
-               <b>Автор:</b> <%= test.author %> <br>
-               <b>Предмет:</b> <%= test.subject %> <br>
-               <b>Тема:</b> <%= test.theme %> <br>
-               <b>Класс:</b> <%= test.rate %> <br>
+           
+            <div class="container">
+            <li class="list-group-item"> 
+               <b>Имя:</b> <%= test.name %> 
+               <b>Автор:</b> <%= test.author %> 
+               <b>Предмет:</b> <%= test.subject %>
+               <b>Тема:</b> <%= test.theme %> 
+               <b>Класс:</b> <%= test.rate %> 
                <b>Дата:</b> <%= new Date(test.date).getDate() +'.0'+ +(new Date(test.date).getMonth() + 1) +'.'+ new Date(test.date).getFullYear() %>         
             </li>
+            </div>
             <br>
          <% }); %>
     </ul>

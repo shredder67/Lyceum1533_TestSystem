@@ -9,14 +9,18 @@ body{
     width: 200px;
     height: 40px;
 }
-#logo_text{
+#logo{
     color: #f57f75;
-    font-size:25px;
+    font-size:1.25rem;
     text-align: left;
 }
 a{
     text-decoration: none;
     color: #000000 !important;
-    font-size: 20px;
+    font-size: 1.25rem;
+}
+h1{
+    font-size: 2rem;
+    text-align: right;
 }
 
