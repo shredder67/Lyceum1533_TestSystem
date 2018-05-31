@@ -3,78 +3,60 @@
     <form id="post_form" method="post">
         Название:
 
-        <input
-            type="text"
-            name="name"
-        ></input>
+        <input type="text" name="name"></input>
+
+        <br>
+        <br> Автор:
+
+        <input type="text" name="author"></input>
+
+        <br>
+        <br> Предмет:
+
+        <input type="text" name="subject"></input>
+
+        <br>
+        <br> Тема:
+
+        <input type="text" name="theme"></input>
+
+        <br>
+        <br> Класс:
+
+        <input type="text" name="rate"></input>
 
         <br>
         <br>
-        Автор:
-
-        <input
-            type="text"
-            name="author"
-        ></input>
-
-        <br>
-        <br>
-        Предмет:
-
-        <input
-            type="text"
-            name="subject"
-        ></input>
-
-        <br>
-        <br>
-        Тема:
-
-        <input
-            type="text"
-            name="theme"
-        ></input>
-
-        <br>
-        <br>
-        Класс:
-
-        <input
-            type="text"
-            name="rate"
-        ></input>
-
-        <br>
-        <br>
-<<<<<<< HEAD
-        <div class = "[questions]"> 
-         <label for="selected_question">Выбрать тип вопроса</label><br><select id="selected_question" onchange="change_type();"><option value="ничего"></option><option value="Вопрос с выбором">Вопрос с выбором</option><option value="Вопрос">Вопрос</option></select>
-            <div class = "questions[default]" id="default"> 
+        <div class="[questions]">
+            <label for="selected_question">Выбрать тип вопроса</label>
+            <br>
+            <select id="selected_question" onchange="change_type();">
+                <option value="ничего"></option>
+                <option value="Вопрос с выбором">Вопрос с выбором</option>
+                <option value="Вопрос">Вопрос</option>
+            </select>
+            <div class="questions[default]" id="default">
             </div>
 
-            <div class = "questions[choice]" id="choice">   
+            <div class="questions[choice]" id="choice">
             </div>
 
             </div>
-         
-         <div id="for_questions">
-            </div>  
-    
-            <input type="button" id = "button_add_quest" value="Сохранить вопрос"onclick="addQuestionButtonClick();">
-       
-     
-       <br>
-       <br>
-=======
->>>>>>> 880b963111aaa8a55211fa70f87c42734baee4ce
-        <button id = "button_creating_test"
-            type="submit"
-        >Сохранить тест</button>
-        
+
+            <div id="for_questions">
+            </div>
+
+            <input type="button" id="button_add_quest" value="Сохранить вопрос" onclick="addQuestionButtonClick();">
+
+
+            <br>
+            <br> 
+            <button id="button_creating_test" type="submit">Сохранить тест</button>
+
     </form>
     <script>
         src = "/scrpits/index.js"
     </script>
 
-   
+
     <%- include layout/footer.ejs %>
