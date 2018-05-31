@@ -56,6 +56,7 @@
                                     <%= test.rate %>
                                         <b>Дата:</b>
                                         <%= new Date(test.date).getDate() +'.0'+ +(new Date(test.date).getMonth() + 1) +'.'+ new Date(test.date).getFullYear() %>
+                                            <a href = "/view_test?test_id=<%=test.id %>">ПОДРОБНЕЕ</a>
                 </li>
             </div>
             <br>
