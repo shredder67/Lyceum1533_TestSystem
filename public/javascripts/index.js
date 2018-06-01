@@ -6,7 +6,7 @@ function addQuestionButtonClick() {
     elem.innerHTML = `<h6>Выберите тип вопроса</h6>` +
         `<select name = 'questions[][quesiton_type]' onchange = 'changeQuestionType("${elem.id}", this.options[this.selectedIndex].value)'>` +
         `<option value=''></option><option value = 'free_input'>Свободный ответ</option>` +
-        `<option value = 'multiple_choice'>Выбор из списка</option> </select> <div id = "q_b"></div>`
+        `<option value = 'multiple_choice'>Выбор из списка</option> </select> <div id = "q_b${index}"></div>`
     document.getElementById("question_list").appendChild(elem)
     index++;
 }
@@ -22,10 +22,11 @@ function changeQuestionType(question_id, question_type) { //смена тела 
             }
         case "multiple_choice":
             {
-                elem_body.innerHTML = "<h7>Кол-во вариантов ответа:</h7><select id='answer_count' onchange='createNewAnswers(this.options[this.selectedIndex].value,elem_body)'>" +
+                elem_body.innerHTML = `<h7>Кол-во вариантов ответа:</h7><select id='answer_count' onchange='createNewAnswers(this.options[this.selectedIndex].value,"${elem_body.id}");'>" +
+                "<option value = 'er'></option>" +
                 "<option value = '2'>2</option>" +
                 "<option value = '3'>3</option>" +
-                "<option value = '4'>4</option></select>"
+                "<option value = '4'>4</option></select>`
 
 
                 break;
@@ -37,10 +38,15 @@ function changeQuestionType(question_id, question_type) { //смена тела 
     }
 }
 
-function createNewAnswers(question_count, elem_body)
+function createNewAnswers(question_count, elem_body_id)
  {
-    var gopa = document.createElement("label");
-    gopa.innerHTML="<div>я ебал себя в рот</div>";
-    elem_body.appendChild(gopa);
+     for(var i=0;i<question_count;i++)
+     {
+    var gopa = document.createElement("div");
+    gopa.id = "suka"+i;
+    gopa.type="text";
+    document.getElementById(elem_body_id).appendChild(gopa);
+     }
+    
     
 }
