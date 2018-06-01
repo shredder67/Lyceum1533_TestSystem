@@ -27,6 +27,14 @@ app.get('/',(req,res)=>{
 app.get('/create',(req,res)=>{
     res.render('create.ejs');
 })
+app.get('/view_test', (req,res) =>{
+    Post.findOne({id: req.query.test_id}).then(test => {res.render('test_view.ejs'), {test: test}})
+    //Post.findById(req.query.test_id, (test) => res.render('test_view.ejs',{test: test}))
+    /*.then(test =>{
+        res.render('test_view.ejs',{test: test});
+    })
+    */
+});
 
 app.post('/create', (req,res)=>{ 
     
