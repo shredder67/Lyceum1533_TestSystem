@@ -27,8 +27,14 @@ app.get('/',(req,res)=>{
 app.get('/create',(req,res)=>{
     res.render('create.ejs');
 })
-app.get('/view_test', (req,res) =>{
-    Post.findOne({id: req.query.test_id}).then(test => {res.render('test_view.ejs'), {test: test}})
+app.get('/test_view', (req,res) =>{
+    Post.findOne({id: req.query.test_id},function(err,obj){
+        if(err){
+            console.log('No such test in the database: ' + err);
+        }else{
+            res.render('test_view.ejs',{test: obj})
+        }
+    });
     //Post.findById(req.query.test_id, (test) => res.render('test_view.ejs',{test: test}))
     /*.then(test =>{
         res.render('test_view.ejs',{test: test});
