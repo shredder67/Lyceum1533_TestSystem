@@ -38,22 +38,62 @@
 <br>
 <br>
 
+
+<div class="container" id="test_row">
+
+    <div class="row">
+
+        <div class="col-lg-4 pl-2"> 
+            <b>Название:</b> 
+         </div>
+         <div class="col-lg-3"> 
+            <b>Автор:</b>  
+         </div>
+         <div class="col-lg-2"> 
+            <b>Предмет:</b> 
+         </div>
+         <div class="col-lg-1"> 
+            <b>Класс:</b> 
+         </div>
+         <div class="col-lg-2"> 
+            <b>Дата:</b> 
+         </div>
+
+    </div>
+
+</div>
+
+
     <ul class="list-group list-group-flush">
         <% tests.forEach(function(test){ %>
            
             <div class="container">
             <li class="list-group-item"> 
-               <b>Имя:</b> <%= test.name %> 
-               <b>Автор:</b> <%= test.author %> 
-               <b>Предмет:</b> <%= test.subject %>
-               <b>Тема:</b> <%= test.theme %> 
-               <b>Класс:</b> <%= test.rate %> 
-               <b>Дата:</b> <%= new Date(test.date).getDate() +'.0'+ +(new Date(test.date).getMonth() + 1) +'.'+ new Date(test.date).getFullYear() %>         
+                <div class="row">
+                    <div class="col-lg-4"> 
+                            <%= test.name %>  
+                         </div>
+                         <div class="col-lg-3"> 
+                            <%= test.author %> 
+                         </div>
+                         <div class="col-lg-2"> 
+                            <%= test.subject %>
+                         </div>
+                         <div class="col-lg-1"> 
+                            <%= test.rate %> 
+                         </div>
+                         <div class="col-lg-2"> 
+                            <%= new Date(test.date).getDate() +'.0'+ +(new Date(test.date).getMonth() + 1) +'.'+ new Date(test.date).getFullYear() %>
+                         </div>
+                </div>
             </li>
             </div>
-            <br>
          <% }); %>
     </ul>
+
+
+
+
     <form
         action="/create"
         method="get"
