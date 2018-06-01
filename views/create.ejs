@@ -3,51 +3,43 @@
     <form id="post_form" method="post">
         Название:
 
-        <input
-            type="text"
-            name="name"
-        ></input>
+        <input type="text" name="name"></input>
+
+        <br>
+        <br> Автор:
+
+        <input type="text" name="author"></input>
+
+        <br>
+        <br> Предмет:
+
+        <input type="text" name="subject"></input>
+
+        <br>
+        <br> Тема:
+
+        <input type="text" name="theme"></input>
+
+        <br>
+        <br> Класс:
+
+        <input type="text" name="rate"></input>
 
         <br>
         <br>
-        Автор:
+            <div id = "question_list"></div>
+            <br>
+            <input type="button" id="button_add_question" value="Добавить вопрос" onclick="addQuestionButtonClick();">
 
-        <input
-            type="text"
-            name="author"
-        ></input>
 
-        <br>
-        <br>
-        Предмет:
+            <br>
+            <br> 
+            <button id="button_creating_test" type="submit">Сохранить тест</button>
 
-        <input
-            type="text"
-            name="subject"
-        ></input>
-
-        <br>
-        <br>
-        Тема:
-
-        <input
-            type="text"
-            name="theme"
-        ></input>
-
-        <br>
-        <br>
-        Класс:
-
-        <input
-            type="text"
-            name="rate"
-        ></input>
-
-        <br>
-        <br>
-        <button id = "button_creating_test"
-            type="submit"
-        >Сохранить тест</button>
     </form>
+    <script>
+        src = "/scrpits/index.js"
+    </script>
+
+
     <%- include layout/footer.ejs %>
