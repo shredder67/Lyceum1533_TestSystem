@@ -1,5 +1,4 @@
 
-<<<<<<< HEAD
 function addQuestionButtonClick()
 {
     switch(document.getElementById("selected_question").value)
@@ -31,16 +30,4 @@ break;
 }
 
    
-=======
-    /*
-    selection.innerText="Выберите тип вопроса";
-    var choice1 = document.createElement('input');
-    choice1.type="radio";
-    choice1.innerText="Свободный ввод"
-    var choice2 = document.createElement('input');
-    choice1.type="radio";
-    choice1.innerText="Выбор правильного из списка"
-    selection.appendChild(choice1); selection.appendChild(choice2);
-    document.getElementById("post_form").appendChild(selection);
-    */
->>>>>>> 880b963111aaa8a55211fa70f87c42734baee4ce
+
