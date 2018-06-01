@@ -1,8 +1,6 @@
 <%-include layout/header.ejs %>
 
 
-
-
     <form class="form-center">
         <div class="container">
             <div class="row">
@@ -26,7 +24,7 @@
                                 <a class="dropdown-item" href="#">Класс</a>
                             </div>
                         </div>
-                        <button class="btn btn-outline-danger ml-sm-2" type="submit">Искать</button>
+                        <button class="btn ml-sm-2" type="submit" id="but">Искать</button>
                     </div>
                 </div>
 
@@ -37,8 +35,15 @@
         </div>
     </form>
     <br>
-    <br>
 
+    <form action="/create" method="get">
+        <div class="container">
+    <button type="submit" class="btnы btn-success btn-lg btn-block" id="create_test_button">Создать тест</button>
+    <br>
+</div>
+    </form>
+    
+    
 
 <div class="container" id="test_row">
 
@@ -68,9 +73,9 @@
     <ul class="list-group list-group-flush">
         <% tests.forEach(function(test){ %>
 
+            <a class="nav-link active" href="/test_view?<%=test.id%>">
             <div class="container">
-<<<<<<< HEAD
-            <li class="list-group-item"> 
+            <li class="list-group-item list-group-item-action"> 
                 <div class="row">
                     <div class="col-lg-4"> 
                             <%= test.name %>  
@@ -90,41 +95,9 @@
                 </div>
             </li>
             </div>
+            </a>
          <% }); %>
     </ul>
 
 
-
-
-    <form
-        action="/create"
-        method="get"
-    >
-    <br>
-=======
-                <li class="list-group-item">
-                    <b>Имя:</b>
-                    <%= test.name %>
-                        <b>Автор:</b>
-                        <%= test.author %>
-                            <b>Предмет:</b>
-                            <%= test.subject %>
-                                <b>Тема:</b>
-                                <%= test.theme %>
-                                    <b>Класс:</b>
-                                    <%= test.rate %>
-                                        <b>Дата:</b>
-                                        <%= new Date(test.date).getDate() +'.0'+ +(new Date(test.date).getMonth() + 1) +'.'+ new Date(test.date).getFullYear() %>
-                                            <a href = "/view_test?test_id=<%=test.id %>">ПОДРОБНЕЕ</a>
-                </li>
-            </div>
-            <br>
-            <% }); %>
-    </ul>
-    <form action="/create" method="get">
-        <br>
->>>>>>> 304313ff1288209486a887eede9b7fb7a4ecc673
-        <button id="create_test_button" type="submit">Создать</button>
-
-    </form>
     <%- include layout/footer.ejs %>
