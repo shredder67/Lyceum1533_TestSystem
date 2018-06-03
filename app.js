@@ -1,4 +1,3 @@
-//const app = require('./app');
 const express = require('express');
 const database = require('./database');
 const config = require('./config');
@@ -15,15 +14,6 @@ const testViewRouter = require('./routes/test_view');
 const createRouter = require('./routes/create');
 
 const app = express();
-var db = database()
-.then(info =>{//тот самый объект с инфой
-    console.log(`connected to ${info.host}: ${info.port}/${info.name}`);
-    return info;
-})
-.catch(err=>{//ловим reject и обрабатываем(нет)
-    console.log("couldn't coonect to db\n" + err);
-    process.exit(1);//вырубаем сервер если не получается подключится
-})
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -35,7 +25,7 @@ app.use(cookieParser());
 app.use(session({
     secret: '0293g;n23410sif-wlh23;h42i2opk234',//ключ для шифрования 
     store: new mongoStore({
-        mongooseConnection: db.connection
+        dbPromise: database()
     })
 }));
 app.use(bodyParser());
@@ -74,8 +64,3 @@ database()
         process.exit(1);//вырубаем сервер если не получается подключится
     })
 
-    if(db){
-        app.listen(config.PORT, ()=>{ //слушаем порт только в случае удачного подключения к бд
-            console.log("we are listening port:" + config.PORT);
-        });
-    }
