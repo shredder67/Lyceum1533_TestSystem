@@ -3,7 +3,7 @@ const database = require('./database');
 const config = require('./config');
 const express = require('express');
 const bodyParser = require('body-parser');
-const path = require('path');
+const path = require('path');   
 const createError = require('http-errors');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan')
@@ -23,6 +23,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+//Middleware
 app.use('/', testsRouter);
 app.use('/create', createRouter);
 app.use('/test_view', testViewRouter);
