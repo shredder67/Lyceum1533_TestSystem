@@ -9,7 +9,7 @@
                 </div>
 
                 <div class="col-lg-6">
-                    <input class="form-control ml-sm-2" type="search" placeholder="Search" aria-label="Search" name = "search_param">
+                    <input class="form-control ml-sm-2" type="search" placeholder="Search" aria-label="Search" name="search_param">
                 </div>
                 <div class="col-lg-2">
                     <div class="row">
@@ -18,16 +18,16 @@
                                 aria-expanded="false">
                                 Фильтры
                             </button>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" name = "">
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" name="">
                                 <a class="dropdown-item" href="#">Автор</a>
                                 <a class="dropdown-item" href="#">Предмет</a>
                                 <a class="dropdown-item" href="#">Класс</a>
                             </div>
                         </div>
                         <div class="col-lg-2">
-                                <button class="btn ml-sm-2" type="submit" id="but">Искать</button>
+                            <button class="btn ml-sm-2" type="submit" id="but">Искать</button>
                         </div>
-                        
+
                     </div>
                 </div>
 
@@ -41,65 +41,67 @@
 
     <form action="/create" method="get">
         <div class="container">
-    <button type="submit" class="btnы btn-success btn-lg btn-block" id="create_test_button">Создать тест</button>
-    <br>
-</div>
+            <button type="submit" class="btnы btn-success btn-lg btn-block" id="create_test_button">Создать тест</button>
+            <br>
+        </div>
     </form>
-    
-    
 
-<div class="container" id="test_row">
 
-    <div class="row">
 
-        <div class="col-lg-4 pl-2"> 
-            <b>Название:</b> 
-         </div>
-         <div class="col-lg-3"> 
-            <b>Автор:</b>  
-         </div>
-         <div class="col-lg-2"> 
-            <b>Предмет:</b> 
-         </div>
-         <div class="col-lg-1"> 
-            <b>Класс:</b> 
-         </div>
-         <div class="col-lg-2"> 
-            <b>Дата:</b> 
-         </div>
+    <div class="container" id="test_row">
+
+        <div class="row">
+
+            <div class="col-lg-4 pl-2">
+                <b>Название:</b>
+            </div>
+            <div class="col-lg-3">
+                <b>Автор:</b>
+            </div>
+            <div class="col-lg-2">
+                <b>Предмет:</b>
+            </div>
+            <div class="col-lg-1">
+                <b>Класс:</b>
+            </div>
+            <div class="col-lg-2">
+                <b>Дата:</b>
+            </div>
+
+        </div>
 
     </div>
-
-</div>
 
 
     <ul class="list-group list-group-flush">
         <% tests.forEach(function(test){ %>
 
-            <a class="nav-link active" href="/test_view?<%=test.id%>">
+
             <div class="container">
-            <li class="list-group-item list-group-item-action"> 
-                <div class="row">
-                    <div class="col-lg-4"> 
-                            <%= test.name %>  
-                         </div>
-                         <div class="col-lg-3"> 
-                            <%= test.author %> 
-                         </div>
-                         <div class="col-lg-2"> 
-                            <%= test.subject %>
-                         </div>
-                         <div class="col-lg-1"> 
-                            <%= test.rate %> 
-                         </div>
-                         <div class="col-lg-2"> 
-                            <%= new Date(test.date).getDate() +'.0'+ +(new Date(test.date).getMonth() + 1) +'.'+ new Date(test.date).getFullYear() %>
-                         </div>
-                </div>
-            </li>
+                <li class="list-group-item list-group-item-action">
+                    <a class="nav-link active">
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <%= test.name %>
+                            </div>
+                            <div class="col-lg-3">
+                                <%= test.author %>
+                            </div>
+                            <div class="col-lg-2">
+                                <%= test.subject %>
+                            </div>
+                            <div class="col-lg-1">
+                                <%= test.rate %>
+                            </div>
+                            <div class="col-lg-2">
+                                <%= new Date(test.date).getDate() +'.0'+ +(new Date(test.date).getMonth() + 1) +'.'+ new Date(test.date).getFullYear() %>
+                            </div>
+                        </div>
+                    </a>
+                </li>
             </div>
-            </a>
-         <% }); %>
+
+            <% }); %>
     </ul>
 
 
