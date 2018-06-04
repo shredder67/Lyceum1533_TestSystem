@@ -4,7 +4,7 @@ function addQuestionButtonClick() {
     elem.id = "question["+index+"]";
     //выбор типа вопроса 
     elem.innerHTML = `<h6>Выберите тип вопроса</h6>` +
-        `<select name = 'question[][quesiton_type]' onchange = 'changeQuestionType("${elem.id}", this.options[this.selectedIndex].value)'>` +
+        `<select name = '${elem.id}[quesiton_type]' onchange = 'changeQuestionType("${elem.id}", this.options[this.selectedIndex].value)'>` +
         `<option value=''></option><option value = 'free_input'>Свободный ответ</option>` +
         `<option value = 'multiple_choice'>Выбор из списка</option> </select> <div id = "q_b${index}"></div>`
     document.getElementById("question_list").appendChild(elem)
@@ -17,13 +17,13 @@ function changeQuestionType(question_id, question_type) { //смена тела 
     switch (question_type) {
         case "free_input":
             {
-                elem_body.innerHTML = "<h7>Условие:</h7><input type = 'text' name = 'question[][condition]'></input><h7>Правильный ответ:</h7><input type = 'text' name = 'question[][right_option]'></input>"
+                elem_body.innerHTML = `<h7>Условие:</h7><input type = 'text' name = '${question_id}[condition]'></input><h7>Правильный ответ:</h7><input type = 'text' name = '${question_id}[right_option]'></input>`
                 break;
             }
         case "multiple_choice":
             {
                 elem_body.innerHTML = `<h7>Кол-во вариантов ответа:</h7><select id='answer_count' onchange='createNewAnswers(this.options[this.selectedIndex].value,"${elem_body.id}", "${question_id}");'>" +
-                "<option value = 'er'></option>" +
+                "<option value = ''></option>" +
                 "<option value = '2'>2</option>" +
                 "<option value = '3'>3</option>" +
                 "<option value = '4'>4</option></select>`
