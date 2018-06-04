@@ -22,7 +22,7 @@ function changeQuestionType(question_id, question_type) { //смена тела 
             }
         case "multiple_choice":
             {
-                elem_body.innerHTML = `<h7>Кол-во вариантов ответа:</h7><select id='answer_count' onchange='createNewAnswers(this.options[this.selectedIndex].value,"${elem_body.id}");'>" +
+                elem_body.innerHTML = `<h7>Кол-во вариантов ответа:</h7><select id='answer_count' onchange='createNewAnswers(this.options[this.selectedIndex].value,"${elem_body.id}", "${question_id}");'>" +
                 "<option value = 'er'></option>" +
                 "<option value = '2'>2</option>" +
                 "<option value = '3'>3</option>" +
@@ -38,21 +38,21 @@ function changeQuestionType(question_id, question_type) { //смена тела 
     }
 }
 
-function createNewAnswers(question_count, elem_body_id)
+function createNewAnswers(question_count, elem_body_id, question_id)//Добавление вариантов ответа в multitple_choice
  {
     var gopa = document.createElement("input");
     gopa.type="text";
-    name="question[][condition]";
+    name=`${question_id}[condition]`;
     document.getElementById(elem_body_id).appendChild(gopa);
     gopa = document.createElement("input");
     gopa.type="text";
-    name="question[][right_option]";
+    name=`${question_id}[right_option]`;
     document.getElementById(elem_body_id).appendChild(gopa);
      for(var i=1;i<question_count;i++)
      {
     gopa = document.createElement("input");
     gopa.type="text";
-    name="question[][all_options[]]";
+    name=`${question_id}[all_options[]]`;
     document.getElementById(elem_body_id).appendChild(gopa);
      }
     
