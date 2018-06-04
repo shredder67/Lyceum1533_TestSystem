@@ -18,12 +18,11 @@ router.post('/', (req,res)=>{
         theme: req.body.theme,
         rate:req.body.rate,
         date:Date.now(),
-        question:req.body.question
+        question:req.body.question     
     })
-        .then(post => {console.log(post.id);console.log(req.body.question[0].question_type)})
+        .then(post => {console.log(post.id);})
         .catch(err => console.log(err));
     
 });
-
 
 module.exports = router;
