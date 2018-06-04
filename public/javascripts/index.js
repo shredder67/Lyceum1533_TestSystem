@@ -1,10 +1,10 @@
 var index = 0; //индексация id вопроса 
 function addQuestionButtonClick() {
     var elem = document.createElement("div");
-    elem.id = "question" + index;
+    elem.id = "question["+index+"]";
     //выбор типа вопроса 
     elem.innerHTML = `<h6>Выберите тип вопроса</h6>` +
-        `<select name = 'questions[][quesiton_type]' onchange = 'changeQuestionType("${elem.id}", this.options[this.selectedIndex].value)'>` +
+        `<select name = 'question[][quesiton_type]' onchange = 'changeQuestionType("${elem.id}", this.options[this.selectedIndex].value)'>` +
         `<option value=''></option><option value = 'free_input'>Свободный ответ</option>` +
         `<option value = 'multiple_choice'>Выбор из списка</option> </select> <div id = "q_b${index}"></div>`
     document.getElementById("question_list").appendChild(elem)
@@ -42,17 +42,17 @@ function createNewAnswers(question_count, elem_body_id, question_id)//Добав
  {
     var gopa = document.createElement("input");
     gopa.type="text";
-    name=`${question_id}[condition]`;
+    gopa.name=`${question_id}[condition]`;
     document.getElementById(elem_body_id).appendChild(gopa);
     gopa = document.createElement("input");
     gopa.type="text";
-    name=`${question_id}[right_option]`;
+    gopa.name=`${question_id}[right_option]`;
     document.getElementById(elem_body_id).appendChild(gopa);
      for(var i=1;i<question_count;i++)
      {
     gopa = document.createElement("input");
     gopa.type="text";
-    name=`${question_id}[all_options[]]`;
+    gopa.name=`${question_id}[all_options[]]`;
     document.getElementById(elem_body_id).appendChild(gopa);
      }
     
