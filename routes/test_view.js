@@ -7,7 +7,8 @@ router.get('/', (req,res) =>{
         if(err){
             console.log('No such test in the database: ' + err);
         }else{
-            res.render('test_view.ejs',{test: obj})
+            //res.render('test_view.ejs',{test: obj})
+            console.log(obj);
         }
     });
 });

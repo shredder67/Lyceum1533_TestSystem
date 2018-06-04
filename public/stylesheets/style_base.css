@@ -1,9 +1,3 @@
-*{
-    margin:0;
-    padding:0;
-    font-family: 'Times New Roman', Times, serif;
-}
-
 body{
    background-color: #BBDEFB;
 }
@@ -11,15 +5,15 @@ body{
     width: 200px;
     height: 40px;
 }
-#logo{
-    color: #f57f75;
-    font-size:1.25rem;
-    text-align: left;
-}
 a{
     text-decoration: none;
     color: #000000 !important;
     font-size: 1.25rem;
+}
+#logo{
+    color: #f57f75;
+    font-size:1.25rem;
+    text-align: left;
 }
 h1{
     font-size: 2rem;
