@@ -2,10 +2,10 @@
   "name": "lyceum1533_testsystem",
   "version": "1.0.0",
   "description": "the diploma school project",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
-    "start": "node index.js cross-env PORT = 3000",
-    "dev": "supervisor index.js",
+    "start": "node app.js cross-env PORT = 3000",
+    "dev": "supervisor app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -20,10 +20,14 @@
   "homepage": "https://github.com/shredder67/Lyceum1533_TestSystem#readme",
   "dependencies": {
     "body-parser": "^1.18.3",
+    "connect-mongo": "^2.0.1",
+    "cookie-parser": "^1.4.3",
     "cross-env": "^5.1.5",
     "ejs": "^2.6.1",
     "express": "^4.16.3",
+    "express-session": "^1.15.6",
     "mongoose": "^4.13.7",
+    "morgan": "^1.9.0",
     "npm": "^6.1.0"
   }
 }
