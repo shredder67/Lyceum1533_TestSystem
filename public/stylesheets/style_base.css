@@ -19,12 +19,9 @@ h1{
     font-size: 2rem;
     text-align: right;
 }
-#test_row{
-    width: 1100px;
-}
-#but{
+#search{
     background-color: #ffcc00;
 }
-#create_test_button{
-    background-color: #00CC00;
+#maintable{
+    background-color: white;
 }
