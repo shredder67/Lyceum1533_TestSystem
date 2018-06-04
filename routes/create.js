@@ -11,17 +11,16 @@ router.get('/',(req,res)=>{
 
 //POST edited test
 router.post('/', (req,res)=>{ 
-    
     Post.create({//добавление в коллекцию tests нового документа
         name: req.body.name,
         author: req.body.author,
         subject: req.body.subject,
         theme: req.body.theme,
         rate:req.body.rate,
-        date:Date.now()
-        //questions:req.body.questions
+        date:Date.now(),
+        question:req.body.question
     })
-        .then(post => console.log(post.id))
+        .then(post => {console.log(post.id);console.log(req.body)})
         .catch(err => console.log(err));
     
 });

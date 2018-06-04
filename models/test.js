@@ -25,13 +25,12 @@ var post_schema = new Schema({//макет теста
     date:{
         type: Number
     },
-    questions:[{
+    question:[{
         question_type: String,
-        situation: String,
-        options:[String],
-        img:{
-            data:Buffer,
-        }//добавить хранение изображения 
+        condition: String,
+        all_options:[String],
+        right_option:String,
+        //добавить хранение изображения 
     }]//список вопросов
 })
 

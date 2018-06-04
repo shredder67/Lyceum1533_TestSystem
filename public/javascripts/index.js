@@ -17,7 +17,7 @@ function changeQuestionType(question_id, question_type) { //смена тела 
     switch (question_type) {
         case "free_input":
             {
-                elem_body.innerHTML = "<h7>Условие:</h7><input type = 'text' name = 'question[][right_option]'></input><h7>Правильный ответ:</h7><input type = 'text' name = 'question[][right_option]'></input>"
+                elem_body.innerHTML = "<h7>Условие:</h7><input type = 'text' name = 'question[][condition]'></input><h7>Правильный ответ:</h7><input type = 'text' name = 'question[][right_option]'></input>"
                 break;
             }
         case "multiple_choice":
@@ -40,11 +40,19 @@ function changeQuestionType(question_id, question_type) { //смена тела 
 
 function createNewAnswers(question_count, elem_body_id)
  {
-     for(var i=0;i<question_count;i++)
-     {
-    var gopa = document.createElement("div");
-    gopa.id = "suka"+i;
+    var gopa = document.createElement("input");
     gopa.type="text";
+    name="question[][condition]";
+    document.getElementById(elem_body_id).appendChild(gopa);
+    gopa = document.createElement("input");
+    gopa.type="text";
+    name="question[][right_option]";
+    document.getElementById(elem_body_id).appendChild(gopa);
+     for(var i=1;i<question_count;i++)
+     {
+    gopa = document.createElement("input");
+    gopa.type="text";
+    name="question[][all_options[]]";
     document.getElementById(elem_body_id).appendChild(gopa);
      }
     
