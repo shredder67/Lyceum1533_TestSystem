@@ -30,7 +30,13 @@ var post_schema = new Schema({//макет теста
         condition: String,
         all_options:[String],
         right_option:String,
+<<<<<<< HEAD
         //добавить хранение изображения 
+=======
+        /*img:{
+            data:Buffer,
+        }*///добавить хранение изображения 
+>>>>>>> 781434048734bc5b82391df1c31ebd05ebcf286b
     }]//список вопросов
 })
 
