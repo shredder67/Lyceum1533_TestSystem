@@ -46,15 +46,19 @@
               </tr>
             </thead>
             <tbody>
+                
                             <% tests.forEach(function(test){ %>
-                                <tr onclick="window.location='/test_view?<%= test.id%>'">
+                                
+                                    <tr onclick = "window.open('/test_view?<%= test.id%>')">
                                             <th scope="row"><%= test.name %></th>
                                             <td><%= test.author %></td>
                                             <td><%= test.subject %></td>
                                             <td><%= test.rate %></td>
                                             <td><%= test.theme %></td>
                                             <td><%= new Date(test.date).getDate() +'.0'+ +(new Date(test.date).getMonth() + 1) +'.'+ new Date(test.date).getFullYear() %></td>
-                                        </tr>                        
+                                        </a>
+                                    </tr>    
+                                                    
                              <% }); %>
             </tbody>
 
