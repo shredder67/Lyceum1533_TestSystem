@@ -28,8 +28,10 @@ var post_schema = new Schema({//макет теста
     question:[{
         question_type: String,
         condition: String,
-        all_options:[String],
-        right_option:String,
+        all_options:[{
+            text:String,
+            isRight:Boolean
+        }],
         //добавить хранение изображения 
     }]//список вопросов
 })

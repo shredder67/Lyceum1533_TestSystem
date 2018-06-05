@@ -37,7 +37,7 @@ app.use('/create', createRouter);
 app.use('/test_view', testViewRouter);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+/*app.use(function(req, res, next) {
     next(createError(404));
   });
   
@@ -50,7 +50,7 @@ app.use(function(req, res, next) {
     // render the error page
     res.status(err.status || 500);
     res.render('error');
-  });
+  });*/
 
 database()
     .then(info =>{//тот самый объект с инфой
