@@ -20,11 +20,7 @@ router.post('/', (req,res)=>{
         date:Date.now(),
         question:req.body.question
     })
-<<<<<<< HEAD
-        .then(post => {console.log(post.id);console.log(req.body)})
-=======
         .then(post => {console.log(post.id); console.log(req.body);})
->>>>>>> 781434048734bc5b82391df1c31ebd05ebcf286b
         .catch(err => console.log(err));
     
 });
