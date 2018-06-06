@@ -59,7 +59,7 @@ function createNewAnswers(question_count, elem_body_id, question_id) //Доба�
     for (var i = 0; i < question_count; i++) {
         rd = document.createElement("input");
         rd.type = "checkbox";
-        rd.name = `${question_id}[all_options${i}[isRight]]`;
+        rd.name = `${question_id}[all_options[${i}][isRight]]`;
         document.getElementById("tr[" + index + "]").appendChild(rd);
         options = document.createElement("input");
         options.type = "text";
