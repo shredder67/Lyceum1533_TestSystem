@@ -20,7 +20,7 @@ router.post('/', (req,res)=>{
         date:Date.now(),
         question:req.body.question     
     })
-        .then(post => {console.log(post.id);})
+        .then(post => {console.log(post.id); console.log(req.body.question[0].all_options)})
         .catch(err => console.log(err));
     
 });
