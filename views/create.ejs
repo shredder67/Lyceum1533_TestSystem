@@ -1,29 +1,73 @@
 <%- include layout/header.ejs %>
 
     <form id="post_form" method="post">
-        Название:
+        <div class="container">
+<div class="row">
+        <div class="col-lg-5">
+            <div class="row">
+                <div class="col-lg-3">
+            Название:
+        </div>
+        <div class="col-lg-2">
+            <input type="text" name="name"></input>
+        </div>
+        </div>
+            <br> 
+            <div class="row">
+                <div class="col-lg-3">
+            Автор: 
+        </div>
+        <div class="col-lg-2">
+            <input type="text" name="author"></input>
+        </div>
+        </div>
+            <br> 
+            <div class="row">
+                <div class="col-lg-3">
+            Предмет:
+        </div>
+        <div class="col-lg-2">
+            <input type="text" name="subject"></input>
+        </div>
+        </div>
+            <br> 
+            <div class="row">
+                    <div class="col-lg-3">
+                            Тема:
+            </div>
+            <div class="col-lg-2">
+                    <input type="text" name="theme"></input>
+            </div>
+            </div>
+            <br> 
+            <div class="row">
+                    <div class="col-lg-3">
+                            Класс:
+            </div>
+            <div class="col-lg-2">
+                    <input type="number" min="1" max="11" step="1" name="rate"></input>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-        <input type="text" name="name"></input>
+
 
         <br>
-        <br> Автор:
+        <br>
 
-        <input type="text" name="author"></input>
+
 
         <br>
-        <br> Предмет:
+        <br>
 
-        <input type="text" name="subject"></input>
+
 
         <br>
-        <br> Тема:
-
-        <input type="text" name="theme"></input>
-
         <br>
-        <br> Класс:
 
-        <input type="number" min="1" max="11" step="1" name="rate"></input>
+
 
         <br>
         <br>
