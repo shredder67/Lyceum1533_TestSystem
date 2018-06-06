@@ -1,31 +1,31 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-var post_schema = new Schema({//макет теста
-    name:{
+var post_schema = new Schema({ //макет теста
+    name: {
         type: String,
         required: true
     },
-    author:{
+    author: {
         type: String,
         required: true
     },
-    subject:{
+    subject: {
         type: String,
         required: true
     },
-    theme:{
+    theme: {
         type: String,
         required: true
     },
-    rate:{
+    rate: {
         type: Number,
         required: true
     },
-    date:{
+    date: {
         type: Number
     },
-    question:[{
+    question: [{
         question_type: String,
         condition: String,
         all_options:[{
@@ -33,10 +33,10 @@ var post_schema = new Schema({//макет теста
             isRight:Boolean
         }],
         //добавить хранение изображения 
-    }]//список вопросов
+    }] //список вопросов
 })
 
-post_schema.set('toJSON',{//преобразование в json объект
+post_schema.set('toJSON', { //преобразование в json объект
     virtuals: true
 })
 module.exports = mongoose.model('tests', post_schema);
