@@ -1,7 +1,7 @@
 <%-include layout/header.ejs %>
 
 
-    <form class="form-center">
+    <form class="form-center" method = "GET" action = "/search">
         <div class="container">
             <div class="row">
 
@@ -16,14 +16,14 @@
                     <div class="row">
 
                             <div class="input-group">
-                                    <select class="custom-select" id="inputGroupSelect04">
+                                    <select class="custom-select" id="inputGroupSelect04 name = "filter"">
                                       <option selected>Фильтры</option>
                                       <option value="author">Автор</option>
                                       <option value="subject">Предмет</option>
                                       <option value="rate">Класс</option>
                                       <option value="theme">Тема</option>
                                     </select>
-                                    <div class="input-group-append">
+                                      <div class="input-group-append">
                                       <button class="btn btn-outline-secondary" type="submit" id="search">Поиск</button>
                                     </div>
                                   </div>
@@ -48,8 +48,7 @@
             <tbody>
                 
                             <% tests.forEach(function(test){ %>
-                                
-                                    <tr onclick = "window.open('/test_view?<%= test.id%>')">
+                                <tr onclick="window.location='/test_view?test_id=<%= test.id%>'">
                                             <th scope="row"><%= test.name %></th>
                                             <td><%= test.author %></td>
                                             <td><%= test.subject %></td>

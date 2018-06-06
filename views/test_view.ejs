@@ -1,3 +1,16 @@
 <%- include layout/header.ejs %>
-    <!--Shutyak dice goes here-->
+    <% question.forEach(function(question){ %>
+
+        <div class="container">
+    
+            <%= question.condition %> 
+            <% all_options.forEach(function(string){ %>
+
+                <%= all_options.text %> 
+
+            <% }); %>
+        </div>  
+
+    <% }); %>
+
 <%- include layout/footer.ejs %>

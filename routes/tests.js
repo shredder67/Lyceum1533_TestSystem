@@ -4,10 +4,16 @@ var router = express.Router();
 
 
 //GET tests list
-router.get('/',(req,res)=>{
-    Post.find({}).then(tests => {//вывод всех тестов, какие есть
-        res.render('index.ejs',{tests:tests});
-    })  
+
+
+router.get('/', (req, res, next) => {
+    
+    Post.find({}).then(tests => { //вывод всех тестов, какие есть
+        res.render('index.ejs', {
+            tests: tests
+        });
+    })
+
 });
 
-module.exports = router;
+        module.exports = router;
