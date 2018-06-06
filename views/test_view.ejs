@@ -1,16 +1,15 @@
 <%- include layout/header.ejs %>
-    <% question.forEach(function(question){ %>
 
-        <div class="container">
-    
-            <%= question.condition %> 
-            <% all_options.forEach(function(string){ %>
 
-                <%= all_options.text %> 
+            <% for (var i = 0, len = question.length; i < len; i++) { %>
 
-            <% }); %>
-        </div>  
+                <%=   question[i].condition; %> 
 
-    <% }); %>
+                <%= question[i].all_options%>
+                
+
+                <% }; %> 
+
+
 
 <%- include layout/footer.ejs %>
