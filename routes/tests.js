@@ -13,46 +13,53 @@ router.get('/', (req, res, next) => {
                 Post.find({
                     author: req.query.param
                 }).then(tests => {
-                    console.log(tests);
-                    res.send(tests);
+                    res.render('index.ejs', {
+                        tests: tests
+                    });
                 })
                 break;
             case 'subject':
                 Post.find({
                     subject: req.query.param
                 }).then(tests => {
-                    res.send(tests);
+                    res.render('index.ejs', {
+                        tests: tests
+                    });
                 })
                 break;
             case 'rate':
                 Post.find({
                     rate: req.query.param
                 }).then(tests => {
-                    res.send(tests);
+                    res.render('index.ejs', {
+                        tests: tests
+                    });
                 })
                 break;
             case 'theme':
                 Post.find({
                     theme: req.query.param
                 }).then(tests => {
-                    res.send(tests);
+                    res.render('index.ejs', {
+                        tests: tests
+                    });
                 })
                 break;
-            default://дефолтный вариант - если не выбран фильтр, ищем по всем параметрам, складываем получившиеся массивы и возвращаем
-                var tests = Post.find({
-                        theme: req.query.param
-                    }) + Post.find({
-                        rate: req.query.param
-                    }) +
-                    Post.find({
-                        subject: req.query.param
-                    }) + Post.find({
-                        author: req.query.param
-                    }) +
-                    Post.find({
-                        name: req.query.param
-                    })
-                res.send(tests);
+                case 'name':
+                Post.find({
+                    name: req.query.param
+                }).then(tests => {
+                    res.render('index.ejs', {
+                        tests: tests
+                    });
+                })
+                break;
+            default: //дефолтный вариант - на всякий случай, хотя обработаны все фильтры!
+                Post.find({}).then(tests => { 
+                    res.render('index.ejs', {
+                        tests: tests
+                    });
+                })
         }
     } else {
         Post.find({}).then(tests => { //вывод всех тестов, какие есть

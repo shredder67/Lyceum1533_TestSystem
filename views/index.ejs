@@ -16,12 +16,13 @@
                     <div class="row">
 
                         <div class="input-group">
-                            <select class="custom-select" id="inputGroupSelect04" name="filter">
-                                <option selected>Фильтры</option>
+                            <select class="custom-select" id="inputGroupSelect" name="filter">
+                                <option selected value = "">Фильтры</option>
                                 <option value="author">Автор</option>
                                 <option value="subject">Предмет</option>
                                 <option value="rate">Класс</option>
                                 <option value="theme">Тема</option>
+                                <option value="name">Имя</option>
                             </select>
                             <div class="input-group-append">
                                 <button class="btn btn-outline-secondary" type="submit" id="search">Поиск</button>
@@ -77,48 +78,44 @@
     <script>
         $('.form-center').submit(function (event) {
             //проверка на заполненность строки поиска
-            var data = $('.form-center').serialize();
-            $.get(`/`,{param: data.param, filter: data.filter},function (arr) {
-                    $('#table_body').empty();
-                    for (var i = 0; i < arr.length; i++) {
-                        $('#table_body').append(
-                            `<tr onclick="window.location='/test_view?test_id=${arr[i].id}'">
-                                                <th scope="row">${arr[i].name}</th>
-                                                <td>${arr[i].author}</td>
-                                                <td>${arr[i].subject}</td>
-                                                <td>${arr[i].rate}</td>
-                                                <td>${arr[i].theme}</td>
-                                                <td>new Date(${arr[i].date}).getDate() +'.0'+ +(new Date(${arr[i].date}).getMonth() + 1) +'.'+ new Date(${arr[i].date}).getFullYear()</td>
-                                            </a>
-                                        </tr>  `
-                        )
-                    }
-                }, "json");
-           /* $.ajax({
-                url: `/`,
-                method: 'GET',
-                data: function () {
-                    var obj = $('.form-center').serialize();
-                    return 'param=' + obj.param + '&filter=' + obj.filter;
-                },
-            })*/
-        });
+            var tmp1 = $.trim($('#input_search').val());
+            var tmp2 = $.trim($('#inputGroupSelect').val());
+            if (tmp1 == '' || tmp2 == '') {
+                alert('Заполните все поля!');
+                event.preventDefault();
+            } else {
+                var data = $('.form-center').serialize();
+                $.get('/', {
+                    param: data.param,
+                    filter: data.filter
+                }, function () {}, "json");//не работает, страничка пока просто рендерится 
+            }
+        }
+        /* $.ajax({
+             url: `/`,
+             method: 'GET',
+             arr: function () {
+                 var obj = $('.form-center').serialize();
+                 return 'param=' + obj.param + '&filter=' + obj.filter;
+             },
+         })*/
         /*function (arr) {
-                    $('#table_body').empty();
-                    for (var i = 0; i < arr.length; i++) {
-                        $('#table_body').append(
-                            `<tr onclick="window.location='/test_view?test_id=${arr[i].id}'">
-                                                <th scope="row">${arr[i].name}</th>
-                                                <td>${arr[i].author}</td>
-                                                <td>${arr[i].subject}</td>
-                                                <td>${arr[i].rate}</td>
-                                                <td>${arr[i].theme}</td>
-                                                <td>new Date(${arr[i].date}).getDate() +'.0'+ +(new Date(${arr[i].date}).getMonth() + 1) +'.'+ new Date(${arr[i].date}).getFullYear()</td>
-                                            </a>
-                                        </tr>  `
-                        )
-                    }
-                }*/
+               $('#table_body').empty();
+               for (var i = 0; i < arr.length; i++) {
+                   $('#table_body').append(
+                       `<tr onclick="window.location='/test_view?test_id=${arr[i].id}'">
+                                           <th scope="row">${arr[i].name}</th>
+                                           <td>${arr[i].author}</td>
+                                           <td>${arr[i].subject}</td>
+                                           <td>${arr[i].rate}</td>
+                                           <td>${arr[i].theme}</td>
+                                           <td>new Date(${arr[i].date}).getDate() +'.0'+ +(new Date(${arr[i].date}).getMonth() + 1) +'.'+ new Date(${arr[i].date}).getFullYear()</td>
+                                       </a>
+                                   </tr>  `
+                   )
+               }
+           }*/
+        );
     </script>
 
 
