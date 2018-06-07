@@ -2,10 +2,12 @@ var index = 0;
 var temp=5;
 var kostil = 0; //индексация id вопроса 
 var fl;
+
 function addQuestionButtonClick() {
     kostil = 0;
     var elem = document.createElement("div");
     elem.id = "question[" + index + "]";
+    elem.className = "quest";
     //выбор типа вопроса 
     elem.innerHTML = `<h6>Выберите тип вопроса</h6>` +
         `<select onkeyup="check();" name = '${elem.id}[quesiton_type]' onchange = 'changeQuestionType("${elem.id}", this.options[this.selectedIndex].value)'>` +
@@ -17,7 +19,7 @@ function addQuestionButtonClick() {
 }
 
 function changeQuestionType(question_id, question_type) { //смена тела вопроса 
-    var elem_body = document.getElementById(question_id).getElementsByTagName("div")[0]; //elem_body - div внутри одного вопроса, содержащий его тело (условие, варианты ответа итд)
+    var elem_body = document.getElementById(question_id).getElementsByTagName("div")[0]; //elem_body - div внутри одного вопроса, содержащий его тело (условие, варианты ответа итд) 
     switch (question_type) {
         case "free_input":
             {
@@ -28,10 +30,17 @@ function changeQuestionType(question_id, question_type) { //смена тела 
             }
         case "multiple_choice":
             {
+<<<<<<< HEAD
                 elem_body.innerHTML = `<h7>Кол-во вариантов ответа:</h7><select  onkeyup="check();" onchange='createNewAnswers(this.options[this.selectedIndex].value,"${elem_body.id}", "${question_id}");'>" +
 "<option value = ''></option>" +
 "<option value = '2'>2</option>" +
 "<option value = '3'>3</option>" +
+=======
+                elem_body.innerHTML = `<h7>Кол-во вариантов ответа:</h7><select id='answer_count' onchange='createNewAnswers(this.options[this.selectedIndex].value,"${elem_body.id}", "${question_id}");'>" + 
+"<option value = ''></option>" + 
+"<option value = '2'>2</option>" + 
+"<option value = '3'>3</option>" + 
+>>>>>>> 84ca7c37d9e874f49d30bdb725539bc9d876627e
 "<option value = '4'>4</option></select>`
 
                 break;
@@ -43,7 +52,7 @@ function changeQuestionType(question_id, question_type) { //смена тела 
     }
 }
 
-function createNewAnswers(question_count, elem_body_id, question_id) //Добавление вариантов ответа в multitple_choice
+function createNewAnswers(question_count, elem_body_id, question_id) //Добавление вариантов ответа в multitple_choice 
 {
     if (kostil != 0) {
         document.getElementById("tr[" + index + "]").innerHTML = '';
@@ -51,9 +60,9 @@ function createNewAnswers(question_count, elem_body_id, question_id) //Доба�
     var fix = document.createElement("div");
     fix.id = "tr[" + index + "]";
     document.getElementById(elem_body_id).appendChild(fix);
-    fl =document.createElement("input");
-    fl.type="file";
-    fl.name=`${question_id}[pic]`;
+    fl = document.createElement("input");
+    fl.type = "file";
+    fl.name = `${question_id}[pic]`;
     document.getElementById("tr[" + index + "]").appendChild(fl);
     var rd;
     var options = document.createElement("input");
