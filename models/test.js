@@ -25,7 +25,12 @@ var post_schema = new Schema({ //макет теста
     date: {
         type: Number
     },
+<<<<<<< HEAD
+    question:[{
+        pic: Buffer,
+=======
     question: [{
+>>>>>>> 84ca7c37d9e874f49d30bdb725539bc9d876627e
         question_type: String,
         condition: String,
         //добавить хранение изображения
