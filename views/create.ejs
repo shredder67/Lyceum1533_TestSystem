@@ -1,29 +1,29 @@
 <%- include layout/header.ejs %>
 
-    <form id="post_form" method="post">
+    <form name="myform"id="post_form" method="post" enctype="multipart/form-data"  onsubmit="return false;">
         Название:
 
-        <input type="text" name="name"></input>
+        <input type="text" name="name" id="inp1"onkeyup="check_def();" ></input>
 
         <br>
         <br> Автор:
 
-        <input type="text" name="author"></input>
+        <input type="text" name="author" id="inp2"onkeyup="check_def();" ></input>
 
         <br>
         <br> Предмет:
 
-        <input type="text" name="subject"></input>
+        <input type="text" name="subject"id="inp3"onkeyup="check_def();" ></input>
 
         <br>
         <br> Тема:
 
-        <input type="text" name="theme"></input>
+        <input type="text" name="theme"id="inp4"onkeyup="check_def();" ></input>
 
         <br>
         <br> Класс:
 
-        <input type="number" min="1" max="11" step="1" name="rate"></input>
+        <input type="number" min="1" max="11" step="1" name="rate" ></input>
 
         <br>
         <br>
@@ -35,11 +35,12 @@
             <br>
             <br>
             <!-- Надо сделать, чтобы эта кнопка по нажатию на клавишу переходило на /--> 
-            <button id="button_creating_test" type="submit">Сохранить тест</button>
+            <button id="button_creating_test" type="button" onclick="document.forms['myform'].submit();" disabled>Сохранить тест</button>
             
     </form>
     
     <script src='/javascripts/index.js'></script>
+
     
     
     <%- include layout/footer.ejs %>

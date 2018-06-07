@@ -26,6 +26,7 @@ var post_schema = new Schema({//макет теста
         type: Number
     },
     question:[{
+        pic: Buffer,
         question_type: String,
         condition: String,
         all_options:[{
