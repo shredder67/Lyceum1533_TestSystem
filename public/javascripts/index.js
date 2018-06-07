@@ -6,6 +6,7 @@ function addQuestionButtonClick() {
     kostil = 0;
     var elem = document.createElement("div");
     elem.id = "question[" + index + "]";
+    elem.className = "quest";
     //выбор типа вопроса 
     elem.innerHTML = `<h6>Выберите тип вопроса</h6>` +
         `<select name = '${elem.id}[quesiton_type]' onchange = 'changeQuestionType("${elem.id}", this.options[this.selectedIndex].value)'>` +
