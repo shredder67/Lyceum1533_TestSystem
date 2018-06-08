@@ -6,7 +6,7 @@ var router = express.Router();
 
 //GET test editor
 router.get('/',(req,res)=>{
-    res.render('create.ejs');
+    res.render('./teacher/create.ejs');
 });
 
 //POST edited test
@@ -22,7 +22,7 @@ router.post('/', (req,res)=>{
     })
         .then(post => {console.log(post.id); console.log(req.body.question[0].all_options)})
         .catch(err => console.log(err));
-    
+    res.redirect('/tests');
 });
 
 module.exports = router;

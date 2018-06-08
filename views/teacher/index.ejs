@@ -1,4 +1,4 @@
-<%-include layout/header.ejs %>
+<%-include ../layout/header.ejs %>
 
 
     <form class="form-center">
@@ -17,7 +17,7 @@
 
                         <div class="input-group">
                             <select class="custom-select" id="inputGroupSelect" name="filter">
-                                <option selected value = "">Фильтры</option>
+                                <option selected value="">Фильтры</option>
                                 <option value="author">Автор</option>
                                 <option value="subject">Предмет</option>
                                 <option value="rate">Класс</option>
@@ -85,38 +85,29 @@
                 event.preventDefault();
             } else {
                 var data = $('.form-center').serialize();
-                $.get('/', {
+                $.getJSON('/tests', {
                     param: data.param,
                     filter: data.filter
-                }, function () {}, "json");//не работает, страничка пока просто рендерится 
+                }, function (arr) {
+                    /*$('#table_body').empty();
+                    for (var i = 0; i < arr.length; i++) {
+                        $('#table_body').append(
+                            `<tr onclick="window.location='/test_view?test_id=${arr[i].id}'">
+                               <th scope="row">${arr[i].name}</th>
+                               <td>${arr[i].author}</td>
+                               <td>${arr[i].subject}</td>
+                               <td>${arr[i].rate}</td>
+                               <td>${arr[i].theme}</td>
+                               <td>new Date(${arr[i].date}).getDate() +'.0'+ +(new Date(${arr[i].date}).getMonth() + 1) +'.'+ new Date(${arr[i].date}).getFullYear()</td>
+                           </a>
+                       </tr>  `
+                        )
+                    }; */
+                    //не работает, страничка пока просто рендерится 
+                });
             }
-        }
-        /* $.ajax({
-             url: `/`,
-             method: 'GET',
-             arr: function () {
-                 var obj = $('.form-center').serialize();
-                 return 'param=' + obj.param + '&filter=' + obj.filter;
-             },
-         })*/
-        /*function (arr) {
-               $('#table_body').empty();
-               for (var i = 0; i < arr.length; i++) {
-                   $('#table_body').append(
-                       `<tr onclick="window.location='/test_view?test_id=${arr[i].id}'">
-                                           <th scope="row">${arr[i].name}</th>
-                                           <td>${arr[i].author}</td>
-                                           <td>${arr[i].subject}</td>
-                                           <td>${arr[i].rate}</td>
-                                           <td>${arr[i].theme}</td>
-                                           <td>new Date(${arr[i].date}).getDate() +'.0'+ +(new Date(${arr[i].date}).getMonth() + 1) +'.'+ new Date(${arr[i].date}).getFullYear()</td>
-                                       </a>
-                                   </tr>  `
-                   )
-               }
-           }*/
-        );
+        });
     </script>
 
 
-    <%- include layout/footer.ejs %>
+    <%- include ../layout/footer.ejs %>

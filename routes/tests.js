@@ -13,7 +13,7 @@ router.get('/', (req, res, next) => {
                         Post.find({
                             author: req.query.param
                         }).then(tests => {
-                            res.render('index.ejs', {
+                            res.render('./teacher/index.ejs', {
                                 tests: tests
                             });
                         })
@@ -22,7 +22,7 @@ router.get('/', (req, res, next) => {
                         Post.find({
                             subject: req.query.param
                         }).then(tests => {
-                            res.render('index.ejs', {
+                            res.render('./teacher/index.ejs', {
                                 tests: tests
                             });
                         })
@@ -31,7 +31,7 @@ router.get('/', (req, res, next) => {
                         Post.find({
                             rate: req.query.param
                         }).then(tests => {
-                            res.render('index.ejs', {
+                            res.render('./teacher/index.ejs', {
                                 tests: tests
                             });
                         })
@@ -40,7 +40,7 @@ router.get('/', (req, res, next) => {
                         Post.find({
                             theme: req.query.param
                         }).then(tests => {
-                            res.render('index.ejs', {
+                            res.render('./teacher/index.ejs', {
                                 tests: tests
                             });
                         })
@@ -49,21 +49,21 @@ router.get('/', (req, res, next) => {
                         Post.find({
                             name: req.query.param
                         }).then(tests => {
-                            res.render('index.ejs', {
+                            res.render('./teacher/index.ejs', {
                                 tests: tests
                             });
                         })
                         break;
                     default: //дефолтный вариант - на всякий случай, хотя обработаны все фильтры!
                         Post.find({}).then(tests => {
-                            res.render('index.ejs', {
+                            res.render('./teacher/index.ejs', {
                                 tests: tests
                             });
                         })
                 }
             } else {
                 Post.find({}).then(tests => { //вывод всех тестов, какие есть
-                    res.render('index.ejs', {
+                    res.render('./teacher/index.ejs', {
                         tests: tests
                     });
                 })
