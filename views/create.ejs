@@ -1,30 +1,19 @@
 <%- include layout/header.ejs %>
 
-<<<<<<< HEAD
-    <form name="myform"id="post_form" method="post" enctype="multipart/form-data"  onsubmit="return false;">
-        Название:
-
-        <input type="text" name="name" id="inp1"onkeyup="check_def();" ></input>
-=======
 <form id="post_form" method="post">
 
     <span class="border-top border-dark">
->>>>>>> 84ca7c37d9e874f49d30bdb725539bc9d876627e
 
         <div class="row ml-2">
 
-<<<<<<< HEAD
-        <input type="text" name="author" id="inp2"onkeyup="check_def();" ></input>
-=======
             <div class="col-lg-3">
->>>>>>> 84ca7c37d9e874f49d30bdb725539bc9d876627e
 
                 <div class="row">
                     <div class="col-5">
                         Название:
                     </div>
                     <div class="col">
-                        <input type="text" name="name"></input>
+                        <input type="text" name="name" id   ="inp1" onkeyup="check();" ></input>
                     </div>
                 </div>
                 <br> 
@@ -33,7 +22,7 @@
                         Автор: 
                     </div>
                     <div class="col">
-                        <input type="text" name="author"></input>
+                        <input type="text" name="author" id="inp2" onkeyup="check();"></input>
                     </div>
                 </div>
                 <br> 
@@ -42,7 +31,7 @@
                         Предмет:
                     </div>
                     <div class="col">
-                        <input type="text" name="subject"></input>
+                        <input type="text" name="subject" id="inp3" onkeyup="check();"></input>
                     </div>
                 </div>
                 <br> 
@@ -51,7 +40,7 @@
                         Тема:
                     </div>
                     <div class="col">
-                        <input type="text" name="theme"></input>
+                        <input type="text" name="theme" id="inp4" onkeyup="check();"></input>
                     </div>
                 </div>
                 <br> 
@@ -64,31 +53,32 @@
                     </div>
                 </div>
 
-<<<<<<< HEAD
-        <input type="text" name="subject"id="inp3"onkeyup="check_def();" ></input>
-=======
             </div>
->>>>>>> 84ca7c37d9e874f49d30bdb725539bc9d876627e
 
-            <span class="border-left border-dark">
+
                 <div class="col-lg-9">
 
-<<<<<<< HEAD
-        <input type="text" name="theme"id="inp4"onkeyup="check_def();" ></input>
-=======
-                        <div class="container" id = "question_list"></div>
->>>>>>> 84ca7c37d9e874f49d30bdb725539bc9d876627e
+                        <pre>
+                            
+                            <div class="container" id = "question_list"></div>
+                        
+                            <h6>Выберите тип вопроса</h6>
+
+                            <select name = '${elem.id}[quesiton_type]' onchange = 'changeQuestionType("${elem.id}", this.options[this.selectedIndex].value)'>
+                                    <option value=''></option>
+                                    <option value = 'free_input'>Свободный ответ</option>
+                                    <option value = 'multiple_choice'>Выбор из списка</option>
+                            </select>
+
+
 
                         <br>
 
-<<<<<<< HEAD
-        <input type="number" min="1" max="11" step="1" name="rate" ></input>
-=======
                         <input type="button" id="button_add_question" value="Добавить вопрос" onclick="addQuestionButtonClick();">
->>>>>>> 84ca7c37d9e874f49d30bdb725539bc9d876627e
 
+                    </pre>
                 </div>
-            </span>
+
         </div>
     </span>
         <br>
