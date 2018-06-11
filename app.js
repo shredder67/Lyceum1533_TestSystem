@@ -1,12 +1,12 @@
 const express = require('express');
-const database = require('./database');
-const config = require('./config');
-const cookieParser = require('cookie-parser');
-const session = require('express-session');
-const bodyParser = require('body-parser');
+const database = require('./database');//обработка подключения к бд
+const config = require('./config');//константы для работы приложения
+const cookieParser = require('cookie-parser');//обработчик cookie-файлов
+const session = require('express-session');//хранение сессий
+const bodyParser = require('body-parser');//работа с данными, передаваемые post-запросом 
 const mongoStore = require('connect-mongo')(session);
 const path = require('path');
-const createError = require('http-errors');
+const createError = require('http-errors');//для обработки ошибок
 const logger = require('morgan')
 
 const testsRouter = require('./routes/tests');
@@ -50,11 +50,12 @@ app.use('/student/results');
 */
 
 // catch 404 and forward to error handler
-/*
+
 app.use(function(req, res, next) {
     next(createError(404));
   });
   
+ /* 
   // error handler
   app.use(function(err, req, res, next) {
     // set locals, only providing error in development
@@ -62,10 +63,10 @@ app.use(function(req, res, next) {
     res.locals.error = req.app.get('env') === 'development' ? err : {};
   
     // render the error page
-    res.status(err.status || 500);
     res.render('error');
+    res.status(err.status || 500);
   });
-  */
+*/
 
 database()
     .then(info => { //тот самый объект с инфой

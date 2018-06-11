@@ -22,7 +22,7 @@ router.post('/', (req,res)=>{
     })
         .then(post => {console.log(post.id); console.log(req.body.question[0].all_options)})
         .catch(err => console.log(err));
-    res.redirect('/tests');
+    res.redirect('/teacher/tests');
 });
 
 module.exports = router;
