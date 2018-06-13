@@ -21,7 +21,7 @@ function changeQuestionType(question_id, question_type) { //смена тела 
     switch (question_type) {
         case "free_input":
             {
-                elem_body.innerHTML = `<input type='file' name='${question_id}[pic]'></input><h7>Условие:</h7><input type = 'text' name = '${question_id}[condition]'></input><h7>Правильный ответ:</h7><input type = 'text' name = '${question_id}[all_options[${0}][text]]'></input>`
+                elem_body.innerHTML = `<br><div class="row"><div class="col-3"><h5>Условие:</h5></div><div class="col"><textarea type = 'text' name = '${question_id}[condition]'></textarea></div></div><br><div class="row"><div class="col-3"><h5>Правильный ответ:</h5></div><div class="col"><textarea type = 'text' name = '${question_id}[all_options[${0}][text]]'></textarea></div></div>`
                 break;
             }
         case "multiple_choice":
@@ -49,10 +49,6 @@ function createNewAnswers(question_count, elem_body_id, question_id) //Доба�
     var fix = document.createElement("div");
     fix.id = "tr[" + index + "]";
     document.getElementById(elem_body_id).appendChild(fix);
-    fl = document.createElement("input");
-    fl.type = "file";
-    fl.name = `${question_id}[pic]`;
-    document.getElementById("tr[" + index + "]").appendChild(fl);
     var rd;
     var options = document.createElement("input");
     options.type = "text";
