@@ -1,8 +1,10 @@
 var index = 0;
+var temp = 5;
 var kostil = 0; //индексация id вопроса 
 var fl;
 
 function addQuestionButtonClick() {
+    document.getElementById("button_creating_test").setAttribute("disabled", "disabled");
     kostil = 0;
     var elem = document.createElement("div");
     elem.id = "question[" + index + "]";
@@ -21,7 +23,13 @@ function changeQuestionType(question_id, question_type) { //смена тела 
     switch (question_type) {
         case "free_input":
             {
+<<<<<<< HEAD
                 elem_body.innerHTML = `<br><div class="row"><div class="col-3"><h5>Условие:</h5></div><div class="col"><textarea type = 'text' name = '${question_id}[condition]'></textarea></div></div><br><div class="row"><div class="col-3"><h5>Правильный ответ:</h5></div><div class="col"><textarea type = 'text' name = '${question_id}[all_options[${0}][text]]'></textarea></div></div>`
+=======
+                elem_body.innerHTML = `<input type='file' name='${question_id}[pic]'></input><h7>Условие:</h7><input  onkeyup='check();' type = 'text' id ='inp${temp}'name = '${question_id}[condition]'></input><h7>Правильный ответ:</h7><input  onkeyup='check();' id ='inp${temp+1}' type = 'text' name = '${question_id}[all_options[${0}][text]]'></input> <input type='button' onclick='delete_question()';  id='del_butt${question_id}' value='Удалить вопрос'></input>`
+                temp++;
+
+>>>>>>> 42fa9ac5682bc6644cb5bb161488a481654b05db
                 break;
             }
         case "multiple_choice":
@@ -53,16 +61,44 @@ function createNewAnswers(question_count, elem_body_id, question_id) //Доба�
     var options = document.createElement("input");
     options.type = "text";
     options.name = `${question_id}[condition]`;
+    options.id = `inp${temp}`;
+    options.onkeyup = check;
     document.getElementById("tr[" + index + "]").appendChild(options);
     for (var i = 0; i < question_count; i++) {
+        temp++;
         rd = document.createElement("input");
         rd.type = "checkbox";
         rd.name = `${question_id}[all_options[${i}][isRight]]`;
         document.getElementById("tr[" + index + "]").appendChild(rd);
         options = document.createElement("input");
         options.type = "text";
+        options.id = `inp${temp}`;
+        options.onkeyup = check;
         options.name = `${question_id}[all_options[${i}][text]]`;
         document.getElementById("tr[" + index + "]").appendChild(options);
     }
     kostil++;
+}
+
+function check() {
+    var flag = true;
+    for (var gopa = 1; gopa <= temp; gopa++) 
+    {
+
+        if (document.getElementById(`inp${gopa}`).value == "") 
+        {
+            flag = false;
+        }
+    }
+    //alert("Я вышел из цикла");
+    if (flag == true) {
+        document.getElementById("button_creating_test").removeAttribute("disabled");
+    } else {
+        document.getElementById("button_creating_test").setAttribute("disabled", "disabled");
+    }
+}
+
+function delete_question()
+{
+
 }

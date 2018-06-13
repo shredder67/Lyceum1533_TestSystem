@@ -1,0 +1,81 @@
+<%- include layout/header.ejs %>
+
+    <form id="post_form" method="post">
+
+        <span class="border-top border-dark">
+
+            <div class="row ml-2">
+
+                <div class="col-lg-3">
+
+                    <div class="row">
+                        <div class="col-5">
+                            Название:
+                        </div>
+                        <div class="col">
+                            <input type="text" name="name" id="inp1" onkeyup="check();"></input>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-5">
+                            Автор:
+                        </div>
+                        <div class="col">
+                            <input type="text" name="author"id="inp2" onkeyup="check();"></input>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-5">
+                            Предмет:
+                        </div>
+                        <div class="col">
+                            <input type="text" name="subject"id="inp3" onkeyup="check();"></input>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-5">
+                            Тема:
+                        </div>
+                        <div class="col">
+                            <input type="text" name="theme"id="inp4" onkeyup="check();"></input>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-5">
+                            Класс:
+                        </div>
+                        <div class="col">
+                            <input type="number" min="1" max="11" step="1" name="rate" id="inp5" onchange="check();"></input>
+                        </div>
+                    </div>
+
+                </div>
+
+                <span class="border-left border-dark">
+                    <div class="col-lg-9">
+
+                        <div class="container" id="question_list"></div>
+
+                        <br>
+
+                        <input type="button" id="button_add_question" value="Добавить вопрос" onclick="addQuestionButtonClick();">
+
+                    </pre>
+                </div>
+
+        </div>
+    </span>
+        <br>
+        <!— Надо сделать, чтобы эта кнопка по нажатию на клавишу переходило на /-->
+        <button id="button_creating_test" type="button" onclick="document.forms['myform'].submit();" disabled>Сохранить тест</button>
+
+    </form>
+    <script src='/javascripts/index.js'></script>
+
+
+
+    <%- include layout/footer.ejs %>
