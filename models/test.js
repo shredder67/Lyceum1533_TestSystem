@@ -29,12 +29,13 @@ var post_schema = new Schema({ //макет теста
         pic: Buffer,
         question_type: String,
         condition: String,
+        all_options: [{ //список ответов
+            text: String, //содерждание
+            isRight: Boolean, //true - правильный вариант ответа
+        }],
         //добавить хранение изображения
     }], //список вопросов
-    all_options: [{ //список ответов
-        text: String, //содерждание
-        isRight: Boolean, //true - правильный вариант ответа
-    }],
+    
 })
 
 post_schema.set('toJSON', { //преобразование в json объект

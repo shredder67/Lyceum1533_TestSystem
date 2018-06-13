@@ -1,4 +1,4 @@
-<%- include layout/header.ejs %>
+<%- include ../layout/header.ejs %>
 
     <form id="post_form" method="post">
 
@@ -13,7 +13,7 @@
                             Название:
                         </div>
                         <div class="col">
-                            <input type="text" name="name" id="inp1" onkeyup="check();"></input>
+                            <input type="text" name="name"></input>
                         </div>
                     </div>
                     <br>
@@ -22,7 +22,7 @@
                             Автор:
                         </div>
                         <div class="col">
-                            <input type="text" name="author"id="inp2" onkeyup="check();"></input>
+                            <input type="text" name="author"></input>
                         </div>
                     </div>
                     <br>
@@ -31,7 +31,7 @@
                             Предмет:
                         </div>
                         <div class="col">
-                            <input type="text" name="subject"id="inp3" onkeyup="check();"></input>
+                            <input type="text" name="subject"></input>
                         </div>
                     </div>
                     <br>
@@ -40,7 +40,7 @@
                             Тема:
                         </div>
                         <div class="col">
-                            <input type="text" name="theme"id="inp4" onkeyup="check();"></input>
+                            <input type="text" name="theme"></input>
                         </div>
                     </div>
                     <br>
@@ -49,7 +49,7 @@
                             Класс:
                         </div>
                         <div class="col">
-                            <input type="number" min="1" max="11" step="1" name="rate" id="inp5" onchange="check();"></input>
+                            <input type="number" min="1" max="11" step="1" name="rate"></input>
                         </div>
                     </div>
 
@@ -64,13 +64,11 @@
 
                         <input type="button" id="button_add_question" value="Добавить вопрос" onclick="addQuestionButtonClick();">
 
-                    </pre>
-                </div>
-
-        </div>
-    </span>
+                    </div>
+                </span>
+            </div>
+        </span>
         <br>
-        <!— Надо сделать, чтобы эта кнопка по нажатию на клавишу переходило на /-->
         <button id="button_creating_test" type="button" onclick="document.forms['myform'].submit();" disabled>Сохранить тест</button>
 
     </form>
@@ -78,4 +76,4 @@
 
 
 
-    <%- include layout/footer.ejs %>
+    <%- include ../layout/footer.ejs %>
