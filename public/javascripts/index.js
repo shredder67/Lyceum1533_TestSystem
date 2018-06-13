@@ -1,9 +1,10 @@
 var index = 0;
-var temp=5;
+var temp = 5;
 var kostil = 0; //индексация id вопроса 
 var fl;
 
 function addQuestionButtonClick() {
+    document.getElementById("button_creating_test").setAttribute("disabled", "disabled");
     kostil = 0;
     var elem = document.createElement("div");
     elem.id = "question[" + index + "]";
@@ -23,24 +24,17 @@ function changeQuestionType(question_id, question_type) { //смена тела 
     switch (question_type) {
         case "free_input":
             {
-                elem_body.innerHTML = `<input type='file' name='${question_id}[pic]'></input><h7>Условие:</h7><input  onkeyup="check();" type = 'text' id ='inp${temp}'name = '${question_id}[condition]'></input><h7>Правильный ответ:</h7><input  onkeyup="check();" id ='inp${temp+1}' type = 'text' name = '${question_id}[all_options[${0}][text]]'></input>`
+                elem_body.innerHTML = `<input type='file' name='${question_id}[pic]'></input><h7>Условие:</h7><input  onkeyup='check();' type = 'text' id ='inp${temp}'name = '${question_id}[condition]'></input><h7>Правильный ответ:</h7><input  onkeyup='check();' id ='inp${temp+1}' type = 'text' name = '${question_id}[all_options[${0}][text]]'></input> <input type='button' onclick='delete_question()';  id='del_butt${question_id}' value='Удалить вопрос'></input>`
                 temp++;
-                temp++;
+
                 break;
             }
         case "multiple_choice":
             {
-<<<<<<< HEAD
-                elem_body.innerHTML = `<h7>Кол-во вариантов ответа:</h7><select  onkeyup="check();" onchange='createNewAnswers(this.options[this.selectedIndex].value,"${elem_body.id}", "${question_id}");'>" +
-"<option value = ''></option>" +
-"<option value = '2'>2</option>" +
-"<option value = '3'>3</option>" +
-=======
                 elem_body.innerHTML = `<h7>Кол-во вариантов ответа:</h7><select id='answer_count' onchange='createNewAnswers(this.options[this.selectedIndex].value,"${elem_body.id}", "${question_id}");'>" + 
 "<option value = ''></option>" + 
 "<option value = '2'>2</option>" + 
 "<option value = '3'>3</option>" + 
->>>>>>> 84ca7c37d9e874f49d30bdb725539bc9d876627e
 "<option value = '4'>4</option></select>`
 
                 break;
@@ -68,64 +62,44 @@ function createNewAnswers(question_count, elem_body_id, question_id) //Доба�
     var options = document.createElement("input");
     options.type = "text";
     options.name = `${question_id}[condition]`;
-    options.id=`inp${temp}`;
-    options.onkeyup="check();"
-    temp++;
+    options.id = `inp${temp}`;
+    options.onkeyup = check;
     document.getElementById("tr[" + index + "]").appendChild(options);
     for (var i = 0; i < question_count; i++) {
+        temp++;
         rd = document.createElement("input");
         rd.type = "checkbox";
         rd.name = `${question_id}[all_options[${i}][isRight]]`;
         document.getElementById("tr[" + index + "]").appendChild(rd);
         options = document.createElement("input");
         options.type = "text";
-        options.id=`inp${temp}`;
-        options.onkeyup="check();"
-        temp++;
+        options.id = `inp${temp}`;
+        options.onkeyup = check;
         options.name = `${question_id}[all_options[${i}][text]]`;
         document.getElementById("tr[" + index + "]").appendChild(options);
     }
     kostil++;
 }
+
 function check() {
-var flag=true;
-for(var gopa=6;gopa<=temp;gopa++)
-{
-    if (document.getElementById(`inp${gopa}`).value=="")
+    var flag = true;
+    for (var gopa = 1; gopa <= temp; gopa++) 
     {
-    alert("Я у мамы прогер");      
-    flag=false;
-    }
-}
-if(flag==true)
-{
-document.getElementById("button_creating_test").disabled=false;
-}
-else  
-{
-    document.getElementById("button_creating_test").disabled=true;
-}
-}
-function check_def() 
-{
-    var flag=true;
-    for(var gopa=1;gopa<=4;gopa++)
-    {
-        if (document.getElementById(`inp${gopa}`).value=="")
-        {     
-        flag=false;
+
+        if (document.getElementById(`inp${gopa}`).value == "") 
+        {
+            flag = false;
         }
     }
-    if(flag)
-    {
-    document.getElementById("button_creating_test").disabled=false;
+    //alert("Я вышел из цикла");
+    if (flag == true) {
+        document.getElementById("button_creating_test").removeAttribute("disabled");
+    } else {
+        document.getElementById("button_creating_test").setAttribute("disabled", "disabled");
     }
-    else  
-    {
-        document.getElementById("button_creating_test").disabled=true;
-    }
+}
 
-  
-  
-    }
-       
+function delete_question()
+{
+
+}

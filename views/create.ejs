@@ -1,103 +1,80 @@
 <%- include layout/header.ejs %>
 
-<<<<<<< HEAD
-    <form name="myform"id="post_form" method="post" enctype="multipart/form-data"  onsubmit="return false;">
-        Название:
+    <form id="post_form" method="post">
 
-        <input type="text" name="name" id="inp1"onkeyup="check_def();" ></input>
-=======
-<form id="post_form" method="post">
+        <span class="border-top border-dark">
 
-    <span class="border-top border-dark">
->>>>>>> 84ca7c37d9e874f49d30bdb725539bc9d876627e
+            <div class="row ml-2">
 
-        <div class="row ml-2">
+                <div class="col-lg-3">
 
-<<<<<<< HEAD
-        <input type="text" name="author" id="inp2"onkeyup="check_def();" ></input>
-=======
-            <div class="col-lg-3">
->>>>>>> 84ca7c37d9e874f49d30bdb725539bc9d876627e
+                    <div class="row">
+                        <div class="col-5">
+                            Название:
+                        </div>
+                        <div class="col">
+                            <input type="text" name="name" id="inp1" onkeyup="check();"></input>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-5">
+                            Автор:
+                        </div>
+                        <div class="col">
+                            <input type="text" name="author"id="inp2" onkeyup="check();"></input>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-5">
+                            Предмет:
+                        </div>
+                        <div class="col">
+                            <input type="text" name="subject"id="inp3" onkeyup="check();"></input>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-5">
+                            Тема:
+                        </div>
+                        <div class="col">
+                            <input type="text" name="theme"id="inp4" onkeyup="check();"></input>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-5">
+                            Класс:
+                        </div>
+                        <div class="col">
+                            <input type="number" min="1" max="11" step="1" name="rate" id="inp5" onchange="check();"></input>
+                        </div>
+                    </div>
 
-                <div class="row">
-                    <div class="col-5">
-                        Название:
-                    </div>
-                    <div class="col">
-                        <input type="text" name="name"></input>
-                    </div>
-                </div>
-                <br> 
-                <div class="row">
-                    <div class="col-5">
-                        Автор: 
-                    </div>
-                    <div class="col">
-                        <input type="text" name="author"></input>
-                    </div>
-                </div>
-                <br> 
-                <div class="row">
-                    <div class="col-5">
-                        Предмет:
-                    </div>
-                    <div class="col">
-                        <input type="text" name="subject"></input>
-                    </div>
-                </div>
-                <br> 
-                <div class="row">
-                    <div class="col-5">
-                        Тема:
-                    </div>
-                    <div class="col">
-                        <input type="text" name="theme"></input>
-                    </div>
-                </div>
-                <br> 
-                <div class="row">
-                    <div class="col-5">
-                        Класс:
-                    </div>
-                    <div class="col">
-                        <input type="number" min="1" max="11" step="1" name="rate"></input>
-                    </div>
                 </div>
 
-<<<<<<< HEAD
-        <input type="text" name="subject"id="inp3"onkeyup="check_def();" ></input>
-=======
-            </div>
->>>>>>> 84ca7c37d9e874f49d30bdb725539bc9d876627e
+                <span class="border-left border-dark">
+                    <div class="col-lg-9">
 
-            <span class="border-left border-dark">
-                <div class="col-lg-9">
-
-<<<<<<< HEAD
-        <input type="text" name="theme"id="inp4"onkeyup="check_def();" ></input>
-=======
-                        <div class="container" id = "question_list"></div>
->>>>>>> 84ca7c37d9e874f49d30bdb725539bc9d876627e
+                        <div class="container" id="question_list"></div>
 
                         <br>
 
-<<<<<<< HEAD
-        <input type="number" min="1" max="11" step="1" name="rate" ></input>
-=======
                         <input type="button" id="button_add_question" value="Добавить вопрос" onclick="addQuestionButtonClick();">
->>>>>>> 84ca7c37d9e874f49d30bdb725539bc9d876627e
 
-                </div>
-            </span>
-        </div>
-    </span>
+                    </div>
+                </span>
+            </div>
+        </span>
         <br>
-            <!-- Надо сделать, чтобы эта кнопка по нажатию на клавишу переходило на /--> 
-            <button id="button_creating_test" type="button" onclick="document.forms['myform'].submit();" disabled>Сохранить тест</button>
-            
-</form>
+        <!— Надо сделать, чтобы эта кнопка по нажатию на клавишу переходило на /-->
+        <button id="button_creating_test" type="button" onclick="document.forms['myform'].submit();" disabled>Сохранить тест</button>
+
+    </form>
     <script src='/javascripts/index.js'></script>
 
-    
-    
+
+
     <%- include layout/footer.ejs %>
