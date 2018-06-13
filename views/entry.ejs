@@ -1,6 +1,5 @@
 <%- include ./layout/header.ejs %>
 
-    <body>
         <% if(errors){%>
             <%errors.forEach(function(error){%>
                 <%=error.msg%>
@@ -8,7 +7,7 @@
 
         <div class="container">
             <h4>Войдите в систему</h4>
-            <form action ="/entry" method = "POST">
+            <form action ="/" method = "POST">
 
                 <div class="form-group">
                     <label for="usernameInput">Логин</label>
@@ -22,9 +21,5 @@
 
             </form>
         </div>
-
-    </body>
-
-    </html>
 
     <%- include ./layout/footer.ejs %>

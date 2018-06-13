@@ -19,6 +19,7 @@ const testsRouter = require('./routes/tests');
 const testViewRouter = require('./routes/test_view');
 const createRouter = require('./routes/create');
 const entryRouter = require('./routes/entry');
+const profileRouter = require('./routes/profile');
 
 const app = express();
 
@@ -42,39 +43,37 @@ app.use(session({
 app.use(passport.initialize())
 app.use(passport.session())
 
-passport.serializeUser(function(user, done) {
-    done(null, user);
-  });
-  
-  passport.deserializeUser(function(user, done) {
-    done(null, user);
-  });
-
-passport.use(new LocalStrategy({session: true, passReqToCallBack: true},function(username, password, done){
-    User.findOne({username: username}, function(err, user){
-        if(err){
-            return done(err);
+passport.use(new LocalStrategy(function(username, password, done){
+    User.findOne({ username: username }, function (err, user) {
+        if (err) { return done(err); }
+        if (!user) {
+          return done(null, false, { message: 'Incorrect username.' });
         }
-        if(!user){
-            return done(null, false);
-        }
-        if(user.password != password){
-            return done(null, false);
+        if (password!= user.password) {
+          return done(null, false, { message: 'Incorrect password.' });
         }
         return done(null, user);
-    })
+    });
 }))
+
+passport.serializeUser(function (user, done) {
+    done(null, user);
+});
+
+passport.deserializeUser(function (user, done) {
+    done(null, user);
+});
 
 app.use(bodyParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', entryRouter);
 
-//Middleware for teacher
 app.use('/tests', testsRouter);
 app.use('/entry', entryRouter);
 app.use('/create', createRouter);
 app.use('/test_view', testViewRouter);
+app.use('/profile', profileRouter);
 
 //Middleware for student
 /*

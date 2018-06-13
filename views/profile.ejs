@@ -1,0 +1,12 @@
+<%- include ../layout/header.ejs %>
+<%- include ../layout/menu.ejs %>
+    <div class = "container">
+        <h4>Персональные данные</h4>
+        <div class="alert alert-warning" role="alert">
+            <%=user.FIO%>
+        </div>
+        <form action="/profile" method="post">
+            <button type="submit"  class="btn btn-outline-primary">Выйти</button>
+        </form>
+    </dv>
+<%- include ../layout/footer.ejs %>
