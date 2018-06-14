@@ -32,8 +32,7 @@ function changeQuestionType(question_id, question_type) { //смена тела 
         case "multiple_choice":
             {
                 elem_body.innerHTML = `<h7>Кол-во вариантов ответа:</h7><select id='answer_count' onchange='createNewAnswers(this.options[this.selectedIndex].value,"${elem_body.id}", "${question_id}");'>" + 
-"<option value = ''></option>" + 
-"<option value = '2'>2</option>" + 
+"<option value = ''></option>" +  
 "<option value = '3'>3</option>" + 
 "<option value = '4'>4</option></select>`
 
@@ -61,7 +60,10 @@ function createNewAnswers(question_count, elem_body_id, question_id) //Доба�
     fix.id = "tr[" + index + "]";
     document.getElementById(elem_body_id).appendChild(fix);
     var rd;
-    var options = document.createElement("input");
+    rd=document.createElement("div");
+    rd.innerHTML="<h7>Условие</h7>";
+    document.getElementById("tr[" + index + "]").appendChild(rd);
+    var options = document.createElement("input");                                        
     options.type = "text";
     options.name = `${question_id}[condition]`;
     options.id = `inp${temp}`;
