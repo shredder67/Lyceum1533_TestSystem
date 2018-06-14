@@ -25,6 +25,7 @@ function changeQuestionType(question_id, question_type) { //смена тела 
             {
                 elem_body.innerHTML = `<h7>Условие:</h7><textarea  onkeyup='check();' type = 'text' id ='inp${temp}'name = '${question_id}[condition]'></textarea><h7>Правильный ответ:</h7><input  onkeyup='check();' id ='inp${temp+1}' type = 'text' name = '${question_id}[all_options[${0}][text]]'></input> <input type='button' onclick='delete_question("${question_id}");'  id='del_butt${question_id}' value='Удалить вопрос'></input>`
 
+                temp++;
                 break;
             }
         case "multiple_choice":
