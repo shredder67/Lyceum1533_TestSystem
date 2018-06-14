@@ -24,7 +24,6 @@ function changeQuestionType(question_id, question_type) { //смена тела 
         case "free_input":
             {
                 elem_body.innerHTML = `<h7>Условие:</h7><textarea  onkeyup='check();' type = 'text' id ='inp${temp}'name = '${question_id}[condition]'></textarea><h7>Правильный ответ:</h7><input  onkeyup='check();' id ='inp${temp+1}' type = 'text' name = '${question_id}[all_options[${0}][text]]'></input> <input type='button' onclick='delete_question("${question_id}");'  id='del_butt${question_id}' value='Удалить вопрос'></input>`
-                temp++;
 
                 break;
             }
@@ -53,10 +52,6 @@ function createNewAnswers(question_count, elem_body_id, question_id) //Доба�
     var fix = document.createElement("div");
     fix.id = "tr[" + index + "]";
     document.getElementById(elem_body_id).appendChild(fix);
-    fl = document.createElement("input");
-    fl.type = "file";
-    fl.name = `${question_id}[pic]`;
-    document.getElementById("tr[" + index + "]").appendChild(fl);
     var rd;
     var options = document.createElement("input");
     options.type = "text";
