@@ -1,5 +1,6 @@
 <%- include ../layout/header.ejs %>
 
+<form action = "/teacher/create"  id="post_form" method ="POST">
 
 <form id="post_form" method="post">
 
@@ -48,7 +49,7 @@
                         Класс:
                     </div>
                     <div class="col">
-                        <input type="number" min="1" max="11" step="1" name="rate"></input>
+                        <input type="number" min="1" max="11" step="1" name="rate"id="inp5" onchange="check();"></input>
                     </div>
                 </div>
 

@@ -10,7 +10,8 @@ router.get('/',(req,res)=>{
 });
 
 //POST edited test
-router.post('/', (req,res)=>{ 
+router.post('/', (req,res)=>{
+    console.log(req.body); 
     Post.create({//добавление в коллекцию tests нового документа
         name: req.body.name,
         author: req.body.author,
@@ -20,9 +21,9 @@ router.post('/', (req,res)=>{
         date:Date.now(),
         question:req.body.question     
     })
-        .then(post => {console.log(post.id); console.log(req.body.question[0].all_options)})
+        .then(post => {console.log('AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA');})
         .catch(err => console.log(err));
-    res.redirect('/tests');
+    res.redirect('/teacher/tests');
 });
 
 module.exports = router;
