@@ -13,7 +13,8 @@ function addQuestionButtonClick() {
     elem.innerHTML = `<h6>Выберите тип вопроса</h6>` +
         `<select name = '${elem.id}[quesiton_type]' onchange = 'changeQuestionType("${elem.id}", this.options[this.selectedIndex].value)'>` +
         `<option value=''></option><option value = 'free_input'>Свободный ответ</option>` +
-        `<option value = 'multiple_choice'>Выбор из списка</option> </select> <div id = "${index}"></div>`
+        `<option value = 'multiple_choice'>Выбор из списка</option>`+
+        `<option value = 'range'>Ввод ответа с примерным значением</option> </select> <div id = "${index}"></div>`
     document.getElementById("question_list").appendChild(elem)
     index++;
 }
@@ -36,6 +37,12 @@ function changeQuestionType(question_id, question_type) { //смена тела 
 "<option value = '3'>3</option>" + 
 "<option value = '4'>4</option></select>`
 
+                break;
+            }
+            case"range":
+            {
+                elem_body.innerHTML=`<h7>Введите минимальное значение</h7><input onchange='check();' type='number' id ='inp${temp}'></input><h7>Введите максимальное значение</h7><input onchange='check();' type='number' id ='inp${temp+1}'></input><h7>Введите цену деления</h7><input onchange='check();' type='number' id ='inp${temp+2}'></input><h7>Введите правильный ответ</h7><input onchange='check();' type='number' id ='inp${temp+3}'></input><input type='button' onclick='delete_question("${question_id}");'  id='del_butt${question_id}' value='Удалить вопрос'></input>`
+               temp+=3;
                 break;
             }
         default:
