@@ -23,13 +23,7 @@ function changeQuestionType(question_id, question_type) { //смена тела 
     switch (question_type) {
         case "free_input":
             {
-<<<<<<< HEAD
                 elem_body.innerHTML = `<br><div class="row"><div class="col-3"><h5>Условие:</h5></div><div class="col"><textarea type = 'text' name = '${question_id}[condition]'></textarea></div></div><br><div class="row"><div class="col-3"><h5>Правильный ответ:</h5></div><div class="col"><textarea type = 'text' name = '${question_id}[all_options[${0}][text]]'></textarea></div></div>`
-=======
-                elem_body.innerHTML = `<input type='file' name='${question_id}[pic]'></input><h7>Условие:</h7><input  onkeyup='check();' type = 'text' id ='inp${temp}'name = '${question_id}[condition]'></input><h7>Правильный ответ:</h7><input  onkeyup='check();' id ='inp${temp+1}' type = 'text' name = '${question_id}[all_options[${0}][text]]'></input> <input type='button' onclick='delete_question()';  id='del_butt${question_id}' value='Удалить вопрос'></input>`
-                temp++;
-
->>>>>>> 42fa9ac5682bc6644cb5bb161488a481654b05db
                 break;
             }
         case "multiple_choice":
