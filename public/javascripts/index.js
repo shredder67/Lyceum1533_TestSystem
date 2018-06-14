@@ -23,7 +23,7 @@ function changeQuestionType(question_id, question_type) { //смена тела 
     switch (question_type) {
         case "free_input":
             {
-                elem_body.innerHTML = `<input type='file' name='${question_id}[pic]'></input><h7>Условие:</h7><input  onkeyup='check();' type = 'text' id ='inp${temp}'name = '${question_id}[condition]'></input><h7>Правильный ответ:</h7><input  onkeyup='check();' id ='inp${temp+1}' type = 'text' name = '${question_id}[all_options[${0}][text]]'></input> <input type='button' onclick='delete_question()';  id='del_butt${question_id}' value='Удалить вопрос'></input>`
+                elem_body.innerHTML = `<h7>Условие:</h7><textarea  onkeyup='check();' type = 'text' id ='inp${temp}'name = '${question_id}[condition]'></textarea><h7>Правильный ответ:</h7><input  onkeyup='check();' id ='inp${temp+1}' type = 'text' name = '${question_id}[all_options[${0}][text]]'></input> <input type='button' onclick='delete_question("${question_id}");'  id='del_butt${question_id}' value='Удалить вопрос'></input>`
                 temp++;
 
                 break;
@@ -77,18 +77,24 @@ function createNewAnswers(question_count, elem_body_id, question_id) //Доба�
         options.name = `${question_id}[all_options[${i}][text]]`;
         document.getElementById("tr[" + index + "]").appendChild(options);
     }
+    var but=document.createElement("div");
+   but.innerHTML=`<input type='button' onclick='delete_question("${question_id}");' value='Удалить вопрос'></input>`;
+   document.getElementById("tr[" + index + "]").appendChild(but);
+    
     kostil++;
 }
 
 function check() {
+   // alert("Я хотя бы в фунции");
     var flag = true;
     for (var gopa = 1; gopa <= temp; gopa++) 
     {
-
+if(document.getElementById(`inp${gopa}`)!=null){
         if (document.getElementById(`inp${gopa}`).value == "") 
         {
             flag = false;
         }
+    }
     }
     //alert("Я вышел из цикла");
     if (flag == true) {
@@ -98,7 +104,8 @@ function check() {
     }
 }
 
-function delete_question()
+function delete_question(now_index)
 {
-
+    
+document.getElementById(now_index).innerHTML="";
 }

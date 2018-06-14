@@ -85,7 +85,7 @@
                 event.preventDefault();
             } else {
                 var data = $('.form-center').serialize();
-                $.getJSON('/tests', {
+                $.getJSON('/teacher/tests', {
                     param: data.param,
                     filter: data.filter
                 }, function (arr) {

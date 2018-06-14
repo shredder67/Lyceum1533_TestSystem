@@ -1,6 +1,6 @@
 <%- include ../layout/header.ejs %>
 
-    <form id="post_form" method="post">
+<form action = "/teacher/create"  id="post_form" method ="POST">
 
         <span class="border-top border-dark">
 
@@ -13,7 +13,7 @@
                             Название:
                         </div>
                         <div class="col">
-                            <input type="text" name="name"></input>
+                            <input type="text" name="name" id="inp1" onkeyup="check();"></input>
                         </div>
                     </div>
                     <br>
@@ -22,7 +22,7 @@
                             Автор:
                         </div>
                         <div class="col">
-                            <input type="text" name="author"></input>
+                            <input type="text" name="author" id="inp2" onkeyup="check();"></input>
                         </div>
                     </div>
                     <br>
@@ -31,7 +31,7 @@
                             Предмет:
                         </div>
                         <div class="col">
-                            <input type="text" name="subject"></input>
+                            <input type="text" name="subject"id="inp3" onkeyup="check();"></input>
                         </div>
                     </div>
                     <br>
@@ -40,7 +40,7 @@
                             Тема:
                         </div>
                         <div class="col">
-                            <input type="text" name="theme"></input>
+                            <input type="text" name="theme"id="inp4" onkeyup="check();"></input>
                         </div>
                     </div>
                     <br>
@@ -49,7 +49,7 @@
                             Класс:
                         </div>
                         <div class="col">
-                            <input type="number" min="1" max="11" step="1" name="rate"></input>
+                            <input type="number" min="1" max="11" step="1" name="rate"id="inp5" onchange="check();"></input>
                         </div>
                     </div>
 
@@ -69,7 +69,7 @@
             </div>
         </span>
         <br>
-        <button id="button_creating_test" type="button" onclick="document.forms['myform'].submit();" disabled>Сохранить тест</button>
+        <button id="button_creating_test" type="submit" disabled>Сохранить тест</button>
 
     </form>
     <script src='/javascripts/index.js'></script>
