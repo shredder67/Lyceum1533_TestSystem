@@ -24,7 +24,7 @@ function changeQuestionType(question_id, question_type) { //смена тела 
     switch (question_type) {
         case "free_input":
             {
-                elem_body.innerHTML = `<h7>Условие:</h7><textarea  onkeyup='check();' type = 'text' id ='inp${temp}'name = '${question_id}[condition]'></textarea><h7>Правильный ответ:</h7><input  onkeyup='check();' id ='inp${temp+1}' type = 'text' name = '${question_id}[all_options[${0}][text]]'></input> <input type='button' onclick='delete_question("${question_id}");'  id='del_butt${question_id}' value='Удалить вопрос'></input>`
+                elem_body.innerHTML = `<br><div class="row"><div class="col"><div class="row ml-2"><h7>Условие:</h7><textarea  onkeyup='check();' type = 'text' id ='inp${temp}'name = '${question_id}[condition]'></textarea></div></div><div class="col"><h7>Правильный ответ:</h7><input  onkeyup='check();' id ='inp${temp+1}' type = 'text' name = '${question_id}[all_options[${0}][text]]'></input></div></div><input type='button' onclick='delete_question("${question_id}");'  id='del_butt${question_id}' value='Удалить вопрос'></input>`
 
                 temp++;
                 break;
@@ -67,7 +67,7 @@ function createNewAnswers(question_count, elem_body_id, question_id) //Доба�
     options.id = `inp${temp}`;
     options.onkeyup = check;
     document.getElementById("tr[" + index + "]").appendChild(options);
-    for (var i = 0; i < question_count; i++) {
+    for (var i = 0; i < question_count; i++) { //создание выбора из списка
         temp++;
         rd = document.createElement("input");
         rd.type = "checkbox";
