@@ -25,14 +25,14 @@ function changeQuestionType(question_id, question_type) { //смена тела 
     switch (question_type) {
         case "free_input":
             {
-                elem_body.innerHTML = `<br><div class="row ml-2"><div class="col"><div class="row"><h7>Условие:</h7><textarea  onkeyup='check();' type = 'text' id ='inp${temp}'name = '${question_id}[condition]'></textarea></div></div><div class="col"><h7>Правильный ответ:</h7><input  onkeyup='check();' id ='inp${temp+1}' type = 'text' name = '${question_id}[all_options[${0}][text]]'></input></div></div><input type='button' onclick='delete_question("${question_id}");'  id='del_butt${question_id}' value='Удалить вопрос'></input>`
+                elem_body.innerHTML = `<br><div class="row ml-2"><div class="col"><div class="row"><h7>Условие:</h7><textarea  onkeyup='check();' type = 'text' id ='inp${temp}'name = '${question_id}[condition]'></textarea></div></div><div class="col"><div class="row"><h7>Правильный ответ:</h7><input  onkeyup='check();' id ='inp${temp+1}' type = 'text' name = '${question_id}[all_options[${0}][text]]'></input></div></div></div><br><input type='button' onclick='delete_question("${question_id}");'  id='del_butt${question_id}' value='Удалить вопрос'></input> `
 
                 temp++;
                 break;
             }
         case "multiple_choice":
             {
-                elem_body.innerHTML = `<h7>Кол-во вариантов ответа:</h7><select id='answer_count' onchange='createNewAnswers(this.options[this.selectedIndex].value,"${elem_body.id}", "${question_id}");'>" + 
+                elem_body.innerHTML = `<br><h7>Кол-во вариантов ответа:</h7><select id='answer_count' onchange='createNewAnswers(this.options[this.selectedIndex].value,"${elem_body.id}", "${question_id}");'>" + 
 "<option value = ''></option>" +  
 "<option value = '3'>3</option>" + 
 "<option value = '4'>4</option></select>`
@@ -41,7 +41,7 @@ function changeQuestionType(question_id, question_type) { //смена тела 
             }
             case"range":
             {
-                elem_body.innerHTML=`<h7>Введите минимальное значение</h7><input onchange='check();' type='number' id ='inp${temp}'></input><h7>Введите максимальное значение</h7><input onchange='check();' type='number' id ='inp${temp+1}'></input><h7>Введите цену деления</h7><input onchange='check();' type='number' id ='inp${temp+2}'></input><h7>Введите правильный ответ</h7><input onchange='check();' type='number' id ='inp${temp+3}'></input><input type='button' onclick='delete_question("${question_id}");'  id='del_butt${question_id}' value='Удалить вопрос'></input>`
+                elem_body.innerHTML=`<br><div class="row"><div class="col"><div class="row"><div class="col"><h7>Введите минимальное значение</h7></div><div class="col"><input onchange='check();' type='number' id ='inp${temp}'></input></div></div><br><div class="row"><div class="col"><h7>Введите максимальное значение</h7></div><div class="col"><input onchange='check();' type='number' id ='inp${temp+1}'></input></div></div></div><div class="col"><div class="row"><div class="col"><h7>Введите цену деления</h7></div><div class="col"><input onchange='check();' type='number' id ='inp${temp+2}'></input></div></div><br><div class="row"><div class="col"><h7>Введите правильный ответ</h7></div><div class="col"><input onchange='check();' type='number' id ='inp${temp+3}'></input></div></div></div></div> <input type='button' onclick='delete_question("${question_id}");'  id='del_butt${question_id}' value='Удалить вопрос'></input>`
                temp+=3;
                 break;
             }
@@ -62,7 +62,7 @@ function createNewAnswers(question_count, elem_body_id, question_id) //Доба�
     document.getElementById(elem_body_id).appendChild(fix);
     var rd;//будет использоваться для создания checkbox
     rd=document.createElement("div");
-    rd.innerHTML="<h7>Условие</h7>";
+    rd.innerHTML="<br><h7>Условие:</h7>";
     document.getElementById("tr[" + index + "]").appendChild(rd);
     var options = document.createElement("input");//будет использоваться для создания заданного кол-ва вариантов ответа                                       
     options.type = "text";
