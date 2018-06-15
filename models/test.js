@@ -25,16 +25,18 @@ var post_schema = new Schema({ //макет теста
     date: {
         type: Number
     },
-    question:[{
+    questions:[{
         question_type: String,
-      /*pic: Buffer,
-        condition: String,
-        all_options: [{ //список ответов
-            text: String, //содерждание
-            isRight: Boolean, //true - правильный вариант ответа
-        }],
-        //добавить хранение изображения
-    */}], //список вопросов
+        question_body: Schema.Types.Mixed,
+    }], 
+/*
+Тутор по типам вопросов и по тому, что есть внутри
+free_input - свободный ввод => quesiton_body: {condition - string, right_answer - string}
+multiple_choice - выбор правильных ответов из предложенных вариантов => question_body: {condition - string, options: [{text - string, isRight - bool}]}
+range - ввод примерного ответа => question_body: {condition - string, min_value - numb, max_value - numb, right_answer - numb, inaccuracy - numb}
+fill_spaces - заполнение пропусков в тексте => question_body: {pairs - [{text - string, answer - string}] } - последний ответ пустой 
+
+*/
     
 })
 

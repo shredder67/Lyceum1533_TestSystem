@@ -1,9 +1,9 @@
 const express = require('express');
-const database = require('./database');//обработка подключения к бд
-const config = require('./config');//константы для работы приложения
+const database = require('./database'); //обработка подключения к бд
+const config = require('./config'); //константы для работы приложения
 
-const session = require('express-session');//хранение сессий
-const bodyParser = require('body-parser');//работа с данными, передаваемые post-запросом 
+const session = require('express-session'); //хранение сессий
+const bodyParser = require('body-parser'); //работа с данными, передаваемые post-запросом 
 const mongoStore = require('connect-mongo')(session);
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
@@ -11,7 +11,7 @@ const User = require('./models/user');
 
 
 const path = require('path');
-const createError = require('http-errors');//для обработки ошибок
+const createError = require('http-errors'); //для обработки ошибок
 const logger = require('morgan')
 var expressValidator = require('express-validator');
 
@@ -43,45 +43,59 @@ app.use(session({
 app.use(passport.initialize())
 app.use(passport.session())
 
-passport.use(new LocalStrategy(function(username, password, done){
-    User.findOne({ username: username }, function (err, user) {
-        if (err) { return done(err); }
-        if (!user) {
-          return done(null, false, { message: 'Incorrect username.' });
+passport.serializeUser(function(user, done) {
+  done(null, user.id);
+});
+
+passport.deserializeUser(function(id, done) {
+  User.findById(id, function(err, user) {
+    done(err, user);
+  });
+});
+
+passport.use(new LocalStrategy({
+    session: true
+}, function (username, password, done) {
+    User.findOne({
+        username: username
+    }, function (err, user) {
+        if (err) {
+            return done(err, false);
         }
-        if (password!= user.password) {
-          return done(null, false, { message: 'Incorrect password.' });
+        if (!user) {
+            return done(null, false);
+        }
+        if (user.password != password) {
+            return done(null, false);
         }
         return done(null, user);
-    });
+    })
 }))
-
-passport.serializeUser(function (user, done) {
-    done(null, user);
-});
-
-passport.deserializeUser(function (user, done) {
-    done(null, user);
-});
 
 app.use(bodyParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+
+//общее (возможна специфика для отдельных элементов)
 app.use('/', entryRouter);
+app.use('/tests',authenticationMiddleware(), testsRouter);
+app.use('/profile',authenticationMiddleware(), profileRouter);
+app.use('/test_view',authenticationMiddleware(), testViewRouter);
 
-app.use('/tests', testsRouter);
-app.use('/entry', entryRouter);
-app.use('/create', createRouter);
-app.use('/test_view', testViewRouter);
-app.use('/profile', profileRouter);
+//учитель
+app.use('/create',authenticationMiddleware(), createRouter);
+//app.use('/sessions', )
 
-//Middleware for student
-/*
-app.use('/student/tests');
-app.use('/student/test_view');
-app.use('/student/pass_test');
-app.use('/student/results');
-*/
+
+function authenticationMiddleware(){  //проверочка на вход
+	return (req, res, next) => {
+	    if (req.isAuthenticated()) {
+            req.role = req.user.user_type;
+            return next()
+        };
+	    res.redirect('/');
+	}
+}
 
 // catch 404 and forward to error handler
 /*

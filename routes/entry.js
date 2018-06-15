@@ -7,13 +7,17 @@ var router = express.Router();
 
 
 router.get('/', (req, res, next) => {
-        res.render('/entry.ejs', {
-                errors: undefined
-        });
+        if(req.isUnauthenticated()){
+                res.render('./entry.ejs', {
+                        errors: undefined
+                });
+        } else{
+                res.redirect('/tests');
+        }
 });
 
 router.post('/', passport.authenticate('local', {
-        successRedirect: '/tests',
+        successRedirect: '/profile',
         failureRedirect: '/'
 }))
 
