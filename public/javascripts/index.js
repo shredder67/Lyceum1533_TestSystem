@@ -49,6 +49,7 @@ function changeQuestionType(question_id, question_type) { //смена тела 
             }
         case "fill_spaces":
             {
+                
                 elem_body.innerHTML=`<h7>Введите текст</h7><textarea onchange='check();'id='inp${temp}'></textarea><h7>Введите пропущенную фразу</h7><input type='text' onchange='check();'id='inp${temp+1}'></input><input type='button' value='Добавить' onclick='add_space("${question_id}")'id='inp${temp+2}'></input><input type='button' onclick='delete_question("${question_id}");'  id='del_butt${question_id}' value='Удалить вопрос'></input>`;
                 temp+=3;
                 break;
@@ -85,22 +86,22 @@ function createNewAnswers(question_count, elem_body_id, question_id) //Доба�
     for (var i = 0; i < question_count; i++) { //создание выбора из списка
         temp++;
 obertka = document.createElement("div");
-obertka.innerHTML=`<br><div class="input-group"id="${i}obolochka">`+
+obertka.innerHTML=`<br><div class="input-group"id="${i}&${temp}obolochka">`+
 `<div class="input-group-prepend">`+
-` <div class="input-group-text" id="${i}gr">`+
+` <div class="input-group-text" id="${i}&${temp}gr">`+
 `</div></div></div>`;
 document.getElementById("tr[" + index + "]").appendChild(obertka);
         rd = document.createElement("input");
         rd.type = "checkbox";
         rd.name = `${question_id}[all_options[${i}][isRight]]`;
-        document.getElementById(`${i}gr`).appendChild(rd);
+        document.getElementById(`${i}&${temp}gr`).appendChild(rd);
 
         options = document.createElement("input");
         options.type = "text";
         options.id = `inp${temp}`;
         options.onkeyup = check;
         options.name = `${question_id}[all_options[${i}][text]]`;
-        document.getElementById(`${i}obolochka`).appendChild(options);
+        document.getElementById(`${i}&${temp}obolochka`).appendChild(options);
     }
     var but=document.createElement("div");//кнопка удаления вопроса 
    but.innerHTML=`<br><input type='button' onclick='delete_question("${question_id}");' value='Удалить вопрос'></input>`;
