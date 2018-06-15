@@ -1,26 +1,28 @@
-var index = 0//Индексация id вопроса 
-var temp = 5;//Переменная для индексации inputов
-var kostil = 0;// Переменная для корректной работы в случае смены типа вопроса 
+var index = 0 //Индексация id вопроса 
+var temp = 5; //Переменная для индексации inputов
+var kostil = 0; // Переменная для корректной работы в случае смены типа вопроса 
 var fl;
 
-function addQuestionButtonClick()//Функция для выбора типа вопроса
- {
+function addQuestionButtonClick() //Функция для выбора типа вопроса
+{
     document.getElementById("button_creating_test").setAttribute("disabled", "disabled");
     kostil = 0;
-    var elem = document.createElement("div");//Div в который текущий вопрос будет помещен
+    var elem = document.createElement("div"); //Div в который текущий вопрос будет помещен
     elem.id = "question[" + index + "]";
     elem.className = "quest border-bottom border-secondary";
     //выбор типа вопроса n
     elem.innerHTML = `<h6>Выберите тип вопроса</h6>` +
         `<select name = '${elem.id}[quesiton_type]' onchange = 'changeQuestionType("${elem.id}", this.options[this.selectedIndex].value)'>` +
         `<option value=''></option><option value = 'free_input'>Свободный ответ</option>` +
-        `<option value = 'multiple_choice'>Выбор из списка</option>`+
+        `<option value = 'multiple_choice'>Выбор из списка</option>` +
+        `<option value = 'fill_spaces'>Заполнение пропусков в тексте</option>` +
         `<option value = 'range'>Ввод ответа с примерным значением</option> </select> <div id = "${index}"></div><br>`
     document.getElementById("question_list").appendChild(elem)
     index++;
 }
 
 function changeQuestionType(question_id, question_type) { //смена тела вопроса 
+    kostil = 0;
     var elem_body = document.getElementById(question_id).getElementsByTagName("div")[0]; //elem_body - div внутри одного вопроса, содержащий его тело (условие, варианты ответа итд) 
     switch (question_type) {
         case "free_input":
@@ -32,17 +34,23 @@ function changeQuestionType(question_id, question_type) { //смена тела 
             }
         case "multiple_choice":
             {
-                elem_body.innerHTML = `<br><h7>Кол-во вариантов ответа:</h7><select id='answer_count' onchange='createNewAnswers(this.options[this.selectedIndex].value,"${elem_body.id}", "${question_id}");'>" + 
+                elem_body.innerHTML = `<h7>Кол-во вариантов ответа:</h7><select id='answer_count' onchange='createNewAnswers(this.options[this.selectedIndex].value,"${elem_body.id}", "${question_id}");'>" + 
 "<option value = ''></option>" +  
 "<option value = '3'>3</option>" + 
 "<option value = '4'>4</option></select>`
 
                 break;
             }
-            case"range":
+        case "range":
             {
                 elem_body.innerHTML=`<br><div class="row"><div class="col"><div class="row"><div class="col"><h7>Условие:</h7></div><div class="col"><textarea  onkeyup='check();' type = 'text' id ='inp${temp}'name = '${question_id}[condition]'></textarea></div></div><br><div class="row"><div class="col"><h7>Введите минимальное значение</h7></div><div class="col"><input onchange='check();' type='number' id ='inp${temp}' name = "${question_id}[question_body][min_value]"></input></div></div><br><div class="row"><div class="col"><h7>Введите максимальное значение</h7></div><div class="col"><input onchange='check();' type='number' id ='inp${temp+1}' name = "${question_id}[question_body][max_value]"></input></div></div></div><div class="col"><div class="row"><div class="col"><h7>Допустимая погрешность:</h7></div><div class="col"><input onchange='check();' type='number' id ='inp${temp+2}' name = "${question_id}[question_body][inaccuracy]" min="1 "></input></div></div><br><div class="row"><div class="col"><h7>Введите цену деления</h7></div><div class="col"><input onchange='check();' type='number' id ='inp${temp+4}' name = "${question_id}[question_body][step]"></input></div></div><br><div class="row"><div class="col"><h7>Введите правильный ответ</h7></div><div class="col"><input onchange='check();' type='number' id ='inp${temp+3}' name = "${question_id}[question_body][right_answer]"></input></div></div></div></div><br><input type='button' onclick='delete_question("${question_id}");'  id='del_butt${question_id}' value='Удалить вопрос'></input>`
-               temp+=3;
+                temp += 4;
+                break;
+            }
+        case "fill_spaces":
+            {
+                elem_body.innerHTML=`<h7>Введите текст</h7><textarea onchange='check();'id='inp${temp}'></textarea><h7>Введите пропущенную фразу</h7><input type='text' onchange='check();'id='inp${temp+1}'></input><input type='button' value='Добавить' onclick='add_space("${question_id}")'id='inp${temp+2}'></input><input type='button' onclick='delete_question("${question_id}");'  id='del_butt${question_id}' value='Удалить вопрос'></input>`;
+                temp+=3;
                 break;
             }
         default:
@@ -58,12 +66,12 @@ function createNewAnswers(question_count, elem_body_id, question_id) //Доба�
     if (kostil != 0) {
         document.getElementById("tr[" + index + "]").innerHTML = '';
     }
-    var fix = document.createElement("div");//Div который будет очищаться в случае смены кол-ва вариантов ответа
+    var fix = document.createElement("div"); //Div который будет очищаться в случае смены кол-ва вариантов ответа
     fix.id = "tr[" + index + "]";
     document.getElementById(elem_body_id).appendChild(fix);
-    var rd;//будет использоваться для создания checkbox
-    rd=document.createElement("div");
-    rd.innerHTML="<br><h7>Условие:</h7>";
+    var rd; //будет использоваться для создания checkbox
+    rd = document.createElement("div");
+    rd.innerHTML = "<h7>Условие</h7>";
     document.getElementById("tr[" + index + "]").appendChild(rd);
     var options = document.createElement("textarea");//будет использоваться для создания заданного кол-ва вариантов ответа                                       
     options.type = "text";
@@ -101,17 +109,15 @@ document.getElementById("tr[" + index + "]").appendChild(obertka);
     kostil++;
 }
 
-function check()//функция проверки на заполненность полей
- {
+function check() //функция проверки на заполненность полей
+{
     var flag = true;
-    for (var gopa = 1; gopa <= temp; gopa++) 
-    {
-if(document.getElementById(`inp${gopa}`)!=null){
-        if (document.getElementById(`inp${gopa}`).value == "") 
-        {
-            flag = false;
+    for (var gopa = 1; gopa <= temp; gopa++) {
+        if (document.getElementById(`inp${gopa}`) != null) {
+            if (document.getElementById(`inp${gopa}`).value == "") {
+                flag = false;
+            }
         }
-    }
     }
     //alert("Я вышел из цикла");
     if (flag == true) {
@@ -121,8 +127,16 @@ if(document.getElementById(`inp${gopa}`)!=null){
     }
 }
 
-function delete_question(now_index)//функция удаления вопроса 
+function delete_question(now_index) //функция удаления вопроса 
 {
-    
-document.getElementById(now_index).innerHTML="";
+
+    document.getElementById(now_index).remove();
+}
+function add_space(question_id)
+{
+var space=document.createElement("div");
+space.innerHTML=`<h7>Введите текст</h7><textarea onchange='check();'id='inp${temp}'></textarea><h7>Введите пропущенную фразу</h7><input type='text' onchange='check();'id='inp${temp+1}'></input><input type='button' value='Добавить' onclick='add_space("${question_id}")'id='inp${temp+2}'></input>`;
+temp+=3;
+document.getElementById(question_id).appendChild(space);
+
 }
