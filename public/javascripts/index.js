@@ -85,22 +85,22 @@ function createNewAnswers(question_count, elem_body_id, question_id) //Доба�
     for (var i = 0; i < question_count; i++) { //создание выбора из списка
         temp++;
 obertka = document.createElement("div");
-obertka.innerHTML=`<br><div class="input-group"id="${i}leschat">`+
+obertka.innerHTML=`<br><div class="input-group"id="${i}obolochka">`+
 `<div class="input-group-prepend">`+
-` <div class="input-group-text" id="${i}sosat">`+
+` <div class="input-group-text" id="${i}gr">`+
 `</div></div></div>`;
 document.getElementById("tr[" + index + "]").appendChild(obertka);
         rd = document.createElement("input");
         rd.type = "checkbox";
         rd.name = `${question_id}[all_options[${i}][isRight]]`;
-        document.getElementById(`${i}sosat`).appendChild(rd);
+        document.getElementById(`${i}gr`).appendChild(rd);
 
         options = document.createElement("input");
         options.type = "text";
         options.id = `inp${temp}`;
         options.onkeyup = check;
         options.name = `${question_id}[all_options[${i}][text]]`;
-        document.getElementById(`${i}leschat`).appendChild(options);
+        document.getElementById(`${i}obolochka`).appendChild(options);
     }
     var but=document.createElement("div");//кнопка удаления вопроса 
    but.innerHTML=`<br><input type='button' onclick='delete_question("${question_id}");' value='Удалить вопрос'></input>`;
@@ -135,7 +135,7 @@ function delete_question(now_index) //функция удаления вопро
 function add_space(question_id)
 {
 var space=document.createElement("div");
-space.innerHTML=`<h7>Введите текст</h7><textarea onchange='check();'id='inp${temp}'></textarea><h7>Введите пропущенную фразу</h7><input type='text' onchange='check();'id='inp${temp+1}'></input><input type='button' value='Добавить' onclick='add_space("${question_id}")'id='inp${temp+2}'></input>`;
+space.innerHTML=`<h7>Введите текст</h7><textarea onchange='check();'id='inp${temp}'></textarea><h7>Введите пропущенную фразу</h7><input type='text' onchange='check();'id='inp${temp+1}'></input>`;
 temp+=3;
 document.getElementById(question_id).appendChild(space);
 
