@@ -1,87 +1,105 @@
 <%- include ../layout/header.ejs %>
     <%- include ../layout/menu.ejs %>
 
-        <form action="/create" id="post_form" method="POST">
+    <form action="/teacher/create" id="post_form" method="POST">
 
-                <div class="row ml-2">
+        <form id="post_form" method="post" action="/teacher/create">
 
-                    <div class="col-lg-4">
+            <div class="row ml-2">
 
-                        <div class="row">
-                            <div class="col-5">
-                                Название:
-                            </div>
-                            <div class="col">
-                                <input type="text" name="name" id="inp1" onkeyup="check();"></input>
-                            </div>
-                        </div>
-                        <br>
-                        <div class="row">
-                            <div class="col-5">
-                                Предмет:
-                            </div>
-                            <div class="col">
-                                <select class="form-control-md" name="subject" id="inp2" onchange="check();">
-                                    <option>Алгебра</option>
-                                    <option>Геометрия</option>
-                                    <option>Физика</option>
-                                    <option>Экономика</option>
-                                    <option>Программирование</option>
-                                    <option>Дизайн</option>
-                                    <option>Биология</option>
-                                    <option>Химия</option>
-                                    <option>География</option>
-                                    <option>История</option>
-                                    <option>Русский язык</option>
-                                    <option>Английский язык</option>
-                                </select>
-                            </div>
-                        </div>
-                        <br>
-                        <div class="row">
-                            <div class="col-5">
-                                Тема:
-                            </div>
-                            <div class="col">
-                                <input type="text" name="theme" id="inp3" onkeyup="check();"></input>
-                            </div>
-                        </div>
-                        <br>
-                        <div class="row">
-                            <div class="col-5">
-                                Класс:
-                            </div>
-                            <div class="col">
-                                <select class="form-control-md" name="rate" id="inp4" onchange="check();">
-                                    <option>5</option>
-                                    <option>6</option>
-                                    <option>7</option>
-                                    <option>8</option>
-                                    <option>9</option>
-                                    <option>10</option>
-                                    <option>11</option>
-                                </select>
-                            </div>
-                        </div>
-                        <br>
-                        <button id="button_creating_test" class="btn btn-secondary btn-md" type="submit" disabled>Сохранить тест</button>
-                    </div>
+                <div class="col-lg-4">
 
-                    <div class="col-lg-8">
-                        <div class="container" id="question_list">
-
+                    <div class="row">
+                        <div class="col-5">
+                            Название:
                         </div>
-                        <br>
-                        <div class="row">
-                            
-                                <input type="button" class="btn btn-secondary btn-md mx-auto" id="button_add_question" value="Добавить вопрос" onclick="addQuestionButtonClick();">
-                            
+                        <div class="col">
+                            <input type="text" name="name" id="inp1" onkeyup="check();"></input>
                         </div>
                     </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-5">
+                            Предмет:
+                        </div>
+                        <div class="col">
+                            <select class="form-control-md" name="subject" id="inp3" onchange="check();">
+                                <option>Алгебра</option>
+                                <option>Геометрия</option>
+                                <option>Физика</option>
+                                <option>Экономика</option>
+                                <option>Программирование</option>
+                                <option>Дизайн</option>
+                                <option>Биология</option>
+                                <option>Химия</option>
+                                <option>География</option>
+                                <option>История</option>
+                                <option>Русский язык</option>
+                                <option>Английский язык</option>
+                            </select>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-5">
+                            Тема:
+                        </div>
+                        <div class="col">
+                            <input type="text" name="theme" id="inp4" onkeyup="check();"></input>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-5">
+                            Класс:
+                        </div>
+                        <div class="col">
+                            <select class="form-control-md" name="rate" id="inp5" onchange="check();">
+                                <option>5</option>
+                                <option>6</option>
+                                <option>7</option>
+                                <option>8</option>
+                                <option>9</option>
+                                <option>10</option>
+                                <option>11</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Надо сделать, чтобы эта кнопка по нажатию на клавишу переходило на /-->
+                    <br>
+                    <br>
+                    <button class="btn btn-secondary" id="button_creating_test" type="submit" disabled>Сохранить тест</button>
 
                 </div>
-                <br>
-            </form>
 
-            <script src='/javascripts/index.js'></script>
+
+                <div class="col-lg-8">
+
+                    <pre>
+
+<div class="container" id = "question_list"></div>
+
+<br>
+
+
+</pre>
+
+                    <div class="row">
+                        <div class="col"></div>
+                        <div class="col">
+                            <input class="btn btn-secondary" type="button" id="button_add_question" value="Добавить вопрос" onclick="addQuestionButtonClick();">
+                        </div>
+                        <div class="col"></div>
+                    </div>
+                </div>
+
+            </div>
+            <br>
+
+
+        </form>
+        <script src='/javascripts/index.js'></script>
+
+
             <%- include ../layout/footer.ejs %>
