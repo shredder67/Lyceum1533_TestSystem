@@ -1,67 +1,84 @@
-    <%- include ./layout/header.ejs %>
-    <%- include ./layout/menu.ejs %>
+<%- include ./layout/header.ejs %>
+<%- include ./layout/menu.ejs %>
 
-        <div class="container">
-            <ul class="list-group">
-                <li class="list-group-item">
-                    <%= test.name%>
-                </li>
-                <li class="list-group-item">
-                    <%= test.author%>
-                </li>
-                <li class="list-group-item">
-                    <%= test.subject%>
-                </li>
-                <li class="list-group-item">
-                    <%= test.theme%>
-                </li>
-                <li class="list-group-item">
-                    <%= test.rate%>
-                </li>
-                <li class="list-group-item">
-                    <%= new Date(test.date).getDate() +'.0'+ +(new Date(test.date).getMonth() + 1) +'.'+ new Date(test.date).getFullYear()%>
-                </li>
-            </ul>
-            <br>
-            <%if(role == 'teacher'){%>
-            <div class="row">
-                <div class="col">
+    <div class="container">
+        <ul class="list-group">
+            <li class="list-group-item">
+                <%= test.name%>
+            </li>
+            <li class="list-group-item">
+                <%= test.author%>
+            </li>
+            <li class="list-group-item">
+                <%= test.subject%>
+            </li>
+            <li class="list-group-item">
+                <%= test.theme%>
+            </li>
+            <li class="list-group-item">
+                <%= test.rate%>
+            </li>
+            <li class="list-group-item">
+                <%= new Date(test.date).getDate() +'.0'+ +(new Date(test.date).getMonth() + 1) +'.'+ new Date(test.date).getFullYear()%>
+            </li>
+        </ul>
+        <br>
+        <%if(role == 'teacher'){%>
+        <div class="row">
+            <div class="col">
+                <h3>
+                    <p class="text-center">
+                        Вопросы
+                    </p>
+                </h3>
+
+            </div>
+        </div>
+
+        <div class="question_list">
+            <%test.questions.forEach(function(question){%>
+                <div class="container-fluid">
+                        
+                        <%switch(question.question_type){
+                            case 'free_input':%>
+                                <h4>Свободный ввод</h4>
+                            <%break;
+                            case 'multiple_choice':%>
+                                <h4>Выбор из списка</h4>
+                            <%break;
+                            case 'range':%>
+                                <h4>Примерный ответ</h4>
+                            <%break;
+                            case 'fill_spaces':%>
+                                <h4>Заполнение пропусков</h4>
+                            <%break;
+                        }%>
+                </div>
+                <%});%>
+        </div>
+    </div>
+    <div class="btn-group mr-2">
+        <button type="button" class="btn btn-secondary">Создать сессию</button>
+        <button type="button" class="btn btn-secondary">Редактировать</button>
+    </div>
+    <%} else if(role == 'student'){%>
+        <div class="row">
+            <div class="col">
+                    <button type="button" class="btn btn-secondary">Начать тест</button>
+            </div>
+            <div class="col-9">
                     <h3>
-                        <p class="text-center">
-                            Вопросы
-                        </p>
+                            <p class="text-center">
+                                Результаты
+                            </p>
                     </h3>
+                    <div>
 
-                </div>
-            </div>
-
-            <div class="question_list">
-                <%test.question.forEach(function(question){%>
-                    <div class="row">
-                            
                     </div>
-                    <%});%>
             </div>
         </div>
-        <div class="btn-group mr-2">
-            <button type="button" class="btn btn-secondary">Создать сессию</button>
-            <button type="button" class="btn btn-secondary">Редактировать</button>
-        </div>
-        <%} else if(role == 'student'){%>
-            <div class="row">
-                <div class="col">
-                        <button type="button" class="btn btn-secondary">Начать тест</button>
-                </div>
-                <div class="col-9">
-                        <h3>
-                                <p class="text-center">
-                                    Результаты
-                                </p>
-                        </h3>
-                </div>
-            </div>
-        <%}%>
+    <%}%>
 
 
 
-        <%- include ./layout/footer.ejs %>
+    <%- include ./layout/footer.ejs %>
