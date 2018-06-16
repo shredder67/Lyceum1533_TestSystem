@@ -20,6 +20,7 @@ const testViewRouter = require('./routes/test_view');
 const createRouter = require('./routes/create');
 const entryRouter = require('./routes/entry');
 const profileRouter = require('./routes/profile');
+const sessionRouter = require('./routes/session');
 
 const app = express();
 
@@ -81,6 +82,7 @@ app.use('/', entryRouter);
 app.use('/tests',authenticationMiddleware(), testsRouter);
 app.use('/profile',authenticationMiddleware(), profileRouter);
 app.use('/test_view',authenticationMiddleware(), testViewRouter);
+app.use('/session',authenticationMiddleware(), sessionRouter);
 
 //учитель
 app.use('/create',authenticationMiddleware(), createRouter);

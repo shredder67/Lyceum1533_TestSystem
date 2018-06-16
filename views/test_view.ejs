@@ -57,10 +57,9 @@
                 <%});%>
         </div>
     </div>
-    <div class="btn-group mr-2">
-        <button type="button" class="btn btn-secondary">Создать сессию</button>
-        <button type="button" class="btn btn-secondary">Редактировать</button>
-    </div>
+    <a href="/session/create?test_id=<%=test.id%>">
+        <button type="submit" class="btn btn-secondary">Создать сессию</button> 
+    </a>  
     <%} else if(role == 'student'){%>
         <div class="row">
             <div class="col">
