@@ -21,7 +21,13 @@
         </li>
         <%}%>
           <li class="nav-item">
-            <a class="nav-link" href="#">Сессии</a>
+            <a class="nav-link" href="/session">
+              <%if(role =='teacher'){%>
+                Сессии
+              <%}else{%>
+                Задания
+              <%}%>
+            </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/profile">Аккаунт</a>

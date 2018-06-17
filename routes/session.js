@@ -1,16 +1,52 @@
 var express = require('express');
 var Post = require('../models/test');
 var TestSession = require('../models/test_session');
+var User = require('../models/user');
 var router = express.Router();
 
-router.get('/create',roleHandler(), function(req,res,next){
+router.get('/', function (req, res, nex) {
+    if (req.role == 'teacher') {
+        TestSession.find({
+            author: req.user.id
+        }, (err, data) => { //ищем сессии, созданные текущим учителем
+            if (err) {
+                console.log(err);
+                res.render(error.ejs, {});
+            } else {
+                console.log(data);
+                res.render('sessions.ejs', {
+                    role: req.role,
+                    sessions: data,
+                });
+            }
+        });
+    }
+    if (req.role == 'student') {
+        TestSession.find({
+            targets: req.user.group
+        }, function (err, data) { //ищем сессии, созданные для текущего ученика
+            if (err) {
+                console.log(err);
+                res.render(error.ejs, {});
+            } else {
+                console.log(data);
+                res.render('sessions.ejs', {
+                    role: req.role,
+                    sessions: data
+                })
+            }
+        });
+    }
+});
+
+router.get('/create', roleHandler(), function (req, res, next) {
     if (req.query.test_id.match(/^[0-9a-fA-F]{24}$/)) {
         Post.findById(req.query.test_id, function (err, obj) {
-            if(err){
+            if (err) {
                 console.log(err);
-                res.send('Ошибка. Попробуйте позже')
+                res.render(error.ejs, {});
             }
-            if(!obj){
+            if (!obj) {
                 res.send('Ошибка! Такого теста нет в базе!');
             }
             console.log(obj);
@@ -22,11 +58,41 @@ router.get('/create',roleHandler(), function(req,res,next){
     }
 })
 
+router.post('/create', roleHandler(), function (req, res, next) {
+    User.findById(req.user.id, (err, obj) => {
+        if (err) {
+            console.log(err);
+            res.render(error.ejs, {});
+        } else {
+            TestSession.create({
+                    name: req.body.name,
+                    test_id: req.body.test_id,
+                    targets: req.body.groups,
+                    author: req.user.id,
+                    author_name: obj.FIO,
+                    date: Date.now(),
+                })
+                .then(ses => {
+                    console.log(ses);
+                    console.log(ses.test_id + '- session has been added to db\n');
+                })
+                .catch(err => console.log(err));
+        }
+        res.redirect('/session');
+    })
+})
 
-
+router.get('/view', function(req,res,next){
+    TestSession.findById(req.query.session_id, function(err, ses){
+        if(err){
+            console.log(err);
+            res.render(error.ejs, {});
+        }
+    })
+})
 
 function roleHandler() {
-    return (req,res,next)=>{
+    return (req, res, next) => {
         switch (req.role) {
             case 'teacher':
                 next();

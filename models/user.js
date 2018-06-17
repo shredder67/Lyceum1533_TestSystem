@@ -17,7 +17,10 @@ var user_schema = new Schema({
     user_type:{
         type: String,
         required: true,
-    }
+    },
+    group:{
+        type: String,
+    },
 })
 
 user_schema.set('toJSON', { //преобразование в json объект
