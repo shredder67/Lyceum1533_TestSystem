@@ -53,7 +53,7 @@ function changeQuestionType(question_id, question_type) { //смена тела 
         case "fill_spaces":
             {
                 sir=0;
-                elem_body.innerHTML=`<h7>Введите текст</h7><textarea onchange='check();'id='inp${temp}'></textarea><h7>Введите пропущенную фразу</h7><input type='text' onchange='check();'id='inp${temp+1}'></input><input type='button' value='Добавить' onclick='add_space("${question_id}")'id='inp${temp+2}'></input><input type='button' onclick='delete_question("${question_id}");'  id='del_butt${question_id}' value='Удалить вопрос'></input><input type='button' onclick='delete_last()'  value='Удалить последний'></input>`;
+                elem_body.innerHTML=`<h7>Введите текст</h7><textarea onchange='check();'id='inp${temp}'></textarea><h7>Введите пропущенную фразу</h7><input type='text' onchange='check();'id='inp${temp+1}'></input><input type='button' value='Добавить' onclick='add_space("${question_id}")'id='inp${temp+2}'></input><input type='button' onclick='delete_question("${question_id}");'  id='del_butt${question_id}' value='Удалить вопрос'></input><input type='button' id='${index}' onclick='delete_last(this.id)'  value='Удалить последний'></input>`;
                 temp+=3;
                 break;
             }
@@ -145,8 +145,12 @@ space.innerHTML=`<h7>Введите текст</h7><textarea onchange='check();'
 temp+=3;
 document.getElementById(question_id).appendChild(space);
 }
-function delete_last()
+function delete_last(del_in)
 {
-    document.getElementById(`${sir}&${index}`).remove();
+   // alert(del_in);
+    document.getElementById(`${sir}&${del_in}`).remove();
+    if(sir>0)
+    {
     sir--;
+    }
 }
