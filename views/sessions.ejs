@@ -1,0 +1,15 @@
+<%- include ./layout/header.ejs %>
+<%- include ./layout/menu.ejs %>
+
+<% if(role == 'teacher'){ %>
+    <ul class="list-group list-group-flush">
+    <% sessions.forEach(function(session){ %>
+        <li class="list-group-item"><%=session.name %>  <%= session.author %>   <%= session.date %> </li>
+    <% }); %>
+    </ul>
+<% }else if(role == 'student'){ %>
+
+
+<% } %>
+
+<%- include ./layout/footer.ejs %>

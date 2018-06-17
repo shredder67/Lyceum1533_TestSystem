@@ -6,7 +6,7 @@ var router = express.Router();
 //GET tests list
 
 
-router.get('/', roleHandler(), (req, res, next) => {
+router.get('/', (req, res, next) => {
     if (req.query.param) {
         switch (req.query.filter) {
             case 'author':
@@ -77,18 +77,6 @@ router.get('/', roleHandler(), (req, res, next) => {
     }
 });
 
-function roleHandler() {
-    return (req, res, next) => {
-        switch (req.role) {
-            case 'teacher':
-                next();
-                break;
-            case 'student':
-                res.send('КУДА ЭТО ТЫ СОБРАЛСЯ? А НУ ВЕРНИСЬ!');
-                break;
-        }
-    }
-}
 
 
 module.exports = router;

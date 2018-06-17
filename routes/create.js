@@ -10,18 +10,19 @@ router.get('/', roleHandler(),(req, res) => {
 
 //POST edited test
 router.post('/', roleHandler(), (req, res) => {
+    var name = req.body.name.replace(/^\s*/,'').replace(/\s*$/,'');
+    var theme = req.body.theme.replace(/^\s*/,'').replace(/\s*$/,'');
     Post.create({ //добавление в коллекцию tests нового документа
-            name: req.body.name,
+            name: name,
             author: req.user.FIO, //тот, что сейчас залогинен
             subject: req.body.subject,
-            theme: req.body.theme,
+            theme: theme,
             rate: req.body.rate,
             date: Date.now(),
             questions: req.body.question,
         })
         .then(post => {
-            console.log(post.id);
-            console.log(req.body.question[0].all_options)
+            console.log(post.id + '- test has been added to db\n');
         })
         .catch(err => console.log(err));
     res.redirect('/tests');

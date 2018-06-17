@@ -28,6 +28,7 @@ var post_schema = new Schema({ //макет теста
     questions:[{
         question_type: String,
         question_body: Schema.Types.Mixed,
+        _id:false, 
     }], 
 /*
 Тутор по типам вопросов и по тому, что есть внутри

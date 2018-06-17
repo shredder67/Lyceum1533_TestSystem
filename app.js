@@ -82,7 +82,7 @@ app.use('/', entryRouter);
 app.use('/tests',authenticationMiddleware(), testsRouter);
 app.use('/profile',authenticationMiddleware(), profileRouter);
 app.use('/test_view',authenticationMiddleware(), testViewRouter);
-app.use('/session',authenticationMiddleware(), sessionRouter);
+app.use('/session', authenticationMiddleware(), sessionRouter);
 
 //учитель
 app.use('/create',authenticationMiddleware(), createRouter);
