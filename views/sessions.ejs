@@ -4,49 +4,56 @@
         <% if(role == 'teacher'){ %>
             <div class="container">
                 <div class="row">
-                        <div class="mx-auto">
-                                <h4>Мои сессии</h4>
-                        </div>
+                    <div class="mx-auto">
+                        <h4>Мои сессии</h4>
+                    </div>
                 </div>
             </div>
-            
-           
-            <ul class="list-group list-group-flush">
-                <% sessions.forEach(function(session){ %>
-                    <a href="/session/view?session_id=<%=session.id%>">
-                        <li class="list-group-item">
-                            <%= session.name %>
-                            <span style="display:inline-block; width: YOURWIDTH;"></span>
-                            <%= session.author_name %>
-                            <span style="display:inline-block; width: YOURWIDTH;"></span>
-                            <%= new Date(session.date).getDate() +'.0'+ +(new Date(session.date).getMonth() + 1) +'.'+ new Date(session.date).getFullYear() %>
-                        </li>
-                    </a>
-                    <% }); %>
-            </ul>
+            <div class="container">
+                <table class="table table-hover" id="maintable">
+                    <tbody>
+                        <% sessions.forEach(function(session){ %>
+                            <tr onclick="window.location='/session/view?session_id=<%=session.id%>'">
+                                <td>
+                                    <%= session.name %>
+                                </td>
+                                <td>
+                                    <%= session.author_name %>
+                                </td>
+                                <td>
+                                    <%= new Date(session.date).getDate() +'.0'+ +(new Date(session.date).getMonth() + 1) +'.'+ new Date(session.date).getFullYear() %>
+                                </td>
+                                </a>
+                            </tr>
+
+                            <% }); %>
+                    </tbody>
+
+                </table>
+            </div>
             <% }else if(role == 'student'){ %>
                 <div class="container">
-                        <div class="row">
-                                <div class="mx-auto">
-                                        <h4>Мои задания</h4>
-                                </div>
+                    <div class="row">
+                        <div class="mx-auto">
+                            <h4>Мои задания</h4>
                         </div>
                     </div>
-                    
-                   
-                    <ul class="list-group list-group-flush">
-                        <% sessions.forEach(function(session){ %>
-                            <a href="/session/view?session_id=<%=session.id%>">
-                                <li class="list-group-item">
-                                    <%= session.name %>
+                </div>
+
+
+                <ul class="list-group list-group-flush">
+                    <% sessions.forEach(function(session){ %>
+                        <a href="/session/view?session_id=<%=session.id%>">
+                            <li class="list-group-item">
+                                <%= session.name %>
                                     <span style="display:inline-block; width: YOURWIDTH;"></span>
                                     <%= session.author_name %>
-                                    <span style="display:inline-block; width: YOURWIDTH;"></span>
-                                    <%= new Date(session.date).getDate() +'.0'+ +(new Date(session.date).getMonth() + 1) +'.'+ new Date(session.date).getFullYear() %>
-                                </li>
-                            </a>
-                            <% }); %>
-                    </ul>
-            <% } %>
+                                        <span style="display:inline-block; width: YOURWIDTH;"></span>
+                                        <%= new Date(session.date).getDate() +'.0'+ +(new Date(session.date).getMonth() + 1) +'.'+ new Date(session.date).getFullYear() %>
+                            </li>
+                        </a>
+                        <% }); %>
+                </ul>
+                <% } %>
 
- <%- include ./layout/footer.ejs %>
+                    <%- include ./layout/footer.ejs %>
