@@ -18,6 +18,10 @@ testSession_schema = new Schema({
         type: String,
         required: true,
     },
+    author_name:{
+        type: String,
+        required: true,
+    },
     date: Number,
 });
 

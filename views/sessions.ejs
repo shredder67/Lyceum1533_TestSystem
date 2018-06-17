@@ -1,15 +1,23 @@
 <%- include ./layout/header.ejs %>
-<%- include ./layout/menu.ejs %>
+    <%- include ./layout/menu.ejs %>
 
-<% if(role == 'teacher'){ %>
-    <ul class="list-group list-group-flush">
-    <% sessions.forEach(function(session){ %>
-        <li class="list-group-item"><%=session.name %>  <%= session.author %>   <%= session.date %> </li>
-    <% }); %>
-    </ul>
-<% }else if(role == 'student'){ %>
+        <% if(role == 'teacher'){ %>
+            <ul class="list-group list-group-flush">
+                <% sessions.forEach(function(session){ %>
+                    <a href="/session/view?session_id=<%=session.id%>">
+                        <li class="list-group-item">
+                            <%=session.name %>
+                            <span style="display:inline-block; width: YOURWIDTH;"></span>
+                            <%= session.author_name %>
+                            <span style="display:inline-block; width: YOURWIDTH;"></span>
+                            <%= new Date(session.date).getDate() +'.0'+ +(new Date(session.date).getMonth() + 1) +'.'+ new Date(session.date).getFullYear() %>
+                        </li>
+                    </a>
+                    <% }); %>
+            </ul>
+            <% }else if(role == 'student'){ %>
 
 
-<% } %>
+                <% } %>
 
-<%- include ./layout/footer.ejs %>
+                    <%- include ./layout/footer.ejs %>
