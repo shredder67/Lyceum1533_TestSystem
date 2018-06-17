@@ -22,6 +22,17 @@ testSession_schema = new Schema({
         type: String,
         required: true,
     },
+    results:[{
+        student_id: {
+            type: String,
+            required: true,
+        },
+        date: Number,
+        result_id: {
+            type: String,
+            required: true,
+        }
+    }],
     date: Number,
 });
 

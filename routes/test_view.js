@@ -7,7 +7,7 @@ router.get('/', (req, res) => {
         Post.findById(req.query.test_id, function (err, obj) {
             if (err) {
                 console.log(err);
-                res.send('Ошибка. Попробуйте позже');
+                res.render(error.ejs, {});
             }
             if (!obj) {
                 res.send('Ошибка. Данный тест отсуствует');

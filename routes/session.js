@@ -11,6 +11,7 @@ router.get('/', function (req, res, nex) {
         }, (err, data) => { //ищем сессии, созданные текущим учителем
             if (err) {
                 console.log(err);
+                res.render(error.ejs, {});
             } else {
                 console.log(data);
                 res.render('sessions.ejs', {
@@ -26,10 +27,11 @@ router.get('/', function (req, res, nex) {
         }, function (err, data) { //ищем сессии, созданные для текущего ученика
             if (err) {
                 console.log(err);
+                res.render(error.ejs, {});
             } else {
                 console.log(data);
                 res.render('sessions.ejs', {
-                    role: user.role,
+                    role: req.role,
                     sessions: data
                 })
             }
@@ -42,7 +44,7 @@ router.get('/create', roleHandler(), function (req, res, next) {
         Post.findById(req.query.test_id, function (err, obj) {
             if (err) {
                 console.log(err);
-                res.send('Ошибка. Попробуйте позже')
+                res.render(error.ejs, {});
             }
             if (!obj) {
                 res.send('Ошибка! Такого теста нет в базе!');
@@ -60,13 +62,14 @@ router.post('/create', roleHandler(), function (req, res, next) {
     User.findById(req.user.id, (err, obj) => {
         if (err) {
             console.log(err);
+            res.render(error.ejs, {});
         } else {
             TestSession.create({
                     name: req.body.name,
                     test_id: req.body.test_id,
                     targets: req.body.groups,
                     author: req.user.id,
-                    author_name: obj.FIO, 
+                    author_name: obj.FIO,
                     date: Date.now(),
                 })
                 .then(ses => {
@@ -77,8 +80,15 @@ router.post('/create', roleHandler(), function (req, res, next) {
         }
         res.redirect('/session');
     })
+})
 
-
+router.get('/view', function(req,res,next){
+    TestSession.findById(req.query.session_id, function(err, ses){
+        if(err){
+            console.log(err);
+            res.render(error.ejs, {});
+        }
+    })
 })
 
 function roleHandler() {

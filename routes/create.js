@@ -24,7 +24,7 @@ router.post('/', roleHandler(), (req, res) => {
         .then(post => {
             console.log(post.id + '- test has been added to db\n');
         })
-        .catch(err => console.log(err));
+        .catch(err => {console.log(err); res.render(error.ejs, {});});
     res.redirect('/tests');
 });
 
