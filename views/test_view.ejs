@@ -1,83 +1,175 @@
 <%- include ./layout/header.ejs %>
-<%- include ./layout/menu.ejs %>
+    <%- include ./layout/menu.ejs %>
 
-    <div class="container">
-        <ul class="list-group">
-            <li class="list-group-item">
-                <%= test.name%>
-            </li>
-            <li class="list-group-item">
-                <%= test.author%>
-            </li>
-            <li class="list-group-item">
-                <%= test.subject%>
-            </li>
-            <li class="list-group-item">
-                <%= test.theme%>
-            </li>
-            <li class="list-group-item">
-                <%= test.rate%>
-            </li>
-            <li class="list-group-item">
-                <%= new Date(test.date).getDate() +'.0'+ +(new Date(test.date).getMonth() + 1) +'.'+ new Date(test.date).getFullYear()%>
-            </li>
-        </ul>
-        <br>
-        <%if(role == 'teacher'){%>
-        <div class="row">
-            <div class="col">
-                <h3>
-                    <p class="text-center">
-                        Вопросы
-                    </p>
-                </h3>
-
-            </div>
-        </div>
-
-        <div class="question_list">
-            <%test.questions.forEach(function(question){%>
-                <div class="container-fluid">
-                        
-                        <%switch(question.question_type){
-                            case 'free_input':%>
-                                <h4>Свободный ввод</h4>
-                            <%break;
-                            case 'multiple_choice':%>
-                                <h4>Выбор из списка</h4>
-                            <%break;
-                            case 'range':%>
-                                <h4>Примерный ответ</h4>
-                            <%break;
-                            case 'fill_spaces':%>
-                                <h4>Заполнение пропусков</h4>
-                            <%break;
-                        }%>
+        <div class="container">
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <%= test.name%>
+                </li>
+                <li class="list-group-item">
+                    <%= test.author%>
+                </li>
+                <li class="list-group-item">
+                    <%= test.subject%>
+                </li>
+                <li class="list-group-item">
+                    <%= test.theme%>
+                </li>
+                <li class="list-group-item">
+                    <%= test.rate%>
+                </li>
+                <li class="list-group-item">
+                    <%= new Date(test.date).getDate() +'.0'+ +(new Date(test.date).getMonth() + 1) +'.'+ new Date(test.date).getFullYear()%>
+                </li>
+            </ul>
+            <br>
+            <%if(role == 'teacher'){%>
+                <div class="row">
+                    <div class="col">
+                        <a href="/session/create?test_id=<%=test.id%>">
+                            <button type="submit" class="btn btn-secondary">Создать сессию</button>
+                        </a>
+                    </div>
                 </div>
-                <%});%>
+
+                <div class="question_list">
+                    <%test.questions.forEach(function(question){%>
+                        <div class="container-fluid border-bottom border-secondary">
+
+                            <%switch(question.question_type){
+                            case 'free_input':%>
+                                <h4>
+                                    <p class="text-center">
+                                        Свободный ввод
+                                    </p>
+                                </h4>
+
+                                <h5>
+                                    <p class="text-center">
+                                        <%=question.question_body.condition%>
+                                    </p>
+                                </h5>
+                                <h5>
+                                    <p class="text-center">
+                                        Ответ:
+                                        <%=question.question_body.right_answer%>
+                                    </p>
+                                </h5>
+
+                                <%break;
+                            case 'multiple_choice':%>
+                                    <h4>
+                                        <p class="text-center">
+                                            Выбор из списка
+                                        </p>
+                                    </h4>
+                                    <h5>
+                                        <p class="text-center">
+                                            <%=question.question_body.condition%>
+                                        </p>
+                                    </h5>
+                                    <h5>
+                                        <%question.question_body.options.forEach(function(opt){%>
+                                            <%if(opt.isRight){%>
+                                                <p class="text-center text-success">
+                                                    <%=opt.text%>
+                                                </p>
+                                                <%} else{%>
+                                                    <p class="text-center text-danger">
+                                                        <%=opt.text%>
+                                                    </p>
+                                                    <%}%>
+                                                        <%});%>
+                                    </h5>
+
+                                    <%break;
+                            case 'range':%>
+                                        <h4>
+                                            <p class="text-center">
+                                                Примерный ответ
+                                            </p>
+                                        </h4>
+                                        <h5>
+                                            <p class="text-center">
+                                                <%=question.question_body.condition%>
+                                            </p>
+                                        </h5>
+                                        <div class="" "slidecontainer">
+                                            <input type="range" min="<%=question.question_body.min_value%>" max="<%=question.question_body.max_value%>" value="<%=question.question_body.right_answer%>"
+                                                class="slider" id="myRange" disabled>
+                                        </div>
+                                        <h5>
+                                            <p class="text-center">
+                                                Минимальное значение:
+                                                <%=question.question_body.min_value%>
+                                            </p>
+                                            <p class="text-center">
+                                                Максимальное значение:
+                                                <%=question.question_body.max_value%>
+                                            </p>
+                                            <p class="text-center">
+                                                Правильный ответ:
+                                                <%=question.question_body.right_answer%>
+                                            </p>
+                                            <p class="text-center">
+                                                Погрешность:
+                                                <%=question.question_body.inaccuracy%>
+                                            </p>
+                                        </h5>
+
+                                        <%break;
+                            case 'fill_spaces':%>
+                                            <h4>
+                                                <p class="text-center">
+                                                    Заполнение пропусков
+                                                </p>
+                                            </h4>
+                                            <h5>
+                                                <p class="text-center">
+                                                    <%for(var i=0; i<question.question_body.texts.length; i++){%>
+                                                        <%=question.question_body.texts[i]%>
+                                                            <code class="highlighter-rouge">
+                                                                <strong>
+                                                                    <%=question.question_body.answers[i]%>
+                                                                </strong>
+                                                            </code>
+                                                            <%};%>
+                                                </p>
+                                            </h5>
+                                            <%break;
+                        }%>
+                        </div>
+                        <%});%>
+                </div>
         </div>
-    </div>
-    <a href="/session/create?test_id=<%=test.id%>">
-        <button type="submit" class="btn btn-secondary">Создать сессию</button> 
-    </a>  
-    <%} else if(role == 'student'){%>
-        <div class="row">
-            <div class="col">
+
+        <%} else if(role == 'student'){%>
+            <div class="row">
+                <div class="col">
                     <button type="button" class="btn btn-secondary">Начать тест</button>
-            </div>
-            <div class="col-9">
+                </div>
+                <div class="col-9">
                     <h3>
-                            <p class="text-center">
-                                Результаты
-                            </p>
+                        <p class="text-center">
+                            Результаты
+                        </p>
                     </h3>
                     <div>
 
                     </div>
+                </div>
             </div>
-        </div>
-    <%}%>
+            <%}%>
 
+                <!-- <script>
+                    var slider = document.getElementById("myRange");
+                    var output = document.getElementById("Ranswer");
+                    
+                    output.innerHTML = slider.value;
 
+                    slider.oninput = function () {
+                        output.innerHTML = this.value;
+                    }
+                </script>-->
 
-    <%- include ./layout/footer.ejs %>
+                <%- include ./layout/footer.ejs %>
