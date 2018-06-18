@@ -127,10 +127,10 @@
                                             <h5>
                                                 <p class="text-center">
                                                     <%for(var i=0; i<question.question_body.texts.length; i++){%>
-                                                        <%=question.question_body.texts[i]%>
+                                                        <%= question.question_body.texts[i] %>
                                                             <code class="highlighter-rouge">
                                                                 <strong>
-                                                                    <%=question.question_body.answers[i]%>
+                                                                    <%=question.question_body.answers[i] %>
                                                                 </strong>
                                                             </code>
                                                             <%};%>

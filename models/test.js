@@ -39,7 +39,7 @@ multiple_choice - выбор правильных ответов из предл
 
 range - ввод примерного ответа => question_body: {condition - string, min_value - numb, max_value - numb, right_answer - numb, inaccuracy - numb}
 
-fill_spaces - заполнение пропусков в тексте => question_body: texts - [string], answers - [string] } - последний ответ пустой 
+fill_spaces - заполнение пропусков в тексте => question_body: [{text - string, answer - string}] } - последний ответ пустой 
 
 */
     

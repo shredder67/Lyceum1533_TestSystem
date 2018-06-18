@@ -107,14 +107,21 @@ router.get('/test_passage', roleHandler('teacher'), function(req,res,next){
                     console.log(err);
                     res.render('./error.ejs',{})
                 }
+                console.log(test.questions);
                 res.render('./student/test_passage.ejs', {session_id: sess.id, test:test, role: req.role});
             })
         })
 })
 
-function roleHandler(sucker) {
+router.post('/test_passage', roleHandler('teacher'), function(req,res,next){
+/*  
+ *  req.body: { session_id, answers[{}]} - ответы для каждого типа уникальны, free-input - строка,  
+ */ 
+})
+
+function roleHandler(u_t) {
     return (req, res, next) => {
-        if(req.role == sucker){
+        if(req.role == u_t){
             res.send('ВАМ СЮДА НЕЛЬЗЯ, НИ-НИ-НИ');
         } 
         next();
