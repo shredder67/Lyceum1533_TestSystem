@@ -20,7 +20,10 @@
             </ul>
 
     <% }else if(role == 'student'){ %>
-
+        <form action="/session/test_passage" method="get">
+            <input type="hidden" name="ses_id" value="<%=session.id%>">
+            <button type="submit">Пройти тест</button>
+        </form>
 
     <% } %>
 <%- include ./layout/footer.ejs %>

@@ -39,7 +39,7 @@ router.get('/', function (req, res, nex) {
     }
 });
 
-router.get('/create', roleHandler(), function (req, res, next) {
+router.get('/create', roleHandler('student'), function (req, res, next) {
     if (req.query.test_id.match(/^[0-9a-fA-F]{24}$/)) {
         Post.findById(req.query.test_id, function (err, obj) {
             if (err) {
@@ -58,7 +58,7 @@ router.get('/create', roleHandler(), function (req, res, next) {
     }
 })
 
-router.post('/create', roleHandler(), function (req, res, next) {
+router.post('/create', roleHandler('student'), function (req, res, next) {
     User.findById(req.user.id, (err, obj) => {
         if (err) {
             console.log(err);
@@ -95,16 +95,19 @@ router.get('/view', function(req,res,next){
     })  
 })
 
-function roleHandler() {
+router.get('/test_passage', roleHandler('teacher'), function(req,res,next){
+    TestSession.findById(req.query.ses_id)
+        .exec(function(err, session){
+            res.send('нормально нормально');
+        })
+})
+
+function roleHandler(sucker) {
     return (req, res, next) => {
-        switch (req.role) {
-            case 'teacher':
-                next();
-                break;
-            case 'student':
-                res.send('КУДА ЭТО ТЫ СОБРАЛСЯ? А НУ ВЕРНИСЬ!');
-                break;
-        }
+        if(req.role == sucker){
+            res.send('ВАМ СЮДА НЕЛЬЗЯ, НИ-НИ-НИ');
+        } 
+        next();
     }
 }
 module.exports = router;
