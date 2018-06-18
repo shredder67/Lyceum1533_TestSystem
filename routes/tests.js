@@ -1,5 +1,6 @@
 var express = require('express');
 var Post = require('../models/test');
+var User = require('../models/user');
 var router = express.Router();
 
 
@@ -68,7 +69,8 @@ router.get('/', (req, res, next) => {
                 })
         }
     } else {
-        Post.find({}).then(tests => { //вывод всех тестов, какие есть
+        Post.find({}).populate('author').then(tests => { 
+            console.log(tests);//вывод всех тестов, какие есть
             res.render('./teacher/index.ejs', {
                 tests: tests,
                 role: req.role

@@ -83,12 +83,16 @@ router.post('/create', roleHandler(), function (req, res, next) {
 })
 
 router.get('/view', function(req,res,next){
-    TestSession.findById(req.query.session_id, function(err, ses){
+    TestSession.findById(req.query.session_id)
+    .populate('results', 'student') 
+    .exec(function(err, ses){
         if(err){
             console.log(err);
             res.render(error.ejs, {});
-        }
-    })
+        } 
+        console.log(ses);
+        res.render('session_view.ejs', {session: ses, role: req.role});
+    })  
 })
 
 function roleHandler() {
