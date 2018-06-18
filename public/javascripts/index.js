@@ -46,14 +46,14 @@ function changeQuestionType(question_id, question_type) { //смена тела 
         case "range":
             {
                 sir=0;
-                elem_body.innerHTML=`<br><div class="row"><div class="col"><div class="row"><div class="col"><h7>Условие:</h7></div><div class="col"><textarea  onkeyup='check();' type = 'text' id ='inp${temp}'name = '${question_id}[condition]'></textarea></div></div><br><div class="row"><div class="col"><h7>Введите минимальное значение</h7></div><div class="col"><input onchange='check();' type='number' id ='inp${temp}' name = "${question_id}[question_body][min_value]"></input></div></div><br><div class="row"><div class="col"><h7>Введите максимальное значение</h7></div><div class="col"><input onchange='check();' type='number' id ='inp${temp+1}' name = "${question_id}[question_body][max_value]"></input></div></div></div><div class="col"><div class="row"><div class="col"><h7>Допустимая погрешность:</h7></div><div class="col"><input onchange='check();' type='number' id ='inp${temp+2}' name = "${question_id}[question_body][inaccuracy]" min="1 "></input></div></div><br><div class="row"><div class="col"><h7>Введите цену деления</h7></div><div class="col"><input onchange='check();' type='number' id ='inp${temp+4}' name = "${question_id}[question_body][step]"></input></div></div><br><div class="row"><div class="col"><h7>Введите правильный ответ</h7></div><div class="col"><input onchange='check();' type='number' id ='inp${temp+3}' name = "${question_id}[question_body][right_answer]"></input></div></div></div></div><br><input type='button' onclick='delete_question("${question_id}");'  id='del_butt${question_id}' value='Удалить вопрос'></input>`
+                elem_body.innerHTML=`<br><div class="row"><div class="col"><div class="row"><div class="col"><h7>Условие:</h7></div><div class="col"><textarea onkeyup='check();' type = 'text' id ='inp${temp}'name = '${question_id}[condition]'></textarea></div></div><br><div class="row"><div class="col"><h7>Минимальное значение:</h7></div><div class="col"><input onchange='check();' type='number' id ='inp${temp}' name = "${question_id}[question_body][min_value]"></input></div></div><br><div class="row"><div class="col"><h7>Максимальное значение:</h7></div><div class="col"><input onchange='check();' type='number' id ='inp${temp+1}' name = "${question_id}[question_body][max_value]"></input></div></div></div><div class="col"><div class="row"><div class="col"><h7>Допустимая погрешность:</h7></div><div class="col"><input onchange='check();' type='number' id ='inp${temp+2}' name = "${question_id}[question_body][inaccuracy]" min="1 "></input></div></div><br><div class="row"><div class="col"><h7>Правильный ответ:</h7></div><div class="col"><input onchange='check();' type='number' id ='inp${temp+3}' name = "${question_id}[question_body][right_answer]"></input></div></div></div></div><br><input type='button' onclick='delete_question("${question_id}");'  id='del_butt${question_id}' value='Удалить вопрос'></input>`
                 temp += 4;
                 break;
             }
         case "fill_spaces":
             {
                 sir=0;
-                elem_body.innerHTML=`<h7>Введите текст</h7><textarea onchange='check();'id='inp${temp}'></textarea><h7>Введите пропущенную фразу</h7><input type='text' onchange='check();'id='inp${temp+1}'></input><input type='button' value='Добавить' onclick='add_space("${question_id}")'id='inp${temp+2}'></input><input type='button' onclick='delete_question("${question_id}");'  id='del_butt${question_id}' value='Удалить вопрос'></input><input type='button' onclick='delete_last()'  value='Удалить последний'></input>`;
+                elem_body.innerHTML=`<br><div class="row"><div class="col"><input type='button' value='Добавить 2 блока' onclick='add_space("${question_id}")'id='inp${temp+2}'></input></div><div class="col"><input type='button' onclick='delete_last()'  value='Удалить последние блоки'></input></div><div class="col"><input type='button' onclick='delete_question("${question_id}");'  id='del_butt${question_id}' value='Удалить вопрос'></input></div></div><br><div class="row"><div class="col"><h7>Блок текста:</h7></div><div class="col"><textarea onchange='check();'id='inp${temp}'></textarea></div></div><br><div class="row"><div class="col"><h7>Пропущенная фраза:</h7></div><div class="col"><input type='text' onchange='check();'id='inp${temp+1}'></input></div></div>`;
                 temp+=3;
                 break;
             }
@@ -75,7 +75,7 @@ function createNewAnswers(question_count, elem_body_id, question_id) //Доба�
     document.getElementById(elem_body_id).appendChild(fix);
     var rd; //будет использоваться для создания checkbox
     rd = document.createElement("div");
-    rd.innerHTML = "<h7>Условие</h7>";
+    rd.innerHTML = "<h7>Условие:</h7>";
     document.getElementById("tr[" + index + "]").appendChild(rd);
     var options = document.createElement("textarea");//будет использоваться для создания заданного кол-ва вариантов ответа                                       
     options.type = "text";
@@ -136,15 +136,17 @@ function delete_question(now_index) //функция удаления вопро
 
     document.getElementById(now_index).remove();
 }
+
 function add_space(question_id)
 {
     sir++;
 var space=document.createElement("div");
 space.id=`${sir}&${index}`;
-space.innerHTML=`<h7>Введите текст</h7><textarea onchange='check();'id='inp${temp}'></textarea><h7>Введите пропущенную фразу</h7><input type='text' onchange='check();'id='inp${temp+1}'></input>`;
+space.innerHTML=`<div class="row"><div class="col"><h7>Блок текста:</h7></div><div class="col"><textarea onchange='check();'id='inp${temp}'></textarea></div></div><br><div class="row"><div class="col"><h7>Пропущенная фраза:</h7></div><div class="col"><input type='text' onchange='check();'id='inp${temp+1}'></input></div></div><br>`;
 temp+=3;
 document.getElementById(question_id).appendChild(space);
 }
+
 function delete_last()
 {
     document.getElementById(`${sir}&${index}`).remove();
