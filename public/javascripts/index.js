@@ -41,7 +41,7 @@ function changeQuestionType(question_id, question_type, ind) { //смена те
             }
         case "multiple_choice":
             {
-                elem_body.innerHTML = `<h7>Кол-во вариантов ответа:</h7><select id='answer_count' onchange='createNewAnswers(this.options[this.selectedIndex].value,"${elem_body.id}", "${question_id}");'>" +
+                elem_body.innerHTML = `<h7>Кол-во вариантов ответа:</h7><select id='answer_count' onchange='createNewAnswers(this.options[this.selectedIndex].value,"${elem_body.id}", "${question_id}", ${ind});'>" +
 "<option value = ''></option>" +
 "<option value = '3'>3</option>" +
 "<option value = '4'>4</option>" +
@@ -88,25 +88,25 @@ id='del_butt${question_id}' value='Удалить вопрос'></input>`
     }
 }
 
-function createNewAnswers(question_count, elem_body_id, question_id) //Добавление вариантов ответа в multitple_choice
+function createNewAnswers(question_count, elem_body_id, question_id ,ind) //Добавление вариантов ответа в multitple_choice
 {
     temp++;
     if (kostil != 0) {
-        document.getElementById("tr[" + index + "]").innerHTML = '';
+        document.getElementById("tr[" + ind + "]").innerHTML = '';
     }
     var fix = document.createElement("div"); //Div который будет очищаться в случае смены кол-ва вариантов ответа
-    fix.id = "tr[" + index + "]";
+    fix.id = "tr[" + ind + "]";
     document.getElementById(elem_body_id).appendChild(fix);
     var rd; //будет использоваться для создания checkbox
     rd = document.createElement("div");
     rd.innerHTML = "<h7>Условие:</h7>";
-    document.getElementById("tr[" + index + "]").appendChild(rd);
+    document.getElementById("tr[" + ind + "]").appendChild(rd);
     var options = document.createElement("textarea"); //будет использоваться для создания заданного кол-ва вариантов ответа
     options.type = "text";
     options.name = `${question_id}[question_body][condition]`;
     options.id = `inp${temp}`;
     options.onkeyup = check;
-    document.getElementById("tr[" + index + "]").appendChild(options);
+    document.getElementById("tr[" + ind + "]").appendChild(options);
 
 
     var obertka;
@@ -117,7 +117,7 @@ function createNewAnswers(question_count, elem_body_id, question_id) //Доба�
             `<div class="input-group-prepend">` +
             ` <div class="input-group-text" id="${i}&${temp}gr">` +
             `</div></div></div>`;
-        document.getElementById("tr[" + index + "]").appendChild(obertka);
+        document.getElementById("tr[" + ind + "]").appendChild(obertka);
         rd = document.createElement("input");
         rd.type = "checkbox";
         rd.name = `${question_id}[question_body][options][${i}][isRight]`;
@@ -132,7 +132,7 @@ function createNewAnswers(question_count, elem_body_id, question_id) //Доба�
     }
     var but = document.createElement("div"); //кнопка удаления вопроса
     but.innerHTML = `<br><input type='button' onclick='delete_question("${question_id}");' value='Удалить вопрос'></input>`;
-    document.getElementById("tr[" + index + "]").appendChild(but);
+    document.getElementById("tr[" + ind + "]").appendChild(but);
 
     kostil++;
 }
