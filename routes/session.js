@@ -107,6 +107,7 @@ router.get('/test_passage', roleHandler('teacher'), function(req,res,next){
                     console.log(err);
                     res.render('./error.ejs',{})
                 }
+                console.log(test.questions[0].condition);
                 res.render('./student/test_passage.ejs', {session_id: sess.id, test:test, role: req.role});
             })
         })
