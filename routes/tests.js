@@ -69,7 +69,7 @@ router.get('/', (req, res, next) => {
                 })
         }
     } else {
-        Post.find({}).populate('author').then(tests => { 
+        Post.find({}).then(tests => { 
             console.log(tests);//вывод всех тестов, какие есть
             res.render('./teacher/index.ejs', {
                 tests: tests,
