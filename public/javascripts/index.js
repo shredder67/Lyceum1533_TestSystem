@@ -109,8 +109,6 @@ function createNewAnswers(question_count, elem_body_id, question_id ,ind) //До
     options.id = `inp${temp}`;
     options.onkeyup = check;
     document.getElementById("tr[" + ind + "]").appendChild(options);
-
-
     var obertka;
     for (var i = 0; i < question_count; i++) { //создание выбора из списка
         temp++;

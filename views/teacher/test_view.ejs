@@ -94,7 +94,7 @@
                                                 <%=question.question_body.condition%>
                                             </p>
                                         </h5>
-                                        <div class="" "slidecontainer">
+                                        <div class="slidecontainer">
                                             <input type="range" min="<%=question.question_body.min_value%>" max="<%=question.question_body.max_value%>" value="<%=question.question_body.right_answer%>"
                                                 class="slider" id="myRange" disabled>
                                         </div>
@@ -169,16 +169,4 @@
                 </div>
             </div>
             <%}%>
-
-                <!-- <script>
-                    var slider = document.getElementById("myRange");
-                    var output = document.getElementById("Ranswer");
-                    
-                    output.innerHTML = slider.value;
-
-                    slider.oninput = function () {
-                        output.innerHTML = this.value;
-                    }
-                </script>-->
-
                 <%- include ../layout/footer.ejs %>

@@ -1,65 +1,134 @@
 <%- include ../layout/header.ejs %>
-<%- include ../layout/menu.ejs %>
-<div class="container">
-    <div class="row">
-            <table class="table table-borderless table-warning">
+    <%- include ../layout/menu.ejs %>
+        <div class="container">
+            <div class="row">
+                <table class="table table-borderless table-warning">
                     <thead>
-                      <tr>
-                        <th scope="col">Название</th>
-                        <th scope="col">Предмет</th>
-                        <th scope="col">Тема</th>
-                        <th scope="col">Автор</th>
-                      </tr>
+                        <tr>
+                            <th scope="col">Название</th>
+                            <th scope="col">Предмет</th>
+                            <th scope="col">Тема</th>
+                            <th scope="col">Автор</th>
+                        </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td><%= test.name %></td>
-                        <td><%= test.subject %></td>
-                        <td><%= test.theme %></td>
-                        <td><%= test.author %></td>
-                      </tr>
+                        <tr>
+                            <td>
+                                <%= test.name %>
+                            </td>
+                            <td>
+                                <%= test.subject %>
+                            </td>
+                            <td>
+                                <%= test.theme %>
+                            </td>
+                            <td>
+                                <%= test.author %>
+                            </td>
+                        </tr>
                     </tbody>
-            </table>
-    </div>
-    <div class="row">
-        <div class="mx-auto">
-            <h5>Задания</h5>
+                </table>
+            </div>
+            <div class="row">
+                <div class="mx-auto">
+                    <h4>Задания</h4>
+                </div>
+            </div>
+            <div class="row">
+
+                <%test.questions.forEach(function(question){%>
+                    <div class="container-fluid border-bottom border-secondary">
+                        <% switch(question.question_type){
+            case 'free_input':%>
+                            <h5>
+                                <p class="text-center">
+                                    <%=question.question_body.condition%>
+                                </p>
+                            </h5>
+
+                            <div class="row ml-4">
+                                <h5>Ответ:</h5>
+                                <input class="ml-2" onkeyup='check();' id='' type='text' name=''></input>
+                            </div>
+                            <% break;
+            case 'multiple_choice': %>
+                                <h5>
+                                    <p class="text-center">
+                                        <%=question.question_body.condition%>
+                                    </p>
+                                </h5>
+                                <%question.question_body.options.forEach(function(opt){%>
+                                    <div class="row">
+                                        <div class="col"></div>
+                                        <div class="col">
+                                            <input type="checkbox" aria-label="Checkbox for following text input">
+                                            <strong>
+                                                <%=opt.text%>
+                                            </strong>
+                                        </div>
+                                        <div class="col"></div>
+                                    </div>
+                                    <% });%>
+                                        <% break;
+            case 'fill_spaces': %>
+                                            <h5>
+                                                <p class="text-center">
+                                                    Вставьте пропущенные слова или даты
+                                                </p>
+                                            </h5>
+                                            <%for(var i=0; i<question.question_body.texts.length; i++){%>
+                                                <strong>
+                                                    <%= question.question_body.texts[i] %>
+                                                </strong>
+                                                <input onkeyup='check();' id='' type='text' name=''></input>
+                                                <% } %>
+                                                    <br>
+                                                    <% break;
+            case 'range': %>
+                                                        <h5>
+                                                            <p class="text-center">
+                                                                <%=question.question_body.condition%>
+                                                            </p>
+                                                        </h5>
+                                                        <div class="" "slidecontainer">
+                                                            <input type="range" min="<%=question.question_body.min_value%>" max="<%=question.question_body.max_value%>" class="slider"
+                                                                id="myRange">
+                                                            <p>
+                                                                <div class="row ml-4">
+                                                                    <h5>Ответ:
+                                                                        <span id="demo"></span>
+                                                                    </h5>
+                                                                </div>
+                                                            </p>
+                                                        </div>
+                                                        <% break;} %>
+                                                            <br>
+                    </div>
+                    <% }); %>
+
+            </div>
         </div>
-    </div>
-    <div class="row">
-        <%test.questions.forEach(function(question){%>
-            <% switch(question.type){
-                case 'free_input':%>
+        <br>
+        <div class="container">
+            <div class="row">
+                <div class="col"></div>
+                <div class="col">
+                    <input style="width: 100%" class="btn btn-secondary" type="submit" value="Отправить результат">
+                </div>
+                <div class="col"></div>
+            </div>
+        </div>
+        <br>
 
-                <h5>
-                        <p class="text-center">
-                            <%=question.question_body.condition%>
-                        </p>
-                    </h5>
-                <% break;
-                case 'multiple_choice': %>
+        <script>
+            var slider = document.getElementById("myRange");
+            var output = document.getElementById("demo");
+            output.innerHTML = slider.value;
 
-                <h5>
-                        <p class="text-center">
-                            <%=question.question_body.condition%>
-                        </p>
-                    </h5>
-                <% break;
-                case 'fill_spaces': %>
-
-                <% break;
-                case 'range': %>
-                    
-                <h5>
-                        <p class="text-center">
-                            <%=question.question_body.condition%>
-                        </p>
-                    </h5>
-                <% break;
-            } %>
-        <% }); %>
-    </div>
-</div>
+            slider.oninput = function () {
+                output.innerHTML = this.value;
+            }
+        </script>
 
 
-<%- include ../layout/footer.ejs %>
+        <%- include ../layout/footer.ejs %>
