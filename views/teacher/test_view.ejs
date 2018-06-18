@@ -126,6 +126,14 @@
                                             </h4>
                                             <h5>
                                                 <p class="text-center">
+                                                        <%if(question.question_body.texts.count==1){%>
+                                                            <%=question.question_body.texts[0]%>
+                                                            <code class="highlighter-rouge">
+                                                                <strong>
+                                                                    <%=question.question_body.answers[0]%>
+                                                                </strong>
+                                                            </code>
+                                                        <%} else{%>
                                                     <%for(var i=0; i<question.question_body.texts.length; i++){%>
                                                         <%= question.question_body.texts[i] %>
                                                             <code class="highlighter-rouge">
@@ -133,7 +141,8 @@
                                                                     <%=question.question_body.answers[i] %>
                                                                 </strong>
                                                             </code>
-                                                            <%};%>
+                                                            <%}
+                                                        }%>
                                                 </p>
                                             </h5>
                                             <%break;

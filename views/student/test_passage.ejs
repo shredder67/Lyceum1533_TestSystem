@@ -18,6 +18,8 @@
                         <td><%= test.theme %></td>
                         <td><%= test.author %></td>
                       </tr>
+                    </tbody>
+            </table>
     </div>
     <div class="row">
         <div class="mx-auto">
@@ -29,15 +31,30 @@
             <% switch(question.type){
                 case 'free_input':%>
 
+                <h5>
+                        <p class="text-center">
+                            <%=question.question_body.condition%>
+                        </p>
+                    </h5>
                 <% break;
                 case 'multiple_choice': %>
 
+                <h5>
+                        <p class="text-center">
+                            <%=question.question_body.condition%>
+                        </p>
+                    </h5>
                 <% break;
                 case 'fill_spaces': %>
 
                 <% break;
-                case 'fill_spaces': %>
+                case 'range': %>
                     
+                <h5>
+                        <p class="text-center">
+                            <%=question.question_body.condition%>
+                        </p>
+                    </h5>
                 <% break;
             } %>
         <% }); %>
