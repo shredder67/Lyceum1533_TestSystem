@@ -76,9 +76,11 @@ id='del_butt${question_id}' value='Удалить вопрос'></input>`
                 `</div><div class="col"><input type='button' id='${ind}' onclick='delete_last(this.id)' value='Удалить последние блоки'></input>` +
                 `</div><div class="col"><input type='button' onclick='delete_question("${question_id}");' id='del_butt${question_id}' value='Удалить вопрос'></input></div></div>` +
                 `<br><div class="row"><div class="col"><h7>Блок текста:</h7></div><div class="col"><textarea onchange='check();'id='inp${temp}' name = "${question_id}[question_body][texts]"></textarea></div></div>` +
-                `<br><div class="row"><div class="col"><h7>Пропущенная фраза:</h7></div><div class="col"><input type='text' onchange='check();'id='inp${temp+1}' name = "${question_id}[question_body][answers]"></input></div></div>`;
-                add_space(question_id, ind);
-                temp += 3;
+                `<br><div class="row"><div class="col"><h7>Пропущенная фраза:</h7></div><div class="col"><input type='text' onchange='check();'id='inp${temp+1}' name = "${question_id}[question_body][answers]"></input></div></div>`+
+                `<br><div class="row"><div class="col"><h7>Блок текста:</h7></div><div class="col"><textarea onchange='check();'id='inp${temp+3}' name = "${question_id}[question_body][texts]"></textarea></div></div>` +
+                `<br><div class="row"><div class="col"><h7>Пропущенная фраза:</h7></div><div class="col"><input type='text' onchange='check();'id='inp${temp+4}' name = "${question_id}[question_body][answers]"></input></div></div>`;
+                
+                temp += 5;
                 break;
             }
         default:
@@ -174,8 +176,9 @@ function add_space(question_id, ind) {
 
 function delete_last(del_in) {
     // alert(del_in);
+    $(`#${sir}&${del_in}`)
     document.getElementById(`${sir}&${del_in}`).remove();
-    if (sir > 1) {
+    if (sir > 0) {
         sir--;
     }
 }
