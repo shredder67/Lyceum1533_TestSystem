@@ -23,14 +23,20 @@ testSession_schema = new Schema({
         required: true,
     },
     results:[{
-        student_id: {
-            type: String,
+        student: { //при передаче данных это поле будет заменено на ученика со всеми его полями (см. user.js)
+            type: Schema.Types.ObjectId,
+            ref: 'User', 
             required: true,
         },
         date: Number,
-        result_id: {
-            type: String,
-            required: true,
+        results: {
+            done_right: { //кол-во правильных ответов
+                type: Number,
+            },
+            user_answers:{ //все ответы пользователя
+                type: String,
+                required:true,
+            } 
         }
     }],
     date: Number,

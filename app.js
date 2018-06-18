@@ -10,6 +10,7 @@ const LocalStrategy = require('passport-local').Strategy;
 const User = require('./models/user');
 
 
+
 const path = require('path');
 const createError = require('http-errors'); //для обработки ошибок
 const logger = require('morgan')
@@ -34,7 +35,7 @@ app.use(express.urlencoded({
     extended: true
 }));
 app.use(session({
-    secret: '0293g;n23410sif-wlh23;h42i2opk234', //ключ для шифрования 
+    secret: '0293g;n23410sif-wlh23;h42i2opk234', //ключ 
     store: new mongoStore({
         dbPromise: database(),
     }),
@@ -100,7 +101,7 @@ function authenticationMiddleware(){  //проверочка на вход
 }
 
 // catch 404 and forward to error handler
-/*
+
 app.use(function(req, res, next) {
     next(createError(404));
   });
@@ -115,7 +116,7 @@ app.use(function(req, res, next) {
     res.render('error');
     res.status(err.status || 500);
   });
-*/
+
 
 database()
     .then(info => { //тот самый объект с инфой
