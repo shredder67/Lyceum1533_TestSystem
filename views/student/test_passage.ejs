@@ -1,0 +1,48 @@
+<%- include ../layout/header.ejs %>
+<%- include ../layout/menu.ejs %>
+<div class="container">
+    <div class="row">
+            <table class="table table-borderless table-warning">
+                    <thead>
+                      <tr>
+                        <th scope="col">Название</th>
+                        <th scope="col">Предмет</th>
+                        <th scope="col">Тема</th>
+                        <th scope="col">Автор</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><%= test.name %></td>
+                        <td><%= test.subject %></td>
+                        <td><%= test.theme %></td>
+                        <td><%= test.author %></td>
+                      </tr>
+    </div>
+    <div class="row">
+        <div class="mx-auto">
+            <h5>Задания</h5>
+        </div>
+    </div>
+    <div class="row">
+        <%test.questions.forEach(function(question){%>
+            <% switch(question.type){
+                case 'free_input':%>
+
+                <% break;
+                case 'multiple_choice': %>
+
+                <% break;
+                case 'fill_spaces': %>
+
+                <% break;
+                case 'fill_spaces': %>
+                    
+                <% break;
+            } %>
+        <% }); %>
+    </div>
+</div>
+
+
+<%- include ../layout/footer.ejs %>

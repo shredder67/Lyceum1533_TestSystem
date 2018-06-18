@@ -97,8 +97,18 @@ router.get('/view', function(req,res,next){
 
 router.get('/test_passage', roleHandler('teacher'), function(req,res,next){
     TestSession.findById(req.query.ses_id)
-        .exec(function(err, session){
-            res.send('нормально нормально');
+        .exec((err, sess)=>{
+            if(err){
+                console.log(err);
+                res.render('./error.ejs',{})
+            }
+            Post.findById(sess.test_id, (err, test) =>{
+                if(err){
+                    console.log(err);
+                    res.render('./error.ejs',{})
+                }
+                res.render('./student/test_passage.ejs', {session_id: sess.id, test:test, role: req.role});
+            })
         })
 })
 
