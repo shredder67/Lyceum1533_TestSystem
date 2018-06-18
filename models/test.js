@@ -32,9 +32,13 @@ var post_schema = new Schema({ //макет теста
     }], 
 /*
 Тутор по типам вопросов и по тому, что есть внутри
+
 free_input - свободный ввод => quesiton_body: {condition - string, right_answer - string}
+
 multiple_choice - выбор правильных ответов из предложенных вариантов => question_body: {condition - string, options: [{text - string, isRight - bool}]}
+
 range - ввод примерного ответа => question_body: {condition - string, min_value - numb, max_value - numb, right_answer - numb, inaccuracy - numb}
+
 fill_spaces - заполнение пропусков в тексте => question_body: texts - [string], answers - [string] } - последний ответ пустой 
 
 */

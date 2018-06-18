@@ -10,7 +10,7 @@ router.get('/', (req, res, next) => {
                         errors: undefined
                 });
         } else{
-                res.redirect('/tests');
+                res.redirect('/profile');
         }
 });
 

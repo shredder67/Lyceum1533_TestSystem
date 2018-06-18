@@ -46,7 +46,7 @@
                     <th scope="col">Дата</th>
                 </tr>
             </thead>
-            <tbody id="table_body">
+            <tbody>
                 <% tests.forEach(function(test){ %>
                     <tr onclick="window.location='/test_view?test_id=<%= test.id %>'"></tr>
                         <th scope="row">
@@ -67,7 +67,6 @@
                         <td>
                             <%= new Date(test.date).getDate() +'.0'+ +(new Date(test.date).getMonth() + 1) +'.'+ new Date(test.date).getFullYear() %>
                         </td>
-                        </a>
                     </tr>
 
                     <% }); %>
