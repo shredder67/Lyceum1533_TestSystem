@@ -2,6 +2,7 @@ const express = require('express');
 const database = require('./database'); //обработка подключения к бд
 const config = require('./config'); //константы для работы приложения
 
+const mongoosse = require('mongoose');
 const session = require('express-session'); //хранение сессий
 const bodyParser = require('body-parser'); //работа с данными, передаваемые post-запросом 
 const mongoStore = require('connect-mongo')(session);

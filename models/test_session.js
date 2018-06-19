@@ -14,29 +14,33 @@ testSession_schema = new Schema({
         type: [String],
         required: true,
     },
-    author:{
+    author: {
         type: String,
         required: true,
     },
-    author_name:{
+    author_name: {
         type: String,
         required: true,
     },
-    results:[{
+    results: [{
         student: { //при передаче данных это поле будет заменено на ученика со всеми его полями (см. user.js)
             type: Schema.Types.ObjectId,
-            ref: 'User', 
+            ref: 'User',
             required: true,
         },
+        st_name: String,
+        st_group: Number,
         date: Number,
-        results: {
-            done_right: { //кол-во правильных ответов
+        outcome: {
+            done_right:{ //кол-во правильных ответов
                 type: Number,
+                _id: false,
             },
-            user_answers:{ //все ответы пользователя
-                type: String,
-                required:true,
-            } 
+            user_answers: [{ //все ответы пользователя
+                id: Schema.Types.ObjectId,// id вопроса из теста
+                ans: Schema.Types.Mixed,// или String или [String]
+                _id: false,
+            }]
         }
     }],
     date: Number,

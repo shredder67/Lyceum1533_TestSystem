@@ -19,7 +19,7 @@ var user_schema = new Schema({
         required: true,
     },
     group:{
-        type: String,
+        type: String, // if user_type == 'student'
     },
 })
 

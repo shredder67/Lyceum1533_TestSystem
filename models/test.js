@@ -27,8 +27,7 @@ var post_schema = new Schema({ //макет теста
     },
     questions:[{
         question_type: String,
-        question_body: Schema.Types.Mixed,
-        _id:false, 
+        question_body: Schema.Types.Mixed, 
     }], 
 /*
 Тутор по типам вопросов и по тому, что есть внутри
@@ -39,7 +38,7 @@ multiple_choice - выбор правильных ответов из предл
 
 range - ввод примерного ответа => question_body: {condition - string, min_value - numb, max_value - numb, right_answer - numb, inaccuracy - numb}
 
-fill_spaces - заполнение пропусков в тексте => question_body: [{text - string, answer - string}] } - последний ответ пустой 
+fill_spaces - заполнение пропусков в тексте => question_body: {texts - [string], answers - [string] } - последний ответ пустой 
 
 */
     

@@ -1,29 +1,66 @@
 <%- include ./layout/header.ejs %>
-<%- include ./layout/menu.ejs %>
+    <%- include ./layout/menu.ejs %>
 
-    <% if(role == 'teacher'){ %>
+        <% if(role == 'teacher'){ %>
             <div class="container">
                 <div class="row">
-                    Результаты
+                    <div class="col"></div>
+                    <div class="col">
+                                    <h3>Результаты учащихся</h3>
+                    </div>
+                    <div class="col"></div>
                 </div>
             </div>
             <ul class="list-group list-group-flush"></ul>
             <% session.results.forEach(function(target){ %>
-                        <li class="list-group-item">
-                                <%= session.name %>
-                                <span style="display:inline-block; width: YOURWIDTH;"></span>
-                                <%= session.author_name %>
-                                <span style="display:inline-block; width: YOURWIDTH;"></span>
-                                <%= new Date(session.date).getDate() +'.0'+ +(new Date(session.date).getMonth() + 1) +'.'+ new Date(session.date).getFullYear() %>
-                            </li>
-            <% }); %>
-            </ul>
 
-    <% }else if(role == 'student'){ %>
-        <form action="/session/test_passage" method="get">
-            <input type="hidden" name="ses_id" value="<%=session.id%>">
-            <button type="submit">Пройти тест</button>
-        </form>
+                <li class="list-group-item">
+                    <%= target.st_name %>
+                        <span style="display:inline-block; width: 20%;"></span>
+                        <%= target.st_group %>
+                            <span style="display:inline-block; width: 20%;"></span>
+                            <%= target.outcome.done_right * 100%>%
+                                <span style="display:inline-block; width: 20%;"></span>
+                                <%= new Date(target.date).getDate() +'.0'+ +(new Date(target.date).getMonth() + 1) +'.'+ new Date(target.date).getFullYear() +' '+ new Date(target.date).getHours() + ':' + 
+                                new Date(target.date).getMinutes() + ':' + new Date(target.date).getSeconds() %>
+                </li>
 
-    <% } %>
-<%- include ./layout/footer.ejs %>
+
+                <% }); %>
+                    </ul>
+
+                    <% }else if(role == 'student'){ %>
+                        <%session.results.forEach(function(target){
+                            if(user.id == target.student){%>
+                                <div class="container">
+                                        <div class="row">
+                                            <div class="col"></div>
+                                            <div class="col">
+                                                            <h3>Тест уже пройден, расслабься!</h3>
+                                            </div>
+                                            <div class="col"></div>
+                                        </div>
+                                    </div>
+                                    <input type="hidden" id = "gg" value = true>
+                            <%}});%>
+                        <form action="/session/test_passage" method="get">
+                            <input type="hidden" name="ses_id" value="<%=session.id%>">
+                            <div class="container">
+                                <div class="row">
+                                        <div class="col"></div>
+                                        <div class="col">
+                                                <button type="submit" class = "btn btn-light btn-lg btn-block" id="start_test" >Пройти тест</button>
+                                        </div>
+                                        <div class="col"></div>
+                                </div>
+                                <div class="row">
+
+                                </div>
+                            </div>
+                        </form>
+                        <script>
+                            if(document.getElementById('gg'))
+                                document.getElementById('start_test').setAttribute("hidden", true);
+                        </script>
+                        <% } %>
+                            <%- include ./layout/footer.ejs %>

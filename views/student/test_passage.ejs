@@ -34,79 +34,92 @@
                     <h4>Задания</h4>
                 </div>
             </div>
-            <div class="row">
-
-                <%test.questions.forEach(function(question){%>
-                    <div class="container-fluid border-bottom border-secondary">
-                        <% switch(question.question_type){
+            <form action="/session/test_passage" method="post">
+                <input type="hidden" value="<%=session_id%>" name="session_id">
+                <div class="row">
+                    <% test.questions = shuffleArray(test.questions);
+                    var index = 0;
+                function shuffleArray(array) {
+                        for (var i = array.length - 1; i > 0; i--) {
+                        var j = Math.floor(Math.random() * (i + 1));
+                        var temp = array[i];
+                        array[i] = array[j];
+                        array[j] = temp;
+                    } 
+                    return array
+                }%>
+                        <%test.questions.forEach(function(question){%>
+                            <div class="container-fluid border-bottom border-secondary">
+                                <input type="hidden" value="<%=question.id%>" name="answers[<%=index%>][id]">
+                                <% switch(question.question_type){
             case 'free_input':%>
-                            <h5>
-                                <p class="text-center">
-                                    <%=question.question_body.condition%>
-                                </p>
-                            </h5>
+                                    <h5>
+                                        <p class="text-center">
+                                            <%=question.question_body.condition%>
+                                        </p>
+                                    </h5>
 
-                            <div class="row ml-4">
-                                <h5>Ответ:</h5>
-                                <input class="ml-2" onkeyup='check();' id='' type='text' name=''></input>
-                            </div>
-                            <% break;
-            case 'multiple_choice': %>
-                                <h5>
-                                    <p class="text-center">
-                                        <%=question.question_body.condition%>
-                                    </p>
-                                </h5>
-                                <%question.question_body.options.forEach(function(opt){%>
-                                    <div class="row">
-                                        <div class="col"></div>
-                                        <div class="col">
-                                            <input type="checkbox" aria-label="Checkbox for following text input">
-                                            <strong>
-                                                <%=opt.text%>
-                                            </strong>
-                                        </div>
-                                        <div class="col"></div>
+                                    <div class="row ml-4">
+                                        <h5>Ответ:</h5>
+                                        <input class="ml-2" required id='' type='text' name="answers[<%=index%>][ans]"></input>
                                     </div>
-                                    <% });%>
-                                        <% break;
+                                    <% break;
+            case 'multiple_choice': %>
+                                        <h5>
+                                            <p class="text-center">
+                                                <%=question.question_body.condition%>
+                                            </p>
+                                        </h5>
+                                        <%question.question_body.options.forEach(function(opt){%>
+                                            <div class="row">
+                                                <div class="col"></div>
+                                                <div class="col">
+                                                    <input type="checkbox" aria-label="Checkbox for following text input" value="<%=opt.text%>" name="answers[<%=index%>][ans]">
+                                                    <strong>
+                                                        <%=opt.text%>
+                                                    </strong>
+                                                </div>
+                                                <div class="col"></div>
+                                            </div>
+                                            <% });%>
+                                                <% break;
             case 'fill_spaces': %>
-                                            <h5>
-                                                <p class="text-center">
-                                                    Вставьте пропущенные слова или даты
-                                                </p>
-                                            </h5>
-                                            <%for(var i=0; i<question.question_body.texts.length; i++){%>
-                                                <strong>
-                                                    <%= question.question_body.texts[i] %>
-                                                </strong>
-                                                <input onkeyup='check();' id='' type='text' name=''></input>
-                                                <% } %>
-                                                    <br>
-                                                    <% break;
-            case 'range': %>
-                                                        <h5>
-                                                            <p class="text-center">
-                                                                <%=question.question_body.condition%>
-                                                            </p>
-                                                        </h5>
-                                                        <div class="" "slidecontainer">
-                                                            <input type="range" min="<%=question.question_body.min_value%>" max="<%=question.question_body.max_value%>" class="slider"
-                                                                id="myRange">
-                                                            <p>
-                                                                <div class="row ml-4">
-                                                                    <h5>Ответ:
-                                                                        <span id="demo"></span>
-                                                                    </h5>
-                                                                </div>
-                                                            </p>
-                                                        </div>
-                                                        <% break;} %>
+                                                    <h5>
+                                                        <p class="text-center">
+                                                            Вставьте пропущенные слова или даты
+                                                        </p>
+                                                    </h5>
+                                                    <%for(var i=0; i<question.question_body.texts.length; i++){%>
+                                                        <strong>
+                                                            <%= question.question_body.texts[i] %>
+                                                        </strong>
+                                                        <input required id='' type='text' name="answers[<%=index%>][ans]"></input>
+                                                        <% } %>
                                                             <br>
-                    </div>
-                    <% }); %>
+                                                            <% break;
+            case 'range': %>
+                                                                <h5>
+                                                                    <p class="text-center">
+                                                                        <%=question.question_body.condition%>
+                                                                    </p>
+                                                                </h5>
+                                                                <div class="" "slidecontainer">
+                                                                    <input type="range" min="<%=question.question_body.min_value%>" max="<%=question.question_body.max_value%>" class="slider"
+                                                                        id="myRange">
+                                                                    <p>
+                                                                        <div class="row ml-4">
+                                                                            <h5>Ответ:
+                                                                                <input readonly type="text" name="answers[<%=index%>][ans]" id="demo">
+                                                                            </h5>
+                                                                        </div>
+                                                                    </p>
+                                                                </div>
+                                                                <% break;} %>
+                                                                    <br>
+                            </div>
+                            <% index++; }); %>
 
-            </div>
+                </div>
         </div>
         <br>
         <div class="container">
@@ -115,6 +128,7 @@
                 <div class="col">
                     <input style="width: 100%" class="btn btn-secondary" type="submit" value="Отправить результат">
                 </div>
+                </form>
                 <div class="col"></div>
             </div>
         </div>
@@ -123,10 +137,10 @@
         <script>
             var slider = document.getElementById("myRange");
             var output = document.getElementById("demo");
-            output.innerHTML = slider.value;
+            output.value = slider.value;
 
             slider.oninput = function () {
-                output.innerHTML = this.value;
+                output.value = this.value;
             }
         </script>
 
